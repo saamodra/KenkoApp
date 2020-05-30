@@ -83,7 +83,7 @@ namespace KenkoApp.forms
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil disimpan!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     connection.Close();
-                    this.Close();
+                    Close();
 
                 }
                 catch (Exception ex)
@@ -125,7 +125,7 @@ namespace KenkoApp.forms
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil diupdate!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     connection.Close();
-                    this.Close();
+                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -136,13 +136,13 @@ namespace KenkoApp.forms
 
         private void btnBatal_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnChooseFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg|*.jpg|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 txtFileName.Text = openFileDialog.FileName;

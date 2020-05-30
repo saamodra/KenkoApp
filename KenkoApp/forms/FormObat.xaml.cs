@@ -60,15 +60,15 @@ namespace KenkoApp.forms
 
         private void FormObat_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbKategori.ItemsSource = Kenko.getData("sp_Kategori_Cari").DefaultView;
+            cmbKategori.ItemsSource = Kenko.getData("sp_Kategori_Read").DefaultView;
 
-            cmbSatuan.ItemsSource = Kenko.getData("sp_Satuan_Cari").DefaultView;
+            cmbSatuan.ItemsSource = Kenko.getData("sp_Satuan_Read").DefaultView;
 
         }
 
         private void btnBatal_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -104,7 +104,7 @@ namespace KenkoApp.forms
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil disimpan!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     connection.Close();
-                    this.Close();
+                    Close();
 
                 }
                 catch (Exception ex)
@@ -146,7 +146,7 @@ namespace KenkoApp.forms
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil disimpan!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     connection.Close();
-                    this.Close();
+                    Close();
 
                 }
                 catch (Exception ex)

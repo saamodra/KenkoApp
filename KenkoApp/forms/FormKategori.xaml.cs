@@ -54,7 +54,7 @@ namespace KenkoApp.forms
 
         private void btnBatal_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -80,7 +80,7 @@ namespace KenkoApp.forms
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil disimpan!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     connection.Close();
-                    this.Close();
+                    Close();
 
                 }
                 catch (Exception ex)
@@ -114,7 +114,7 @@ namespace KenkoApp.forms
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Data berhasil diupdate!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     connection.Close();
-                    this.Close();
+                    Close();
 
                 }
                 catch (Exception ex)

@@ -11,26 +11,12 @@
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimation Storyboard.TargetName="GridMenu" Storyboard.TargetProperty="(FrameworkElement.Width)" 
                              From="70" To="250" Duration="0:0:0.1" Timeline.DesiredFrameRate="60" />
-            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
-                --><!--<EasingDoubleKeyFrame KeyTime="0:0:0.025" Value="120"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="160"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="200"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="230"/>--><!--
-                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="250"/>
-            </DoubleAnimationUsingKeyFrames>-->
+            
         </Storyboard>
         <Storyboard x:Key="CloseMenu">
             <DoubleAnimation Storyboard.TargetName="GridMenu" Storyboard.TargetProperty="(FrameworkElement.Width)" 
                              From="250" To="70" Duration="0:0:0.1" Timeline.DesiredFrameRate="60" />
-            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.025" Value="230"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="200"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="160"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="120"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="70"/>
-            </DoubleAnimationUsingKeyFrames>-->
+            
         </Storyboard>
     </UserControl.Resources>
     <UserControl.Triggers>
@@ -60,8 +46,6 @@
                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Color="#FFACACAC" Opacity=".3"/>
             </Grid.Effect>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                <!--<TextBlock Text="Admin" VerticalAlignment="Center" FontSize="16" Foreground="#3C3C3C"/>-->
-                <!--<materialDesign:PackIcon Kind="AccountCircle" Width="25" Height="25" VerticalAlignment="Center"/>-->
                 <Button x:Name="btnLogout" 
                         Margin="10, 0, 20, 0" 
                         Style="{StaticResource MaterialDesignRaisedButton}"
@@ -74,15 +58,6 @@
                         <TextBlock VerticalAlignment="Center" FontSize="15">Logout</TextBlock>
                     </StackPanel>
                 </Button>
-                <!--<materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" Foreground="#3C3C3C" StaysOpen="False" Margin="10">
-                    <StackPanel Width="150">
-                        <Button Content="Settings"/>
-                        <Button Content="Account"/>
-                        <Button Content="Help"/>
-                        <Separator/>
-                        <Button x:Name="btnLogout" Content="Logout" Click="btnLogout_Click"/>
-                    </StackPanel>
-                </materialDesign:PopupBox>-->
             </StackPanel>
             <TextBlock x:Name="PageTitle" HorizontalAlignment="Left" Foreground="#3C3C3C" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="22">Dashboard</TextBlock>
         </Grid>

@@ -25,28 +25,8 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <!--<RowDefinition Height="40"></RowDefinition>-->
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-
-        <!--<Grid x:Name="buttonAppStack" Grid.Row="0" Background="#232323">
-            <TextBlock x:Name="TitleText" Foreground="White" VerticalAlignment="Center" FontSize="18" Margin="20, 0, 0, 0" 
-                       Text="Kenko" HorizontalAlignment="Center"/>
-            <StackPanel VerticalAlignment="Stretch"
-                        Orientation="Horizontal" 
-                        Height="40" HorizontalAlignment="Right">
-                <Button x:Name="btnMinimize" Template="{StaticResource AppWindow}" VerticalAlignment="Center" Height="40" HorizontalAlignment="Center" Click="btnMinimize_Click">
-                    <materialDesign:PackIcon Kind="WindowMinimize" />
-                </Button>
-                <Button x:Name="btnMaximize" Template="{StaticResource AppWindow}" VerticalAlignment="Center"  Height="40" HorizontalAlignment="Center" Click="btnMaximize_Close">
-                    <materialDesign:PackIcon x:Name="maximizeIcon" Kind="WindowMaximize" />
-                </Button>
-                <Button x:Name="btnClose" Template="{StaticResource AppWindow}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Click="btnClose_Click">
-                    <materialDesign:PackIcon Kind="WindowClose" />
-                </Button>
-
-            </StackPanel>
-        </Grid>-->
 
         <ContentControl Grid.Row="1" x:Name="ContentArea" />
         <materialDesign:Transitioner Grid.Row="1" SelectedIndex="0" AutoApplyTransitionOrigins="False">

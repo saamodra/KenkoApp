@@ -29,17 +29,8 @@ namespace KenkoApp.uc
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new Admin();
+            Content = new Admin();
 
-            //if (txtUsername.Text == "admin" && txtPassword.Password == "admin")
-            //{
-            //    MessageBox.Show("Login Berhasil", "Login berhasil", MessageBoxButton.OK, MessageBoxImage.Information);
-            //    this.Content = new Dashboard();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Login gagal", "Login gagal", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

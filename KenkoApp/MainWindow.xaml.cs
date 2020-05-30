@@ -37,32 +37,10 @@ namespace KenkoApp
             DragMove();
         }
 
-        //private void btnClose_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Application.Current.Shutdown();
-        //}
-
-        //private void btnMaximize_Close(object sender, RoutedEventArgs e)
-        //{
-        //    if (WindowState == WindowState.Maximized)
-        //    {
-        //        buttonAppStack.Margin = new Thickness(0);
-        //        WindowState = WindowState.Normal;
-        //        maximizeIcon.Kind = PackIconKind.WindowMaximize;
-        //    } else
-        //    {
-        //        buttonAppStack.Margin = new Thickness(3, 3, 5, 0);
-        //        ContentArea.Margin = new Thickness(10, 0, 0, 0);
-        //        WindowState = WindowState.Maximized;
-        //        maximizeIcon.Kind = PackIconKind.WindowRestore;
-        //    }
-        //}
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
-
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {

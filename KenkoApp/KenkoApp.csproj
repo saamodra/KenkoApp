@@ -125,7 +125,6 @@
     <Compile Include="uc\MasterUser.xaml.cs">
       <DependentUpon>MasterUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="uc\NotEmptyValidationRule.cs" />
     <Page Include="forms\FormDokter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
