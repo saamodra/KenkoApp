@@ -1,11 +1,13 @@
 # KenkoApp
 
+<br><p align="center"><img src="https://i.imgur.com/HBgccNr.png" width="400"></p><br>
+
 ## Description ##
 KenkoApp merupakan Aplikasi Point of Sales bertema Apotik & Klinik
 
 **Project Template :** WPF App (.NET Framework)  
 **Tools :** Visual Studio 2019  
-**Framework :** Material Design Themes v3.1.3
+**Framework :** Material Design Themes v3.1.3\
 **Fonts :** Source Sans Pro, Product Sans
 
 ## Preview ##
@@ -26,4 +28,4 @@ KenkoApp merupakan Aplikasi Point of Sales bertema Apotik & Klinik
 
 
 ## Copyright ##
-KenkoApp WPF C#, © 2020 Kenko Team
+KenkoApp WPF C#. © 2020 Kenko Team
