@@ -1,0 +1,120 @@
+﻿<Window x:Class="KenkoApp.forms.FormUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KenkoApp.forms"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Tambah User" Height="650" Width="500" WindowStartupLocation="CenterScreen" Loaded="FormUser_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Margin="0 32 0 0">
+            <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top"/>
+            </materialDesign:TransitioningContent>
+        </Grid>
+        <materialDesign:PackIcon x:Name="FormIcon" Kind="PlusBox" Grid.Row="0" Grid.Column="0" Width="35" Height="35" Foreground="#DD4B39" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <StackPanel Grid.Column="1" Margin="20 0 0 0" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000">Tambah Data User</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Name="lblSubtitle" Foreground="Gray">Form ini untuk menambah data user</TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="20 20 50 0">
+            <TextBox x:Name="txtNama" materialDesign:HintAssist.Hint="Nama"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center"
+                    materialDesign:ValidationAssist.UsePopup="True"
+                    ToolTip="Isi dengan nama asli" GotFocus="txtNama_Focus" TextChanged="txtNama_TextChanged" PreviewTextInput="txtNama_PreviewTextInput">
+            </TextBox>
+            <Label Name="lblNama" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <TextBox x:Name="txtUsername" materialDesign:HintAssist.Hint="Username"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center"
+                    materialDesign:ValidationAssist.UsePopup="True"
+                    ToolTip="Username harus unik" GotFocus="txtUsername_Focus" TextChanged="txtUsername_TextChanged">
+            </TextBox>
+            <Label Name="lblUsername" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <TextBox x:Name="txtEmail" materialDesign:HintAssist.Hint="Email"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center"
+                    materialDesign:ValidationAssist.UsePopup="True"
+                    ToolTip="Username harus unik" GotFocus="txtEmail_Focus" TextChanged="txtEmail_TextChanged">
+            </TextBox>
+            <Label Name="lblEmail" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <PasswordBox x:Name="txtPassword" Margin="0 4 0 0"
+                    materialDesign:HintAssist.Hint="Password"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="txtPassword_Focus" PasswordChanged="txtPassword_TextChanged"  />
+            <Label Name="lblPassword" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <ComboBox x:Name="cmbRole" materialDesign:HintAssist.Hint="Role"
+                materialDesign:HintAssist.Foreground="#EB3F3F"
+                Margin="0 5 0 0"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}" DisplayMemberPath="role" SelectedValuePath="id"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F" GotFocus="cmbRole_Focus" LostFocus="cmbRole_LostFocus" >
+                
+            </ComboBox>
+            <Label Name="lblRole" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <Grid HorizontalAlignment="Stretch" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnChooseFile" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0 0 20 0" 
+                        BorderBrush="#707070" Background="#707070"
+                        VerticalAlignment="Bottom"
+                        ToolTip="MaterialDesignOutlinedButton" Click="btnChooseFile_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="File" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Pilih</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBox Grid.Column="1" x:Name="txtFileName" materialDesign:HintAssist.Hint="Foto"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" IsEnabled="False"
+                    materialDesign:ValidationAssist.UsePopup="True"
+                    HorizontalAlignment="Stretch"
+                    ToolTip="Filename">
+                </TextBox>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 50 0 0">
+                <Button x:Name="btnBatal" Style="{StaticResource MaterialDesignRaisedButton}" Margin="20 0" 
+                        BorderBrush="#E2401C" Background="#E2401C"
+                        ToolTip="MaterialDesignOutlinedButton" Click="btnBatal_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CloseBox" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Batal</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="btnSave" Style="{StaticResource MaterialDesignRaisedButton}" 
+                        BorderBrush="#E2401C" Background="#E2401C"
+                        ToolTip="MaterialDesignOutlinedButton">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Simpan</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

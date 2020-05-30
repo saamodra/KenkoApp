@@ -1,0 +1,143 @@
+﻿<Window x:Class="KenkoApp.forms.FormObat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KenkoApp.forms"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        Title="Tambah Pasien" Height="640" Width="800" WindowStartupLocation="CenterScreen" Loaded="FormObat_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="0" Margin="0 32 0 0">
+            <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top"/>
+            </materialDesign:TransitioningContent>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2" Margin="0 32 0 0">
+            <materialDesign:TransitioningContent x:Name="TrainsitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                <Grid x:Name="GridCursor2" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Visibility="Hidden"/>
+            </materialDesign:TransitioningContent>
+        </Grid>
+        <materialDesign:PackIcon x:Name="FormIcon" Kind="PlusBox" Grid.Row="0" Grid.Column="0" Width="35" Height="35" Foreground="#DD4B39" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <StackPanel Grid.Column="1" Margin="20 0 0 0" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000">Tambah Data Obat</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Name="lblSubtitle" Foreground="Gray">Form ini untuk menambah data obat</TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="20 20 50 0">
+            <TextBox x:Name="txtIdObat" materialDesign:HintAssist.Hint="ID Obat"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    IsEnabled="False"
+                    VerticalAlignment="Center" GotFocus="txtIdObat_Focus"/>
+            <Label Name="lblIdObat" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <TextBox x:Name="txtNamaObat" materialDesign:HintAssist.Hint="Nama Obat"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtNamaObat_Focus" TextChanged="txtNamaObat_TextChanged" />
+            <Label Name="lblNamaObat" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <ComboBox x:Name="cmbKategori" materialDesign:HintAssist.Hint="Kategori"
+                materialDesign:HintAssist.Foreground="#EB3F3F"
+                Margin="0 5 0 0"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}" DisplayMemberPath="nama_kategori" SelectedValuePath="id_kategori"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F" GotFocus="cmbKategori_Focus" LostFocus="cmbKategori_LostFocus" >
+            </ComboBox>
+            <Label Name="lblKategori" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <ComboBox x:Name="cmbSatuan" materialDesign:HintAssist.Hint="Satuan"
+                materialDesign:HintAssist.Foreground="#EB3F3F"
+                Margin="0 5 0 0"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}" DisplayMemberPath="satuan" SelectedValuePath="id_satuan"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F" GotFocus="cmbSatuan_Focus" LostFocus="cmbSatuan_LostFocus" >
+            </ComboBox>
+            <Label Name="lblSatuan" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <DatePicker Name="txtTglExpired" Margin="0 10 0 0"
+                    materialDesign:HintAssist.Hint="Tgl. Expired"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" LostFocus="txtTglExpired_LostFocus" GotKeyboardFocus="txtTglExpired_Focus" />
+            <Label Name="lblTglExpired" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <TextBox x:Name="txtStok" materialDesign:HintAssist.Hint="Stok"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtStok_Focus" TextChanged="txtStok_TextChanged" PreviewTextInput="txtStok_PreviewTextInput"  />
+            <Label Name="lblStok" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+        </StackPanel>
+
+        <!--Right-->
+        <StackPanel Grid.Column="3" Grid.Row="1" Margin="20 20 50 0">
+            <TextBox x:Name="txtHargaBeli" materialDesign:HintAssist.Hint="Harga Beli"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtHargaBeli_Focus" TextChanged="txtHargaBeli_TextChanged" PreviewTextInput="txtHargaBeli_PreviewTextInput"  />
+            <Label Name="lblHargaBeli" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtHargaJual" materialDesign:HintAssist.Hint="Harga Jual"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtHargaJual_Focus" TextChanged="txtHargaJual_TextChanged" PreviewTextInput="txtHargaJual_PreviewTextInput"  />
+            <Label Name="lblHargaJual" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtHet" materialDesign:HintAssist.Hint="HET"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                     Margin="0 3 0 0"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtHet_Focus" TextChanged="txtHet_TextChanged" PreviewTextInput="txtHet_PreviewTextInput"  />
+            <Label Name="lblHet" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtProdusen" materialDesign:HintAssist.Hint="Produsen"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Margin="0 3 0 0"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtProdusen_Focus" TextChanged="txtProdusen_TextChanged"  />
+            <Label Name="lblProdusen" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtDeskripsi" Margin="0 10 0 0"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                VerticalAlignment="Top"
+                Height="103"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                materialDesign:HintAssist.Foreground="#EB3F3F"
+                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                VerticalScrollBarVisibility="Auto"
+                materialDesign:HintAssist.Hint="Deskripsi" GotFocus="txtDeskripsi_Focus" TextChanged="txtDeskripsi_TextChanged" LostFocus="txtDeskripsi_LostFocus" />
+            <Label Name="lblDeskripsi" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+
+            <StackPanel x:Name="formButton" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 30 0 0">
+                <Button x:Name="btnBatal" Style="{StaticResource MaterialDesignRaisedButton}" Margin="20 0" 
+                        BorderBrush="#E2401C" Background="#E2401C"
+                        ToolTip="MaterialDesignOutlinedButton" Click="btnBatal_Click" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CloseBox" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Batal</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="btnSave" Style="{StaticResource MaterialDesignRaisedButton}" 
+                        BorderBrush="#E2401C" Background="#E2401C"
+                        ToolTip="MaterialDesignOutlinedButton">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Simpan</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

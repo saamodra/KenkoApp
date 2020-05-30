@@ -1,0 +1,94 @@
+﻿<Window x:Class="KenkoApp.forms.FormDokter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KenkoApp.forms"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Tambah Dokter" Height="660" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Margin="0 32 0 0">
+            <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top"/>
+            </materialDesign:TransitioningContent>
+        </Grid>
+        <materialDesign:PackIcon x:Name="FormIcon" Kind="PlusBox" Grid.Row="0" Grid.Column="0" Width="35" Height="35" Foreground="#DD4B39" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <StackPanel Grid.Column="1" Margin="20 0 0 0" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000">Tambah Data Dokter</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Name="lblSubtitle" Foreground="Gray">Form ini untuk menambah data dokter</TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="20 20 50 0">
+            <TextBox x:Name="txtNoSip" materialDesign:HintAssist.Hint="No. SIP"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtNoSip_Focus" />
+            <Label Name="lblNoSip" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtNamaDokter" materialDesign:HintAssist.Hint="Nama Dokter"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtNamaDokter_Focus" TextChanged="txtNamaDokter_TextChanged" />
+            <Label Name="lblNamaDokter" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtSpesialisasi" materialDesign:HintAssist.Hint="Spesialisasi"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtSpesialisasi_Focus" TextChanged="txtSpesialisasi_TextChanged" />
+            <Label Name="lblSpesialisasi" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtAlamat"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                VerticalAlignment="Top"
+                Height="70"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                materialDesign:HintAssist.Foreground="#EB3F3F"
+                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                VerticalScrollBarVisibility="Auto"
+                materialDesign:HintAssist.Hint="Alamat" GotFocus="txtAlamat_Focus" TextChanged="txtAlamat_TextChanged" LostFocus="txtAlamat_LostFocus" />
+            <Label Name="lblAlamat" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtNoTelp" materialDesign:HintAssist.Hint="No. Telepon"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput"  />
+            <Label Name="lblNoTelp" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+            <TextBox x:Name="txtEmail" materialDesign:HintAssist.Hint="Email"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtEmail_Focus" TextChanged="txtEmail_TextChanged"  />
+            <Label Name="lblEmail" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+
+            <StackPanel x:Name="formButton" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 40 0 0">
+                <Button x:Name="btnBatal" Style="{StaticResource MaterialDesignRaisedButton}" Margin="20 0" 
+                        BorderBrush="#E2401C" Background="#E2401C"
+                        ToolTip="MaterialDesignOutlinedButton" Click="btnBatal_Click" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CloseBox" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Batal</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="btnSave" Style="{StaticResource MaterialDesignRaisedButton}" 
+                        BorderBrush="#E2401C" Background="#E2401C"
+                        ToolTip="MaterialDesignOutlinedButton">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Simpan</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
