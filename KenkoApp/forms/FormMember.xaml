@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Name="WindowMember"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Tambah Member" Height="430" Width="400" WindowStartupLocation="CenterScreen" Loaded="FormMember_Loaded">
+        Title="Tambah Member" Height="570" Width="400" WindowStartupLocation="CenterScreen" Loaded="FormMember_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -49,6 +49,24 @@
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                     VerticalAlignment="Center" GotFocus="txtNamaMember_Focus" TextChanged="txtNamaMember_TextChanged" PreviewTextInput="txtNamaMember_PreviewTextInput"  />
             <Label Name="lblNamaMember" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <TextBlock Foreground="#707070" Margin="0 0 0 10">Jenis Kelamin</TextBlock>
+            <Grid x:Name="GroupJenkel">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ToggleButton x:Name="rdLaki" Grid.Column="0" Style="{StaticResource ToggleButtonStyle}" 
+                              ToolTip="Laki-Laki" IsChecked="False" Margin="0" Click="jenkelToggle_Click">Laki-Laki</ToggleButton>
+                <ToggleButton x:Name="rdPerempuan" Grid.Column="1" Style="{StaticResource ToggleButtonStyle}" 
+                              ToolTip="Perempuan" IsChecked="False" Margin="-1 0 0 0" Click="jenkelToggle_Click">Perempuan</ToggleButton>
+            </Grid>
+            <Label Name="lblJenkel" Foreground="#EB3F3F" Visibility="Hidden">Wajib diisi.</Label>
+            <TextBox x:Name="txtNoTelp" materialDesign:HintAssist.Hint="No. Telepon"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput"  />
+            <Label Name="lblNoTelp" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
 
 
             <StackPanel x:Name="formButton" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 40 0 0">

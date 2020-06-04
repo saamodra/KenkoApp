@@ -106,7 +106,7 @@
                                 materialDesign:HintAssist.Foreground="#EB3F3F"
                                 materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                                 FontSize="17"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyDown="txtUsername_Keydown" />
                         </Grid>
 
                         <Grid>

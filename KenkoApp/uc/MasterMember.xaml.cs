@@ -71,6 +71,15 @@ namespace KenkoApp.uc
                 formMember.txtIdMember.Text = dataRowView[1].ToString();
                 formMember.txtNIK.Text = dataRowView[2].ToString();
                 formMember.txtNamaMember.Text = dataRowView[3].ToString();
+                if (dataRowView[4].ToString() == "Laki-Laki")
+                {
+                    formMember.rdLaki.IsChecked = true;
+                }
+                else
+                {
+                    formMember.rdPerempuan.IsChecked = true;
+                }
+                formMember.txtNoTelp.Text = dataRowView[5].ToString();
 
                 formMember.ShowDialog();
 

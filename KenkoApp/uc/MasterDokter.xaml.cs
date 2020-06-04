@@ -28,6 +28,7 @@ namespace KenkoApp.uc
         {
             InitializeComponent();
         }
+
         private void MasterDokter_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshDataGrid();
@@ -70,10 +71,19 @@ namespace KenkoApp.uc
 
                 formDokter.txtNoSip.Text = dataRowView[2].ToString();
                 formDokter.txtNamaDokter.Text = dataRowView[3].ToString();
-                formDokter.txtSpesialisasi.Text = dataRowView[4].ToString();
-                formDokter.txtAlamat.Text = dataRowView[5].ToString();
+                if (dataRowView[4].ToString() == "Laki-Laki")
+                {
+                    formDokter.rdLaki.IsChecked = true;
+                }
+                else
+                {
+                    formDokter.rdPerempuan.IsChecked = true;
+                }
+                formDokter.txtSpesialisasi.Text = dataRowView[5].ToString();
+                formDokter.txtAlamat.Text = dataRowView[6].ToString();
                 formDokter.txtNoTelp.Text = dataRowView[7].ToString();
                 formDokter.txtEmail.Text = dataRowView[8] .ToString();
+                formDokter.txtPassword.Password = dataRowView[9].ToString();
 
                 formDokter.ShowDialog();
 
@@ -111,6 +121,31 @@ namespace KenkoApp.uc
                 {
                     MessageBox.Show("Data gagal dihapus : " + ex.Message);
                 }
+            }
+        }
+
+        private void checkJenkel(FormPasien formPasien, string golDar)
+        {
+            Color white = (Color)ColorConverter.ConvertFromString("#fff");
+            if (golDar == "A")
+            {
+                formPasien.golA.IsChecked = true;
+                formPasien.golA.Foreground = new SolidColorBrush(white);
+            }
+            else if (golDar == "B")
+            {
+                formPasien.golB.IsChecked = true;
+                formPasien.golB.Foreground = new SolidColorBrush(white);
+            }
+            else if (golDar == "AB")
+            {
+                formPasien.golAB.IsChecked = true;
+                formPasien.golAB.Foreground = new SolidColorBrush(white);
+            }
+            else if (golDar == "O")
+            {
+                formPasien.golO.IsChecked = true;
+                formPasien.golO.Foreground = new SolidColorBrush(white);
             }
         }
 

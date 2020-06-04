@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace KenkoApp.forms
 {
@@ -83,6 +84,8 @@ namespace KenkoApp.forms
                 cmd.Parameters.AddWithValue("id_member", txtIdMember.Text);
                 cmd.Parameters.AddWithValue("nik", txtNIK.Text);
                 cmd.Parameters.AddWithValue("nama", txtNamaMember.Text);
+                cmd.Parameters.AddWithValue("jenis_kelamin", Kenko.getJenkel(rdLaki));
+                cmd.Parameters.AddWithValue("no_telp", txtNoTelp.Text);
                 cmd.Parameters.AddWithValue("tgl_bergabung", DateTime.Now.ToString("yyyyMMdd"));
                 cmd.Parameters.AddWithValue("poin", 0);
 
@@ -118,6 +121,8 @@ namespace KenkoApp.forms
                 cmd.Parameters.AddWithValue("id_member", idMember);
                 cmd.Parameters.AddWithValue("nik", txtNIK.Text);
                 cmd.Parameters.AddWithValue("nama", txtNamaMember.Text);
+                cmd.Parameters.AddWithValue("jenis_kelamin", Kenko.getJenkel(rdLaki));
+                cmd.Parameters.AddWithValue("no_telp", txtNoTelp.Text);
 
                 try
                 {
@@ -150,6 +155,17 @@ namespace KenkoApp.forms
             GridCursor.Margin = new Thickness(0, ((68 * 2)), 0, 0);
         }
 
+        private void jenkelToggle_Click(object sender, RoutedEventArgs e)
+        {
+            toggleJenkel((ToggleButton)sender);
+            GridCursor.Margin = new Thickness(0, ((68 * 3) + 10), 0, 0);
+        }
+
+        private void txtNoTelp_Focus(object sender, RoutedEventArgs e)
+        {
+            GridCursor.Margin = new Thickness(0, ((68 * 4) + 10), 0, 0);
+        }
+
         private void txtNIK_TextChanged(object sender, TextChangedEventArgs e)
         {
             Kenko.fieldRequired(txtNIK.Text, lblNIK);
@@ -160,11 +176,24 @@ namespace KenkoApp.forms
             Kenko.fieldRequired(txtNamaMember.Text, lblNamaMember);
         }
 
+        private void txtNoTelp_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+        }
+
+        private void txtNoTelp_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Kenko.numberOnlyInput(e);
+        }
+
         private bool validateAll()
         {
+            bool nik = Kenko.fieldRequired(txtNIK.Text, lblNIK);
             bool namaMember = Kenko.fieldRequired(txtNamaMember.Text, lblNamaMember);
-            
-            if (namaMember)
+            bool jenkel = Kenko.toggleRequired(lblJenkel, (bool)rdLaki.IsChecked, (bool)rdPerempuan.IsChecked);
+            bool notelp = Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+
+            if (nik && namaMember && jenkel && notelp)
             {
                 return true;
             }
@@ -182,6 +211,14 @@ namespace KenkoApp.forms
         private void txtNIK_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Kenko.numberOnlyInput(e);
+        }
+
+        private void toggleJenkel(ToggleButton toggleButton)
+        {
+            rdLaki.IsChecked = false;
+            rdPerempuan.IsChecked = false;
+
+            toggleButton.IsChecked = true;
         }
     }
 }

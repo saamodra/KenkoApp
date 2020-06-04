@@ -37,5 +37,13 @@ namespace KenkoApp.uc
         {
             Application.Current.Shutdown();
         }
+
+        private void txtUsername_Keydown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                txtUsername.Focus();
+            }
+        }
     }
 }

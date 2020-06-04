@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace KenkoApp.forms
 {
@@ -71,11 +72,13 @@ namespace KenkoApp.forms
 
                 cmd.Parameters.AddWithValue("no_sip", txtNoSip.Text);
                 cmd.Parameters.AddWithValue("nama_dokter", txtNamaDokter.Text);
+                cmd.Parameters.AddWithValue("jenis_kelamin", Kenko.getJenkel(rdLaki));
                 cmd.Parameters.AddWithValue("spesialisasi", txtSpesialisasi.Text);
-                cmd.Parameters.AddWithValue("kota", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("alamat", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("no_telp", txtNoTelp.Text);
                 cmd.Parameters.AddWithValue("email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("password", txtPassword.Password);
+
 
                 try
                 {
@@ -108,11 +111,13 @@ namespace KenkoApp.forms
 
                 cmd.Parameters.AddWithValue("no_sip", txtNoSip.Text);
                 cmd.Parameters.AddWithValue("nama_dokter", txtNamaDokter.Text);
+                cmd.Parameters.AddWithValue("jenis_kelamin", Kenko.getJenkel(rdLaki));
                 cmd.Parameters.AddWithValue("spesialisasi", txtSpesialisasi.Text);
-                cmd.Parameters.AddWithValue("kota", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("alamat", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("no_telp", txtNoTelp.Text);
                 cmd.Parameters.AddWithValue("email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("password", txtPassword.Password);
+                cmd.Parameters.AddWithValue("id_dokter", idDokter);
 
                 try
                 {
@@ -132,38 +137,64 @@ namespace KenkoApp.forms
 
         private void txtNoSip_Focus(object sender, RoutedEventArgs e)
         {
+            GridCursor.Visibility = Visibility.Visible;
             GridCursor.Margin = new Thickness(0, ((68 * 0)), 0, 0);
+            GridCursor2.Visibility = Visibility.Hidden;
         }
 
         private void txtNamaDokter_Focus(object sender, RoutedEventArgs e)
         {
+            GridCursor.Visibility = Visibility.Visible;
             GridCursor.Margin = new Thickness(0, ((68 * 1)), 0, 0);
+            GridCursor2.Visibility = Visibility.Hidden;
+        }
+        private void jenkelToggle_Click(object sender, RoutedEventArgs e)
+        {
+            toggleJenkel((ToggleButton)sender);
+            GridCursor.Margin = new Thickness(0, ((68 * 2) + 10), 0, 0);
         }
 
         private void txtSpesialisasi_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Margin = new Thickness(0, ((68 * 2)), 0, 0);
-        }
-
-        private void txtAlamat_Focus(object sender, RoutedEventArgs e)
-        {
-            GridCursor.Height = 53;
-            GridCursor.Margin = new Thickness(0, ((68 * 3)), 0, 0);
+            GridCursor.Visibility = Visibility.Visible;
+            GridCursor.Margin = new Thickness(0, ((68 * 3) + 8), 0, 0);
+            GridCursor2.Visibility = Visibility.Hidden;
         }
 
         private void txtNoTelp_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Margin = new Thickness(0, ((68 * 4) + 27), 0, 0);
+            GridCursor.Visibility = Visibility.Visible;
+            GridCursor.Margin = new Thickness(0, ((68 * 4) + 7), 0, 0);
+            GridCursor2.Visibility = Visibility.Hidden;
         }
+
+        private void txtAlamat_Focus(object sender, RoutedEventArgs e)
+        {
+            GridCursor2.Visibility = Visibility.Visible;
+            GridCursor2.Height = 100;
+            GridCursor2.Margin = new Thickness(0, ((68 * 0)), 0, 0);
+            GridCursor.Visibility = Visibility.Hidden;
+        }
+
 
         private void txtEmail_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Margin = new Thickness(0, ((68 * 5) + 27), 0, 0);
+            GridCursor2.Visibility = Visibility.Visible;
+            GridCursor2.Margin = new Thickness(0, ((68 * 1) + 77), 0, 0);
+            GridCursor.Visibility = Visibility.Hidden;
         }
+
+        private void txtPassword_Focus(object sender, RoutedEventArgs e)
+        {
+            GridCursor2.Visibility = Visibility.Visible;
+            GridCursor2.Margin = new Thickness(0, ((68 * 2) + 77), 0, 0);
+            GridCursor.Visibility = Visibility.Hidden;
+        }
+
 
         private void txtAlamat_LostFocus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Height = 30;
+            GridCursor2.Height = 30;
         }
 
         private void txtNoTelp_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -202,6 +233,12 @@ namespace KenkoApp.forms
             Kenko.fieldRequired(txtEmail.Text, lblEmail); 
         }
 
+        private void txtPassword_TextChanged(object sender, RoutedEventArgs e)
+        {
+            Kenko.fieldRequired(txtPassword.Password, lblPassword);
+        }
+
+
         private bool validateAll()
         {
             bool noSip = Kenko.fieldRequired(txtNoSip.Text, lblNoSip);
@@ -223,6 +260,14 @@ namespace KenkoApp.forms
             {
                 return false;
             }
+        }
+
+        private void toggleJenkel(ToggleButton toggleButton)
+        {
+            rdLaki.IsChecked = false;
+            rdPerempuan.IsChecked = false;
+
+            toggleButton.IsChecked = true;
         }
 
     }

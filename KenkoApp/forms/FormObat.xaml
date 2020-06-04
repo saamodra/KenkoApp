@@ -85,7 +85,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtHargaBeli_Focus" TextChanged="txtHargaBeli_TextChanged" PreviewTextInput="txtHargaBeli_PreviewTextInput"  />
+                    VerticalAlignment="Center" GotFocus="txtHargaBeli_Focus" TextChanged="txtHargaBeli_TextChanged" PreviewTextInput="txtHargaBeli_PreviewTextInput" KeyUp="txtHargaBeli_Keyup"  />
             <Label Name="lblHargaBeli" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
             <TextBox x:Name="txtHargaJual" materialDesign:HintAssist.Hint="Harga Jual"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"

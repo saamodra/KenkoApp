@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.SqlServer.Server;
 
 namespace KenkoApp.forms
 {
@@ -338,5 +339,9 @@ namespace KenkoApp.forms
             Kenko.numberOnlyInput(e);
         }
 
+        private void txtHargaBeli_Keyup(object sender, KeyEventArgs e)
+        {
+            //txtHargaBeli.Text = String.Format("{0:0000}", e.)
+        }
     }
 }

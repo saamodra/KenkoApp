@@ -79,7 +79,7 @@ namespace KenkoApp.forms
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("nama_pasien", txtNamaPasien.Text);
-                cmd.Parameters.AddWithValue("jenis_kelamin", getJenkel());
+                cmd.Parameters.AddWithValue("jenis_kelamin", Kenko.getJenkel(rdLaki));
                 cmd.Parameters.AddWithValue("tgl_lahir", Kenko.FormatLocalDate(txtTglLahir.Text));
                 cmd.Parameters.AddWithValue("alamat", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("no_telp", txtNoTelp.Text);
@@ -117,7 +117,7 @@ namespace KenkoApp.forms
 
                 cmd.Parameters.AddWithValue("id_pasien", idPasien);
                 cmd.Parameters.AddWithValue("nama_pasien", txtNamaPasien.Text);
-                cmd.Parameters.AddWithValue("jenis_kelamin", getJenkel());
+                cmd.Parameters.AddWithValue("jenis_kelamin", Kenko.getJenkel(rdLaki));
                 cmd.Parameters.AddWithValue("tgl_lahir", Kenko.FormatLocalDate(txtTglLahir.Text));
                 cmd.Parameters.AddWithValue("alamat", txtAlamat.Text);
                 cmd.Parameters.AddWithValue("no_telp", txtNoTelp.Text);
@@ -260,19 +260,10 @@ namespace KenkoApp.forms
 
         private void toggleJenkel(ToggleButton toggleButton)
         {
-            //Color white = (Color)ColorConverter.ConvertFromString("#fff");
-            //Color red = (Color)ColorConverter.ConvertFromString("#EB3F3F");
             rdLaki.IsChecked = false;
             rdPerempuan.IsChecked = false;
 
-            //golA.Foreground = new SolidColorBrush(red);
-            //golB.Foreground = new SolidColorBrush(red);
-            //golAB.Foreground = new SolidColorBrush(red);
-            //golO.Foreground = new SolidColorBrush(red);
-
-
             toggleButton.IsChecked = true;
-            //toggleButton.Foreground = new SolidColorBrush(white);
         }
 
         private string getGol()
@@ -295,20 +286,6 @@ namespace KenkoApp.forms
             return golonganDarah;
         }
 
-        private string getJenkel()
-        {
-            string jenkel;
-
-            if (rdLaki.IsChecked == true)
-            {
-                jenkel = "Laki-Laki";
-            }
-            else
-            {
-                jenkel = "Perempuan";
-            }
-
-            return jenkel;
-        }
+        
     }
 }

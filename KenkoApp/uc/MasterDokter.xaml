@@ -55,6 +55,7 @@
                             <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="No. SIP" Binding="{Binding Path=no_sip}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Nama Dokter" Binding="{Binding Path=nama_dokter}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Jeni Kelamin" Binding="{Binding Path=jenis_kelamin}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Spesialisasi" Binding="{Binding Path=spesialisasi}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Alamat" Binding="{Binding Path=alamat}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="No. Telepon" Binding="{Binding Path=no_telp}" IsReadOnly="True"/>

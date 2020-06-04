@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Navigation;
 
@@ -330,10 +331,12 @@ namespace KenkoApp.uc
             return result;
         }
 
-        public static void numberOnlyInput(TextCompositionEventArgs e)
+        public static bool numberOnlyInput(TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+
+            return e.Handled;
         }
 
         public static void alphabetOnlyInput(TextCompositionEventArgs e)
@@ -342,5 +345,20 @@ namespace KenkoApp.uc
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        public static string getJenkel(ToggleButton rdlaki)
+        {
+            string jenkel;
+
+            if (rdlaki.IsChecked == true)
+            {
+                jenkel = "Laki-Laki";
+            }
+            else
+            {
+                jenkel = "Perempuan";
+            }
+
+            return jenkel;
+        }
     }
 }
