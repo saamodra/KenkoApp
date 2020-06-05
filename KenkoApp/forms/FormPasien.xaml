@@ -92,9 +92,10 @@
 
 
             <StackPanel x:Name="formButton" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 40 0 0">
-                <Button x:Name="btnBatal" Style="{StaticResource MaterialDesignRaisedButton}" Margin="20 0" 
-                        BorderBrush="#E2401C" Background="#E2401C"
-                        ToolTip="MaterialDesignOutlinedButton" Click="btnBatal_Click" >
+                <Button Margin="20 0" x:Name="btnBatal"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    ToolTip="Batal" Click="btnBatal_Click" >
+
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="CloseBox" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
                         <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Batal</TextBlock>
