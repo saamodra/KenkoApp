@@ -33,7 +33,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtNamaPasien_Focus" TextChanged="txtNamaPasien_TextChanged" />
+                    VerticalAlignment="Center" GotFocus="txtNamaPasien_Focus" TextChanged="txtNamaPasien_TextChanged" PreviewTextInput="txtNamaPasien_PreviewTextInput" />
             <Label Name="lblNamaPasien" Foreground="#EB3F3F" Visibility="Hidden">Wajib diisi.</Label>
             <TextBlock Foreground="#707070" Margin="0 0 0 10">Jenis Kelamin</TextBlock>
             <Grid x:Name="GroupJenkel">
@@ -68,7 +68,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput"  />
+                    VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput" MaxLength="13"  />
             <Label Name="lblNoTelp" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
             <Label>Golongan Darah</Label>
             <StackPanel Orientation="Horizontal" Margin="0 10 0 0" HorizontalAlignment="Left">
@@ -81,8 +81,8 @@
                 <ToggleButton x:Name="golO" Style="{StaticResource MaterialDesignFlatToggleButton}" ToolTip="O" 
                               IsChecked="False" Margin="0 0 20 0" Background="#EB3F3F" Foreground="#EB3F3F" Click="golToggle_Click">O</ToggleButton>
             </StackPanel>
-
             <Label Name="lblGolonganDarah" Foreground="#EB3F3F" Visibility="Hidden">Wajib diisi.</Label>
+            
             <TextBox x:Name="txtPekerjaan" materialDesign:HintAssist.Hint="Pekerjaan"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"

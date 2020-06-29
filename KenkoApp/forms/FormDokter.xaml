@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KenkoApp.forms"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Tambah Dokter" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Tambah Dokter" Height="570" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -40,7 +40,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtNoSip_Focus" />
+                    VerticalAlignment="Center" GotFocus="txtNoSip_Focus" TextChanged="txtNoSip_TextChanged" />
             <Label Name="lblNoSip" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
             <TextBox x:Name="txtNamaDokter" materialDesign:HintAssist.Hint="Nama Dokter"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -70,7 +70,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput"  />
+                    VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput" MaxLength="13"  />
             <Label Name="lblNoTelp" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
             
             
@@ -102,6 +102,12 @@
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="txtPassword_Focus" PasswordChanged="txtPassword_TextChanged"  />
             <Label Name="lblPassword" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <PasswordBox x:Name="txtRetypePass" Margin="0 8 0 0"
+                    materialDesign:HintAssist.Hint="Retype Password"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="txtRetypePass_Focus" PasswordChanged="txtRetypePass_TextChanged" />
+            <Label Name="lblRetypePass" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
             
             
             <StackPanel x:Name="formButton" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 30 0 0">

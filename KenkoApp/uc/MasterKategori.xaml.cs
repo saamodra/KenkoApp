@@ -55,9 +55,9 @@ namespace KenkoApp.uc
                 DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
                 FormKategori formKategori = new FormKategori("Edit", Convert.ToInt32(dataRowView[1].ToString()));
 
-
                 formKategori.txtNamaKategori.Text = dataRowView[2].ToString();
-                formKategori.txtKeterangan.Text = dataRowView[3].ToString();
+                formKategori.txtSingkatan.Text = (dataRowView[3].ToString() == "-") ? "" : dataRowView[3].ToString();
+                formKategori.txtKeterangan.Text = (dataRowView[4].ToString() == "-") ? "" : dataRowView[4].ToString();
 
                 formKategori.ShowDialog();
 
@@ -79,7 +79,7 @@ namespace KenkoApp.uc
             SqlCommand delete = new SqlCommand("sp_Kategori_Delete", connection);
             delete.CommandType = CommandType.StoredProcedure;
 
-            delete.Parameters.AddWithValue("id_satuan", dataRowView[1].ToString());
+            delete.Parameters.AddWithValue("id_kategori", dataRowView[1].ToString());
             MessageBoxResult messageBoxResult = MessageBox.Show("Apakah anda yakin ingin menghapus data ini?", "Konfirmasi Hapus", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (messageBoxResult == MessageBoxResult.Yes)
             {

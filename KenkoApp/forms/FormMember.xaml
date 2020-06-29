@@ -41,7 +41,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtNIK_Focus" TextChanged="txtNIK_TextChanged" PreviewTextInput="txtNIK_PreviewTextInput"  />
+                    VerticalAlignment="Center" GotFocus="txtNIK_Focus" TextChanged="txtNIK_TextChanged" PreviewTextInput="txtNIK_PreviewTextInput" MaxLength="16"  />
             <Label Name="lblNIK" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
             <TextBox x:Name="txtNamaMember" materialDesign:HintAssist.Hint="Nama Member"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -65,7 +65,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput"  />
+                    VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput" MaxLength="13"  />
             <Label Name="lblNoTelp" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
 
 

@@ -1,0 +1,313 @@
+﻿<UserControl x:Class="KenkoApp.uc.TransaksiPenjualan"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:local="clr-namespace:KenkoApp.uc"
+            xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+            mc:Ignorable="d" 
+            d:DesignHeight="768" d:DesignWidth="1366" Loaded="TransaksiPenjualan_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:Card Background="#fff" Grid.Column="0"
+                        Margin="10"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="0 10 0 30"
+                        UniformCornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="30 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="0 10">Penjualan</TextBlock>
+                    <Button Grid.Column="1" x:Name="btnBaru" HorizontalAlignment="Right" Padding="10 0" Click="btnCariMember_Click">
+                        <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Margin="0"/>
+                    </Button>
+                </Grid>
+                
+                <Separator HorizontalAlignment="Stretch" Height="2" Margin="30 0" VerticalAlignment="Bottom"/>
+
+                <StackPanel Grid.Row="1" Margin="30 0 30 20">
+                    <TextBox x:Name="txtKasir" materialDesign:HintAssist.Hint="Kasir"
+                            Margin="0 5" Foreground="#000"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" IsReadOnly="True"/>
+                    
+                    <TextBox x:Name="txtTglTransaksi" materialDesign:HintAssist.Hint="Tgl. Transaksi"
+                            Margin="0 5" Foreground="#000"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" IsReadOnly="True"/>
+
+                    <Grid Margin="0 5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="37"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="txtIdMember" materialDesign:HintAssist.Hint="ID Member"
+                            Grid.Column="0" Foreground="#000"               
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" />
+
+                        <Button x:Name="btnCariMember" Padding="0" Grid.Column="1" Click="btnCariMember_Click">
+                            <materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" Margin="0"/>
+                        </Button>
+                    </Grid>
+
+                    <TextBox x:Name="txtNamaMember" Margin="0 5" materialDesign:HintAssist.Hint="Nama Member"
+                            Foreground="#000"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:HintAssist.Foreground="#EB3F3F"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" IsReadOnly="True"/>
+
+                    <TextBox x:Name="txtJumlahPoin" Margin="0 5" materialDesign:HintAssist.Hint="Poin"   
+                            Foreground="#000"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" IsReadOnly="True"/>
+
+                </StackPanel>
+                
+                <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000" Margin="30 10">Kategori</TextBlock>
+                <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="30 0" VerticalAlignment="Bottom"/>
+
+                <ScrollViewer Grid.Row="3">
+                    <Grid>
+                        <materialDesign:TransitioningContent Grid.Row="1" x:Name="TrainsitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                            <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Visibility="Hidden"/>
+                        </materialDesign:TransitioningContent>
+                        <ListView Name="listKategori" Margin="0" SelectionChanged="listKategori_SelectionChanged">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Padding" Value="30 10 30 10"></Setter>
+                                    <Setter Property="Height" Value="38"></Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Background="#fff" Grid.Column="1"
+                        Margin="10"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="20 10 20 30"
+                        UniformCornerRadius="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="108*"/>
+                    <ColumnDefinition Width="475*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="00 10" Grid.ColumnSpan="2">Data Obat</TextBlock>
+                <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+
+                <DataGrid x:Name="dataMaster" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
+                        VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                        CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        materialDesign:DataGridAssist.CellPadding="4"
+                        materialDesign:DataGridAssist.ColumnHeaderPadding="4"
+                        CanUserAddRows="False"
+                        SelectionUnit="Cell"
+                        SelectionMode="Extended" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Tgl. Expired" Binding="{Binding Path=tglExpired}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Harga Jual" Binding="{Binding Path=hargaJual}" IsReadOnly="True"/>
+                        <DataGridTemplateColumn Header="Jumlah">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox x:Name="txtJumlah" Margin="0" BorderThickness="0" PreviewTextInput="txtJumlah_PreviewTextInput" TextChanged="txtJumlah_TextChanged">
+                                    </TextBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Aksi">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="btnTambahGrid" Margin="0" Background="#E2401C" BorderThickness="0" Height="20" Click="btnTambahGrid_Click">
+                                            <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Margin="0"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Background="#fff" Grid.Column="2"
+                        Margin="10"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="0 10 0 0"
+                        UniformCornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Keranjang</TextBlock>
+                <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom"/>
+
+                <DataGrid x:Name="dataPenjualan" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
+                        VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                        CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        materialDesign:DataGridAssist.CellPadding="4"
+                        materialDesign:DataGridAssist.ColumnHeaderPadding="4"
+                        CanUserAddRows="False"
+                        SelectionUnit="Cell"
+                        SelectionMode="Extended" HorizontalContentAlignment="Center">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Jumlah"  Binding="{Binding Path=jumlah}" IsReadOnly="True"/>
+                        <!--<DataGridTextColumn Header="Harga" Binding="{Binding Path=harga}" IsReadOnly="True"/>-->
+                        <DataGridTextColumn Binding="{Binding harga, ConverterCulture='id-ID' ,StringFormat=C}" Header="Harga" />
+                        <DataGridTemplateColumn Header="Aksi">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="btnHapusGrid" Margin="0" Background="#E2401C" BorderThickness="0" Height="20" Click="btnHapusGrid_Click" >
+                                            <materialDesign:PackIcon Kind="Trash" VerticalAlignment="Center" Margin="0"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Pembayaran</TextBlock>
+                <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom"/>
+                <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Top"/>
+
+                <StackPanel Grid.Row="3" Margin="10">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0">Subtotal</Label>
+                        <Label Grid.Column="1" HorizontalAlignment="Center">Rp.</Label>
+                        <Label Name="lblSubtotal" Grid.Column="2" HorizontalAlignment="Left">0</Label>
+                    </Grid>
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0">Jumlah Barang</Label>
+
+                        <Label Name="lblJumlahBarang" Grid.Column="2" HorizontalAlignment="Left">0</Label>
+                    </Grid>
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0">Poin Digunakan</Label>
+
+                        <TextBox x:Name="txtPoin" Grid.Column="2" PreviewTextInput="txtJumlah_PreviewTextInput" 
+                                 Foreground="#000" IsEnabled="False" KeyDown="txtPoin_KeyDown" Text="0" />
+                    </Grid>
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" FontWeight="Bold" Margin="5 0" 
+                                   Foreground="#EB3F3F">Pembayaran</TextBlock>
+                        <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" FontWeight="Bold" Margin="5 0" 
+                                   Foreground="#EB3F3F" HorizontalAlignment="Center">Rp.</TextBlock>
+                        <TextBlock x:Name="lblTotalPembayaran" Grid.Column="2" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" FontWeight="Bold" Margin="5 0" 
+                                   Foreground="#EB3F3F">0</TextBlock>
+                    </Grid>
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0">Tunai</Label>
+                        <Label Grid.Column="1" HorizontalAlignment="Center">Rp.</Label>
+                        <TextBox x:Name="txtBayar" Grid.Column="2" Foreground="#000" PreviewTextInput="txtJumlah_PreviewTextInput" KeyDown="txtBayar_KeyDown"></TextBox>
+                    </Grid>
+
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0">Kembalian</Label>
+                        <Label Grid.Column="1" HorizontalAlignment="Center">Rp.</Label>
+                        <Label Name="lblKembalian" Grid.Column="2" HorizontalAlignment="Left">0</Label>
+                    </Grid>
+
+                    <Grid Margin="10 20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="btnCetak" IsEnabled="False"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Background="#EB3F3F"
+                            FontSize="13" Margin="0 0 10 0"
+                            BorderThickness="0">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Printer" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
+                                <TextBlock VerticalAlignment="Center" FontSize="15">Cetak Struk</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="btnBayar" Grid.Column="1" IsEnabled="False"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Background="#EB3F3F"
+                            FontSize="13" Margin="10 0 0 0"
+                            BorderThickness="0" Click="btnBayar_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Payment" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
+                                <TextBlock VerticalAlignment="Center" FontSize="15">Bayar</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

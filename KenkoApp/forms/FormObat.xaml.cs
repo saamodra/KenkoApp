@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.SqlServer.Server;
+using System.Globalization;
 
 namespace KenkoApp.forms
 {
@@ -33,7 +34,6 @@ namespace KenkoApp.forms
             var lang = System.Windows.Markup.XmlLanguage.GetLanguage("id-ID");
             txtTglExpired.Language = lang;
             txtTglExpired.Language = lang;
-            txtIdObat.Text = Kenko.generateObatId();
             btnSave.Click += btnSave_Click;
         }
 
@@ -85,7 +85,8 @@ namespace KenkoApp.forms
                 SqlCommand cmd = new SqlCommand("sp_Obat_Create", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("id_obat", txtIdObat.Text);
+
+                cmd.Parameters.AddWithValue("id_obat", Kenko.generateId("OB", "sp_Obat_GetLast", "id_obat"));
                 cmd.Parameters.AddWithValue("nama_obat", txtNamaObat.Text);
                 cmd.Parameters.AddWithValue("id_kategori", cmbKategori.SelectedValue);
                 cmd.Parameters.AddWithValue("id_satuan", cmbSatuan.SelectedValue);
@@ -158,81 +159,58 @@ namespace KenkoApp.forms
         }
         private void txtIdObat_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Visibility = Visibility.Visible;
-            GridCursor.Margin = new Thickness(0, ((68 * 0)), 0, 0);
-            GridCursor2.Visibility = Visibility.Hidden;
         }
 
         private void txtNamaObat_Focus(object sender, RoutedEventArgs e)
         {
 
-            GridCursor.Visibility = Visibility.Visible;
-            GridCursor.Margin = new Thickness(0, ((68 * 1)), 0, 0);
-            GridCursor2.Visibility = Visibility.Hidden;
+            GridLocation(0, 0, 0);
         }
 
         private void cmbKategori_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Visibility = Visibility.Visible;
-            GridCursor.Margin = new Thickness(0, ((68 * 2)), 0, 0);
-            GridCursor2.Visibility = Visibility.Hidden;
+            GridLocation(1, 0, 0);
         }
 
         private void cmbSatuan_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Visibility = Visibility.Visible;
-            GridCursor.Margin = new Thickness(0, (68 * 3), 0, 0);
-            GridCursor2.Visibility = Visibility.Hidden;
+            GridLocation(2, 0, 0);
         }
 
         private void txtTglExpired_Focus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            GridCursor.Visibility = Visibility.Visible;
-            GridCursor.Margin = new Thickness(0, (68 * 4), 0, 0);
-            GridCursor2.Visibility = Visibility.Hidden;
+            GridLocation(3, 0, 0);
         }
 
         private void txtStok_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Visibility = Visibility.Visible;
-            GridCursor.Margin = new Thickness(0, (68 * 5), 0, 0);
-            GridCursor2.Visibility = Visibility.Hidden;
+            GridLocation(4, 0, 0);
         }
 
         private void txtHargaBeli_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor2.Visibility = Visibility.Visible;
-            GridCursor2.Margin = new Thickness(0, (68 * 0), 0, 0);
-            GridCursor.Visibility = Visibility.Hidden;
+            GridLocation(5, 0, 0);
         }
 
         private void txtHargaJual_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor2.Visibility = Visibility.Visible;
-            GridCursor2.Margin = new Thickness(0, (68 * 1), 0, 0);
-            GridCursor.Visibility = Visibility.Hidden;
+            GridLocation(0, 0, 1);
         }
 
         private void txtHet_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor2.Visibility = Visibility.Visible;
-            GridCursor2.Margin = new Thickness(0, (68 * 2), 0, 0);
-            GridCursor.Visibility = Visibility.Hidden;
+            GridLocation(1, 0, 1);
         }
 
         private void txtProdusen_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor2.Visibility = Visibility.Visible;
-            GridCursor2.Margin = new Thickness(0, (68 * 3), 0, 0);
-            GridCursor.Visibility = Visibility.Hidden;
+            GridLocation(2, 0, 1);
         }
 
         private void txtDeskripsi_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor2.Visibility = Visibility.Visible;
+            GridLocation(3, 10, 1);
             GridCursor2.Height = 85;
-            GridCursor2.Margin = new Thickness(0, (68 * 4) + 10, 0, 0);
-            GridCursor.Visibility = Visibility.Hidden;
         }
 
         private void txtDeskripsi_LostFocus(object sender, RoutedEventArgs e)
@@ -271,7 +249,15 @@ namespace KenkoApp.forms
         }
         private void txtHargaJual_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Kenko.fieldRequired(txtHargaJual.Text, lblHargaJual);
+            //if (!string.IsNullOrEmpty(txtHargaJual.Text))
+            //{
+            //    Kenko.fieldRequired(txtHargaJual.Text, lblHargaJual);
+            //    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+            //    int valueBefore = Int32.Parse(txtHargaJual.Text, System.Globalization.NumberStyles.AllowThousands);
+            //    txtHargaJual.Text = String.Format(culture, "{0:N0}", valueBefore);
+            //    txtHargaJual.Select(txtHargaJual.Text.Length, 0);
+            //}
+            
         }
 
         private void txtHet_TextChanged(object sender, TextChangedEventArgs e)
@@ -327,6 +313,7 @@ namespace KenkoApp.forms
         private void txtHargaJual_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Kenko.numberOnlyInput(e);
+            
         }
         
         private void txtHargaBeli_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -341,7 +328,27 @@ namespace KenkoApp.forms
 
         private void txtHargaBeli_Keyup(object sender, KeyEventArgs e)
         {
-            //txtHargaBeli.Text = String.Format("{0:0000}", e.)
+            //txtHargaBeli.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("id-ID"), "{0:#,##0.00}", double.Parse(txtHargaBeli.Text));
+        }
+
+        private void GridLocation(int i, int plus, int section)
+        {
+            if(section == 0)
+            {
+                GridCursor.Visibility = Visibility.Visible;
+                GridCursor.Margin = new Thickness(0, ((68 * i) + plus), 0, 0);
+                GridCursor2.Visibility = Visibility.Hidden;
+            } else
+            {
+                GridCursor.Visibility = Visibility.Hidden;
+                GridCursor2.Margin = new Thickness(0, ((68 * i) + plus), 0, 0);
+                GridCursor2.Visibility = Visibility.Visible;
+            }
+            
+        }
+
+        private void txtHargaJual_KeyUp(object sender, KeyEventArgs e)
+        {
         }
     }
 }

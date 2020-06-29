@@ -48,7 +48,7 @@ namespace KenkoApp.forms
             }
             else
             {
-                new FormDokter();
+                btnSave.Click += btnSave_Click;
             }
         }
 
@@ -151,6 +151,7 @@ namespace KenkoApp.forms
         private void jenkelToggle_Click(object sender, RoutedEventArgs e)
         {
             toggleJenkel((ToggleButton)sender);
+            lblJenkel.Visibility = Visibility.Hidden;
             GridCursor.Margin = new Thickness(0, ((68 * 2) + 10), 0, 0);
         }
 
@@ -191,6 +192,13 @@ namespace KenkoApp.forms
             GridCursor.Visibility = Visibility.Hidden;
         }
 
+        private void txtRetypePass_Focus(object sender, RoutedEventArgs e)
+        {
+            GridCursor2.Visibility = Visibility.Visible;
+            GridCursor2.Margin = new Thickness(0, ((68 * 3) + 77), 0, 0);
+            GridCursor.Visibility = Visibility.Hidden;
+        }
+
 
         private void txtAlamat_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -225,7 +233,7 @@ namespace KenkoApp.forms
 
         private void txtNoTelp_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+            Kenko.fieldMin(txtNoTelp.Text, lblNoTelp, 11);
         }
 
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
@@ -238,21 +246,29 @@ namespace KenkoApp.forms
             Kenko.fieldRequired(txtPassword.Password, lblPassword);
         }
 
+        private void txtRetypePass_TextChanged(object sender, RoutedEventArgs e)
+        {
+            Kenko.fieldRetype(txtPassword.Password, txtRetypePass.Password, lblRetypePass);
+        }
 
         private bool validateAll()
         {
             bool noSip = Kenko.fieldRequired(txtNoSip.Text, lblNoSip);
             bool namaDokter = Kenko.fieldRequired(txtNamaDokter.Text, lblNamaDokter);
             bool spesialisasi = Kenko.fieldRequired(txtSpesialisasi.Text, lblSpesialisasi);
+            bool jenkel = Kenko.toggleRequired(lblJenkel, (bool)rdLaki.IsChecked, (bool)rdPerempuan.IsChecked);
             bool alamat = Kenko.fieldRequired(txtAlamat.Text, lblAlamat);
             bool noTelp = Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
             bool email = Kenko.fieldRequired(txtEmail.Text, lblEmail);
+            bool password = Kenko.fieldRequired(txtPassword.Password, lblPassword);
+            bool retype = Kenko.fieldRetype(txtPassword.Password, txtRetypePass.Password, lblRetypePass);
             bool emailFormat = false;
+
             if (email)
             {
                 emailFormat = Kenko.emailInput(txtEmail.Text, lblEmail);
             }
-            if (noSip && namaDokter && spesialisasi && alamat && noTelp && email && emailFormat)
+            if (noSip && namaDokter && spesialisasi && jenkel && alamat && noTelp && email && emailFormat && retype && password)
             {
                 return true;
             }

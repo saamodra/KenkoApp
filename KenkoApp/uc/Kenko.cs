@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,8 @@ namespace KenkoApp.uc
                 DataColumn Col = dt.Columns.Add("No", typeof(System.Int32));
                 Col.SetOrdinal(0);// to put the column in position 0;
                 int a = 1;
+
+
                 foreach (DataRow r in dt.Rows)
                 {
                     r["No"] = a;
@@ -158,35 +161,37 @@ namespace KenkoApp.uc
             return id + idMember;
         }
 
-        public static string generateObatId()
+        public static string generateId(string type, string sp, string param)
         {
-            string id, idMember;
+            string id, idtype;
 
-            id = "OB" + DateTime.Now.ToString("yyyyMMdd");
-            idMember = "0001";
+            id = type + DateTime.Now.ToString("yyyyMMdd");
+            idtype = "0001";
 
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConString"]))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("sp_Obat_GetLast", conn);
+                SqlCommand cmd = new SqlCommand(sp, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("id_obat", id);
+                cmd.Parameters.AddWithValue(param, id);
 
 
                 SqlDataReader data = cmd.ExecuteReader();
                 if (data.Read())
                 {
-                    idMember = data.GetValue(0).ToString();
-                    int lastNumber = Convert.ToInt32(idMember.Remove(0, 10));
-                    lastNumber++;
+                    idtype = data.GetValue(0).ToString();
+                    int lastNumber = Convert.ToInt32(idtype.Remove(0, 10));
 
-                    idMember = String.Format("{0:0000}", lastNumber);
+                    lastNumber++;
+                    idtype = String.Format("{0:0000}", lastNumber);
                 }
 
                 conn.Close();
             }
 
-            return id + idMember;
+
+
+            return id + idtype;
         }
 
         public static string getLastUserId()
@@ -238,15 +243,56 @@ namespace KenkoApp.uc
             return imageName;
         }
 
+        public static string formatCurrency(double text)
+        {
+            return text.ToString("C2", CultureInfo.CreateSpecificCulture("id-ID"));
+        }
+
+        public static string getNumber(string text)
+        {
+            string alpha = string.Empty;
+            string numer = string.Empty;
+            foreach (char str in text)
+            {
+                if (char.IsDigit(str))
+                {
+                    numer += str.ToString();
+                }
+
+            }
+
+            return numer.Remove(numer.Length - 2, 2);
+        }
 
         //Validation
         public static bool fieldRequired(string text, Label label)
         {
             bool valid = false;
-            if (text == "")
+            if (string.IsNullOrEmpty(text))
             {
                 label.Visibility = Visibility.Visible;
                 label.Content = "Wajib diisi.";
+            }
+            else
+            {
+                label.Visibility = Visibility.Hidden;
+                valid = true;
+            }
+
+            return valid;
+        }
+
+        public static bool fieldMin(string text, Label label, int min)
+        {
+            bool valid = false;
+            if (string.IsNullOrEmpty(text))
+            {
+                label.Visibility = Visibility.Visible;
+                label.Content = "Wajib diisi.";
+            } else if(text.Length < min)
+            {
+                label.Visibility = Visibility.Visible;
+                label.Content = "Minimal " + min + " karakter";
             }
             else
             {
@@ -263,6 +309,27 @@ namespace KenkoApp.uc
             if (datePicker.Text == "")
             {
                 label.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                label.Visibility = Visibility.Hidden;
+                valid = true;
+            }
+
+            return valid;
+        }
+
+        public static bool fieldRetype(string text, string text2, Label label)
+        {
+            bool valid = false;
+            if(string.IsNullOrEmpty(text2))
+            {
+                label.Visibility = Visibility.Visible;
+                label.Content = "Wajib diisi.";
+            } else if (text != text2)
+            {
+                label.Visibility = Visibility.Visible;
+                label.Content = "Password tidak cocok.";
             }
             else
             {
@@ -306,6 +373,8 @@ namespace KenkoApp.uc
             }
 
         }
+
+
 
         public static bool toggleRequired(Label label, params bool[] arguments)
         {

@@ -25,12 +25,13 @@ namespace KenkoApp.forms
     /// </summary>
     public partial class FormMember : Window
     {
-        private string formType = "Tambah";
         private string idMember;
-
+        private string formType = "Tambah";
         public FormMember()
         {
             InitializeComponent();
+            txtIdMember.Visibility = Visibility.Collapsed;
+            lblIdMember.Visibility = Visibility.Collapsed;
             btnSave.Click += btnSave_Click;
         }
 
@@ -41,12 +42,14 @@ namespace KenkoApp.forms
             if (type == "Edit")
             {
                 this.idMember = idMember;
-                this.formType = "Edit";
                 lblTitle.Text = "Edit Data Member";
+                formType = "Edit";
                 lblSubtitle.Text = "Form ini untuk mengedit data member";
                 FormIcon.Kind = PackIconKind.PencilBox;
                 Title = "Edit Data";
 
+                txtIdMember.Visibility = Visibility.Visible;
+                lblIdMember.Visibility = Visibility.Hidden;
                 btnSave.Click += btnEdit_Click;
             }
             else
@@ -57,10 +60,7 @@ namespace KenkoApp.forms
 
         private void FormMember_Loaded(object sender, RoutedEventArgs e)
         {
-            if(formType != "Edit")
-            {
-                txtIdMember.Text = Kenko.generateMemberId();
-            }
+            
         }
 
         private void btnBatal_Click(object sender, RoutedEventArgs e)
@@ -81,7 +81,7 @@ namespace KenkoApp.forms
                 SqlCommand cmd = new SqlCommand("sp_Member_Create", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("id_member", txtIdMember.Text);
+                cmd.Parameters.AddWithValue("id_member", Kenko.generateMemberId());
                 cmd.Parameters.AddWithValue("nik", txtNIK.Text);
                 cmd.Parameters.AddWithValue("nama", txtNamaMember.Text);
                 cmd.Parameters.AddWithValue("jenis_kelamin", Kenko.getJenkel(rdLaki));
@@ -142,33 +142,34 @@ namespace KenkoApp.forms
 
         private void txtIdMember_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Margin = new Thickness(0, ((68 * 0)), 0, 0);
+            GridLocation(0, 0);
         }
 
         private void txtNIK_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Margin = new Thickness(0, ((68 * 1)), 0, 0);
+            GridLocation(1, 0);
         }
 
         private void txtNamaMember_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Margin = new Thickness(0, ((68 * 2)), 0, 0);
+            GridLocation(2, 0);
         }
 
         private void jenkelToggle_Click(object sender, RoutedEventArgs e)
         {
             toggleJenkel((ToggleButton)sender);
-            GridCursor.Margin = new Thickness(0, ((68 * 3) + 10), 0, 0);
+            lblJenkel.Visibility = Visibility.Hidden;
+            GridLocation(3, 10);
         }
 
         private void txtNoTelp_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Margin = new Thickness(0, ((68 * 4) + 10), 0, 0);
+            GridLocation(4, 10);
         }
 
         private void txtNIK_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Kenko.fieldRequired(txtNIK.Text, lblNIK);
+            Kenko.fieldMin(txtNIK.Text, lblNIK, 16);
         }
 
         private void txtNamaMember_TextChanged(object sender, TextChangedEventArgs e)
@@ -178,7 +179,7 @@ namespace KenkoApp.forms
 
         private void txtNoTelp_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+            Kenko.fieldMin(txtNoTelp.Text, lblNoTelp, 11);
         }
 
         private void txtNoTelp_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -188,10 +189,10 @@ namespace KenkoApp.forms
 
         private bool validateAll()
         {
-            bool nik = Kenko.fieldRequired(txtNIK.Text, lblNIK);
+            bool nik = Kenko.fieldMin(txtNIK.Text, lblNIK, 16);
             bool namaMember = Kenko.fieldRequired(txtNamaMember.Text, lblNamaMember);
             bool jenkel = Kenko.toggleRequired(lblJenkel, (bool)rdLaki.IsChecked, (bool)rdPerempuan.IsChecked);
-            bool notelp = Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+            bool notelp = Kenko.fieldMin(txtNoTelp.Text, lblNoTelp, 11);
 
             if (nik && namaMember && jenkel && notelp)
             {
@@ -211,6 +212,18 @@ namespace KenkoApp.forms
         private void txtNIK_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Kenko.numberOnlyInput(e);
+        }
+
+        private void GridLocation(int i, int plus)
+        {
+            if (formType == "Tambah")
+            {
+                GridCursor.Margin = new Thickness(0, ((68 * (i-1)) + plus), 0, 0);
+            }
+            else
+            {
+                GridCursor.Margin = new Thickness(0, ((68 * i) + plus), 0, 0);
+            }
         }
 
         private void toggleJenkel(ToggleButton toggleButton)

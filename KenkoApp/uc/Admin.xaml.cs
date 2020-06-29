@@ -106,6 +106,16 @@ namespace KenkoApp.uc
                     PageTitle.Text = "Master Obat";
                     GridMain.Children.Add(usc);
                     break;
+                case "ItemPembelian":
+                    usc = new TransaksiPembelian();
+                    PageTitle.Text = "Transaksi Pembelian";
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemPenjualan":
+                    usc = new TransaksiPenjualan();
+                    PageTitle.Text = "Transaksi Penjualan";
+                    GridMain.Children.Add(usc);
+                    break;
                 default:
                     break;
             }

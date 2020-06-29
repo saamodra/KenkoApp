@@ -84,6 +84,7 @@ namespace KenkoApp.uc
                 formDokter.txtNoTelp.Text = dataRowView[7].ToString();
                 formDokter.txtEmail.Text = dataRowView[8] .ToString();
                 formDokter.txtPassword.Password = dataRowView[9].ToString();
+                formDokter.txtRetypePass.Password = dataRowView[9].ToString();
 
                 formDokter.ShowDialog();
 

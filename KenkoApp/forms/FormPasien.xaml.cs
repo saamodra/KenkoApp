@@ -148,7 +148,6 @@ namespace KenkoApp.forms
         private void rdJenkel_Click(object sender, RoutedEventArgs e)
         {
             GridCursor.Margin = new Thickness(0, ((68 * 1)), 0, 0);
-
         }
 
         private void txtTglLahir_Focus(object sender, RoutedEventArgs e)
@@ -189,7 +188,7 @@ namespace KenkoApp.forms
 
         private void txtNoTelp_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+            Kenko.fieldMin(txtNoTelp.Text, lblNoTelp, 11);
         }
 
         private void txtPekerjaan_TextChanged(object sender, TextChangedEventArgs e)
@@ -206,12 +205,11 @@ namespace KenkoApp.forms
         {
             bool namaPasien = Kenko.fieldRequired(txtNamaPasien.Text, lblNamaPasien);
             bool alamat = Kenko.fieldRequired(txtAlamat.Text, lblAlamat);
-            bool noTelp = Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+            bool noTelp = Kenko.fieldMin(txtNoTelp.Text, lblNoTelp, 11);
             bool tglLahir = Kenko.dateRequired(txtTglLahir, lblTgl);
             bool jenkel = Kenko.toggleRequired(lblJenkel, (bool)rdLaki.IsChecked, (bool)rdPerempuan.IsChecked);
-            bool goldar = Kenko.toggleRequired(lblGolonganDarah, (bool)golA.IsChecked, (bool)golB.IsChecked, (bool)golAB.IsChecked, (bool)golO.IsChecked);
 
-            if (namaPasien && alamat && noTelp && tglLahir && jenkel && goldar)
+            if (namaPasien && alamat && noTelp && tglLahir && jenkel)
             {
                 return true;
             }
@@ -229,6 +227,7 @@ namespace KenkoApp.forms
         private void jenkelToggle_Click(object sender, RoutedEventArgs e)
         {
             toggleJenkel((ToggleButton)sender);
+            lblJenkel.Visibility = Visibility.Hidden;
             GridCursor.Margin = new Thickness(0, ((68 * 1) + 10), 0, 0);
         }
 
@@ -273,19 +272,26 @@ namespace KenkoApp.forms
             if(golA.IsChecked == true)
             {
                 golonganDarah = "A";
-            } else if (golB.IsChecked == true) {
+            } else if (golB.IsChecked == true) 
+            {
                 golonganDarah = "B";
             } else if(golAB.IsChecked == true)
             {
                 golonganDarah = "AB";
-            } else
+            } else if(golO.IsChecked == true)
             {
                 golonganDarah = "O";
+            } else
+            {
+                golonganDarah = "-";
             }
 
             return golonganDarah;
         }
 
-        
+        private void txtNamaPasien_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Kenko.alphabetOnlyInput(e);
+        }
     }
 }

@@ -125,6 +125,12 @@
     <Compile Include="uc\MasterUser.xaml.cs">
       <DependentUpon>MasterUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="uc\TransaksiPembelian.xaml.cs">
+      <DependentUpon>TransaksiPembelian.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\TransaksiPenjualan.xaml.cs">
+      <DependentUpon>TransaksiPenjualan.xaml</DependentUpon>
+    </Compile>
     <Page Include="forms\FormDokter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -220,6 +226,14 @@
     <Page Include="uc\MasterUser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="uc\TransaksiPembelian.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\TransaksiPenjualan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

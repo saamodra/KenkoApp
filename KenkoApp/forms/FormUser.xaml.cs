@@ -142,7 +142,7 @@ namespace KenkoApp.forms
         private void btnChooseFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg|*.jpg|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 txtFileName.Text = openFileDialog.FileName;

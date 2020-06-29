@@ -36,13 +36,13 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="20 20 50 0">
-            <TextBox x:Name="txtIdObat" materialDesign:HintAssist.Hint="ID Obat"
+            <!--<TextBox x:Name="txtIdObat" materialDesign:HintAssist.Hint="ID Obat"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                     IsEnabled="False"
                     VerticalAlignment="Center" GotFocus="txtIdObat_Focus"/>
-            <Label Name="lblIdObat" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <Label Name="lblIdObat" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>-->
             <TextBox x:Name="txtNamaObat" materialDesign:HintAssist.Hint="Nama Obat"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
@@ -77,21 +77,21 @@
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                     VerticalAlignment="Center" GotFocus="txtStok_Focus" TextChanged="txtStok_TextChanged" PreviewTextInput="txtStok_PreviewTextInput"  />
             <Label Name="lblStok" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
-        </StackPanel>
-
-        <!--Right-->
-        <StackPanel Grid.Column="3" Grid.Row="1" Margin="20 20 50 0">
             <TextBox x:Name="txtHargaBeli" materialDesign:HintAssist.Hint="Harga Beli"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                     VerticalAlignment="Center" GotFocus="txtHargaBeli_Focus" TextChanged="txtHargaBeli_TextChanged" PreviewTextInput="txtHargaBeli_PreviewTextInput" KeyUp="txtHargaBeli_Keyup"  />
             <Label Name="lblHargaBeli" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
+        </StackPanel>
+
+        <!--Right-->
+        <StackPanel Grid.Column="3" Grid.Row="1" Margin="20 20 50 0">
             <TextBox x:Name="txtHargaJual" materialDesign:HintAssist.Hint="Harga Jual"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtHargaJual_Focus" TextChanged="txtHargaJual_TextChanged" PreviewTextInput="txtHargaJual_PreviewTextInput"  />
+                    VerticalAlignment="Center" GotFocus="txtHargaJual_Focus" TextChanged="txtHargaJual_TextChanged" PreviewTextInput="txtHargaJual_PreviewTextInput" KeyUp="txtHargaJual_KeyUp"  />
             <Label Name="lblHargaJual" Foreground="#EB3F3F" Visibility="Hidden">Isian ini tidak boleh kosong</Label>
             <TextBox x:Name="txtHet" materialDesign:HintAssist.Hint="HET"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"

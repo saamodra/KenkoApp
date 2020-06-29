@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,6 +31,7 @@ namespace KenkoApp.uc
         }
 
 
+
         private void MasterKategori_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshDataGrid();
@@ -51,21 +53,21 @@ namespace KenkoApp.uc
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+
+            
             try
             {
                 DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
                 FormObat formObat = new FormObat("Edit", dataRowView[1].ToString());
 
-
-                formObat.txtIdObat.Text = dataRowView[1].ToString();
                 formObat.txtNamaObat.Text = dataRowView[2].ToString();
                 formObat.cmbKategori.SelectedValue = dataRowView[3].ToString();
                 formObat.cmbSatuan.SelectedValue = dataRowView[4].ToString();
                 formObat.txtTglExpired.SelectedDate = DateTime.Parse(dataRowView[6].ToString());
                 formObat.txtStok.Text = dataRowView[7].ToString();
-                formObat.txtHargaBeli.Text = dataRowView[8].ToString();
-                formObat.txtHargaJual.Text = dataRowView[9].ToString();
-                formObat.txtHet.Text = dataRowView[10].ToString();
+                formObat.txtHargaBeli.Text = Kenko.getNumber(dataRowView[8].ToString());
+                formObat.txtHargaJual.Text = Kenko.getNumber(dataRowView[9].ToString());
+                formObat.txtHet.Text = Kenko.getNumber(dataRowView[10].ToString());
                 formObat.txtProdusen.Text = dataRowView[11].ToString();
                 formObat.txtDeskripsi.Text = dataRowView[12].ToString();
 
