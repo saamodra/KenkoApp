@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace KenkoApp.uc
 {
     /// <summary>
-    /// Interaction logic for Dashboard.xaml
+    /// Interaction logic for Dokter.xaml
     /// </summary>
-    public partial class Admin : UserControl
+    public partial class Dokter : UserControl
     {
-        public Admin()
+        public Dokter()
         {
             InitializeComponent();
             UserControl usc = null;
@@ -33,6 +33,9 @@ namespace KenkoApp.uc
 
             var uri = new Uri(imageUrl + "\\images\\default.jpg");
             profilePhoto.ImageSource = new BitmapImage(uri);
+
+            lblUser.Text = (string)Application.Current.Properties["nama"];
+            lblRole.Text = (string)Application.Current.Properties["role"];
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -130,13 +133,6 @@ namespace KenkoApp.uc
         {
             TrainsitionigContentSlide.OnApplyTemplate();
             int diff = 0;
-            if(index > 12)
-            {
-                diff = 38;
-            } else if(index > 8)
-            {
-                diff = 19;
-            } 
             GridCursor.Margin = new Thickness(0, ((40 * index) - diff), 0, 0);
         }
 

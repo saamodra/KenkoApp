@@ -124,7 +124,28 @@
                                 materialDesign:HintAssist.Foreground="#EB3F3F"
                                 materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                                 FontSize="17"
-                                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0,20,0, 0" />
+                                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0,20,0, 0" KeyDown="txtPassword_Keydown" />
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="12*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <!--<materialDesign:PackIcon Kind="AbTesting" Grid.Column="0" HorizontalAlignment="Center" 
+                                                     Margin="0, 25, 0, 0" VerticalAlignment="Center" 
+                                                     Height="25" Width="25"/>-->
+
+                            <StackPanel Grid.Column="1" Margin="0 20" Orientation="Horizontal">
+                                <RadioButton x:Name="rdKasir" Style="{StaticResource MaterialDesignRadioButton}" 
+                                             Margin="0 0 30 0"
+                                             FontSize="16">
+                                    Kasir
+                                </RadioButton>
+                                <RadioButton x:Name="rdDokter" Style="{StaticResource MaterialDesignRadioButton}" FontSize="16">
+                                    Dokter
+                                </RadioButton>
+                            </StackPanel>
                         </Grid>
 
                         <Button x:Name="btnLogin" 

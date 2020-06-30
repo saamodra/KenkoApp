@@ -4,7 +4,6 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
             xmlns:local="clr-namespace:KenkoApp.uc"
-            xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
             mc:Ignorable="d" 
             d:DesignHeight="768" d:DesignWidth="1366" Loaded="TransaksiPenjualan_Loaded">
@@ -187,7 +186,6 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Jumlah"  Binding="{Binding Path=jumlah}" IsReadOnly="True"/>
-                        <!--<DataGridTextColumn Header="Harga" Binding="{Binding Path=harga}" IsReadOnly="True"/>-->
                         <DataGridTextColumn Binding="{Binding harga, ConverterCulture='id-ID' ,StringFormat=C}" Header="Harga" />
                         <DataGridTemplateColumn Header="Aksi">
                             <DataGridTemplateColumn.CellTemplate>

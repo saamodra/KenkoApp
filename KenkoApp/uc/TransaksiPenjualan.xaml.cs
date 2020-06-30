@@ -132,8 +132,6 @@ namespace KenkoApp.uc
                         lblJumlahBarang.Content = jumlahBarang;
                         lblSubtotal.Content = Kenko.formatCurrency(subtotal);
                         lblTotalPembayaran.Text = Kenko.formatCurrency(subtotal);
-                        //string resultString = Regex.Match(Kenko.formatCurrency(102), @"\d+").Value;
-                        //MessageBox.Show(resultString);
                     }
 
                     dataPenjualan.ItemsSource = dtPenjualan.DefaultView;
@@ -237,7 +235,7 @@ namespace KenkoApp.uc
             SqlCommand cmd = new SqlCommand("sp_Transaksi_Penjualan", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            string no_penjualan = Kenko.generateId("PJ", "sp_Transaksi_Penjualan_GetLast", "no_penjualan");
+            string no_penjualan = Kenko.generateId("PJ", "sp_Transaksi_Penjualan_GetLast");
             cmd.Parameters.AddWithValue("no_penjualan", no_penjualan);
             cmd.Parameters.AddWithValue("tgl_beli", DateTime.Now);
             cmd.Parameters.AddWithValue("total_harga", Convert.ToDouble(Kenko.getNumber(lblTotalPembayaran.Text)));

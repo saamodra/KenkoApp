@@ -161,7 +161,7 @@ namespace KenkoApp.uc
             return id + idMember;
         }
 
-        public static string generateId(string type, string sp, string param)
+        public static string generateId(string type, string sp)
         {
             string id, idtype;
 
@@ -173,7 +173,7 @@ namespace KenkoApp.uc
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sp, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue(param, id);
+                cmd.Parameters.AddWithValue("cari", id);
 
 
                 SqlDataReader data = cmd.ExecuteReader();
@@ -193,6 +193,31 @@ namespace KenkoApp.uc
 
             return id + idtype;
         }
+
+
+        public static string getAntrian()
+        {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConString"]))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("sp_Transaksi_Reservasi_GetCount", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read())
+                {
+                    count = int.Parse(data.GetValue(0).ToString());
+                    count++;
+                }
+
+                conn.Close();
+            }
+
+
+            return count.ToString();
+        }
+
 
         public static string getLastUserId()
         {

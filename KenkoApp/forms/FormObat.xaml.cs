@@ -86,7 +86,7 @@ namespace KenkoApp.forms
                 cmd.CommandType = CommandType.StoredProcedure;
 
 
-                cmd.Parameters.AddWithValue("id_obat", Kenko.generateId("OB", "sp_Obat_GetLast", "id_obat"));
+                cmd.Parameters.AddWithValue("id_obat", Kenko.generateId("OB", "sp_Obat_GetLast"));
                 cmd.Parameters.AddWithValue("nama_obat", txtNamaObat.Text);
                 cmd.Parameters.AddWithValue("id_kategori", cmbKategori.SelectedValue);
                 cmd.Parameters.AddWithValue("id_satuan", cmbSatuan.SelectedValue);
