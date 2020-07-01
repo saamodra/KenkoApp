@@ -138,7 +138,7 @@
 
                             <StackPanel Grid.Column="1" Margin="0 20" Orientation="Horizontal">
                                 <RadioButton x:Name="rdKasir" Style="{StaticResource MaterialDesignRadioButton}" 
-                                             Margin="0 0 30 0"
+                                             Margin="0 0 30 0" IsChecked="True"
                                              FontSize="16">
                                     Kasir
                                 </RadioButton>

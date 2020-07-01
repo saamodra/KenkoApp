@@ -113,12 +113,6 @@
                                     <TextBlock Text="Home" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem x:Name="ItemPembelian" Height="40">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ArrowBottomLeft" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
-                                    <TextBlock Text="Pembelian" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                </StackPanel>
-                            </ListViewItem>
                             <ListViewItem x:Name="ItemResep" Height="40">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Receipt" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
@@ -126,18 +120,6 @@
                                 </StackPanel>
                             </ListViewItem>
                             <Separator/>
-                            <ListViewItem x:Name="ItemLaporanPembelian" Height="40">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ChartLineVariant" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
-                                    <TextBlock Text="Laporan Pembelian" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem x:Name="ItemLaporanPenjualan" Height="40">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ChartTimelineVariant" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
-                                    <TextBlock Text="Laporan Penjualan" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                </StackPanel>
-                            </ListViewItem>
                             <ListViewItem x:Name="ItemLaporanAppointment" Height="40">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="AccountSwitch" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>

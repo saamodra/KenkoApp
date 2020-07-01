@@ -45,6 +45,7 @@ namespace KenkoApp.uc
         private void btnPilih_Click(object sender, RoutedEventArgs e)
         {
             ClearForm();
+            formReadOnly();
             DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
             id_pasien.Text = dataRowView[1].ToString();
             txtNamaPasien.Text = dataRowView[2].ToString();
@@ -63,6 +64,16 @@ namespace KenkoApp.uc
             checkGol(dataRowView[7].ToString());
             txtPekerjaan.Text = dataRowView[8].ToString();
 
+        }
+
+        private void formReadOnly()
+        {
+            txtNamaPasien.IsReadOnly = true;
+            txtAlamat.IsReadOnly = true;
+            txtKeluhan.IsReadOnly = true;
+            txtNamaPasien.IsReadOnly = true;
+            txtNamaPasien.IsReadOnly = true;
+            txtNamaPasien.IsReadOnly = true;
         }
 
         private void checkGol(string golDar)

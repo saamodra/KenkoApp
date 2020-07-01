@@ -32,7 +32,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="0 10">Penjualan</TextBlock>
-                    <Button Grid.Column="1" x:Name="btnBaru" HorizontalAlignment="Right" Padding="10 0" Click="btnCariMember_Click">
+                    <Button Grid.Column="1" x:Name="btnBaru" HorizontalAlignment="Right" Padding="10 0" Click="btnBaru_Click" >
                         <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Margin="0"/>
                     </Button>
                 </Grid>
@@ -63,7 +63,7 @@
                             materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                             VerticalAlignment="Center" />
 
-                        <Button x:Name="btnCariMember" Padding="0" Grid.Column="1" Click="btnCariMember_Click">
+                        <Button x:Name="btnCariMember" Padding="0" Grid.Column="1" Click="btnCariMember_Click" HorizontalAlignment="Left" Margin="0,6,0,5" Width="37">
                             <materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" Margin="0"/>
                         </Button>
                     </Grid>

@@ -9,21 +9,72 @@
             d:DesignHeight="768" d:DesignWidth="1366" Loaded="TransaksiResep_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
             <ColumnDefinition Width="6*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <materialDesign:Card Background="#fff" Grid.Column="0"
-                        Margin="10"
-                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                        Padding="20 10 20 30"
-                        UniformCornerRadius="5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="4*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="0">
+
+                <materialDesign:Card Background="#fff" Grid.Column="0"
+                                Margin="10"
+                                Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                Padding="20 10 20 30"
+                                UniformCornerRadius="5">
+                    <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="0 10">Daftar Antrian</TextBlock>
+
+                        <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+
+                        <DataGrid x:Name="dataReservasi" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
+                                VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                                CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                materialDesign:DataGridAssist.CellPadding="4"
+                                materialDesign:DataGridAssist.ColumnHeaderPadding="4"
+                                CanUserAddRows="False"
+                                SelectionUnit="Cell"
+                                SelectionMode="Extended" Grid.ColumnSpan="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Nama Pasien" Binding="{Binding Path=nama_pasien}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Umur" Binding="{Binding Path=umur}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Tgl. Reservasi" Binding="{Binding Path=tglReservasi}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Keterangan" Binding="{Binding Path=keterangan}" IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="Aksi">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="btnTambahReservasi" Margin="0" Background="#E2401C" BorderThickness="0" Height="20" Click="btnTambahReservasi_Click">
+                                                    <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" Margin="0"/>
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+
+                </materialDesign:Card>
+
+            <materialDesign:Card Background="#fff" Grid.Row="1" Grid.Column="0"
+                                Margin="10"
+                                Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                Padding="20 10 20 30"
+                                UniformCornerRadius="5">
+                <Grid HorizontalAlignment="Stretch" Margin="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -32,37 +83,7 @@
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Column="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="0 10">Transaksi Resep</TextBlock>
-
-                    <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
-
-                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                        <TextBox x:Name="txtKasir" materialDesign:HintAssist.Hint="Kasir"
-                            Margin="0 5" Foreground="#000"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalAlignment="Center" IsReadOnly="True"/>
-
-                        <TextBox x:Name="txtTglTransaksi" materialDesign:HintAssist.Hint="Tgl. Transaksi"
-                            Margin="0 5" Foreground="#000"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalAlignment="Center" IsReadOnly="True"/>
-                    </StackPanel>
-
-
-                </Grid>
-
-                <Grid Grid.Row="1" HorizontalAlignment="Stretch" Margin="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Column="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="0 10">Data Pasien</TextBlock>
+                    <TextBlock Grid.Column="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="0 10">Data Obat</TextBlock>
                     <TextBox Grid.Column="1" x:Name="txtCariPasien" materialDesign:HintAssist.Hint="Cari"
                             Margin="0 5" Foreground="#000"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -70,7 +91,7 @@
                             VerticalAlignment="Center" IsReadOnly="True"/>
                     <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
 
-                    <DataGrid x:Name="dataMaster" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
+                    <DataGrid x:Name="dataObat" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
                         VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True"
                         CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
                         materialDesign:DataGridAssist.CellPadding="4"
@@ -87,7 +108,7 @@
                             <DataGridTemplateColumn Header="Jumlah">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox x:Name="txtJumlah" Margin="0" BorderThickness="0" PreviewTextInput="txtJumlah_PreviewTextInput" TextChanged="txtJumlah_TextChanged">
+                                        <TextBox x:Name="txtJumlah" Margin="0" PreviewTextInput="txtJumlah_PreviewTextInput" TextChanged="txtJumlah_TextChanged">
                                         </TextBox>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -106,82 +127,229 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
+            </materialDesign:Card>
 
 
-            </Grid>
-        </materialDesign:Card>
+        </Grid>
 
 
-        <materialDesign:Card Background="#fff" Grid.Column="1"
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="7*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <materialDesign:Card Background="#fff"
                         Margin="10"
                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                         Padding="0 10 0 0"
                         UniformCornerRadius="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="4*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Dokter</TextBlock>
-                <Separator HorizontalAlignment="Stretch" Height="2" Margin="20 0" VerticalAlignment="Bottom"/>
-
-                <StackPanel Grid.Row="1" Margin="20 0 20 0">
-                    <ComboBox x:Name="cmbDokter" materialDesign:HintAssist.Hint="Nama Dokter"
-                        materialDesign:HintAssist.Foreground="#EB3F3F"
-                        Margin="0 5 0 0" Foreground="#000"
-                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" DisplayMemberPath="nama_dokter" SelectedValuePath="id_dokter"
-                        materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F" SelectionChanged="cmbDokter_SelectionChanged" >
-                    </ComboBox>
-
-                    <TextBox x:Name="txtSpesialisasi" materialDesign:HintAssist.Hint="Spesialisasi"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
-                        materialDesign:HintAssist.Foreground="#EB3F3F"
-                        materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                        VerticalAlignment="Center" TextChanged="txtNamaPasien_TextChanged" PreviewTextInput="txtNamaPasien_PreviewTextInput" />
-                </StackPanel>
-
-                <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Antrian</TextBlock>
-                <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom"/>
-                <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Top"/>
-
-                <Grid Margin="5" Grid.Row="3">
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"></RowDefinition>
-                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Pasien</TextBlock>
+                    <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Dokter</TextBlock>
+                    <Separator Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Height="2" Margin="20 0" VerticalAlignment="Bottom"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="20 0 20 0">
+                        <TextBox x:Name="txtNoSip" materialDesign:HintAssist.Hint="No. SIP"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" />
+
+                        <TextBox x:Name="txtNamaDokter" materialDesign:HintAssist.Hint="Nama Dokter"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" />
+
+                        <TextBox x:Name="txtSpesialisasi" materialDesign:HintAssist.Hint="Spesialisasi"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="1" Margin="20 0 20 0">
+
+                        <TextBox x:Name="txtNamaPasien" materialDesign:HintAssist.Hint="Nama Pasien"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="txtUmur" Grid.Column="0" materialDesign:HintAssist.Hint="Umur"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                                materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                                VerticalAlignment="Center" />
+
+                            <TextBox x:Name="txtJenkel" Grid.Column="1" materialDesign:HintAssist.Hint="Jenis Kelamin"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                                materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                                VerticalAlignment="Center" />
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="txtGol" Grid.Column="0" materialDesign:HintAssist.Hint="Golongan Darah"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                                materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                                VerticalAlignment="Center" />
+
+                            <TextBox x:Name="txtPekerjaan" Grid.Column="1" materialDesign:HintAssist.Hint="Pekerjaan"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                                materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                                VerticalAlignment="Center" />
+
+                        </Grid>
+
+
+                        <TextBox x:Name="txtKeluhan" Grid.Column="1" materialDesign:HintAssist.Hint="Keluhan"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                                materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                                Margin="0 0 0 20" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+            <materialDesign:Card Background="#fff"
+                        Margin="10" Grid.Row="1" 
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        Padding="0 10 0 0"
+                        UniformCornerRadius="5">
+                <Grid Margin="20 0 20 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Style="{StaticResource MaterialDesignHeadline2TextBlock}" Name="lblAntrian"
-                               Foreground="#EB3F3F" VerticalAlignment="Center" FontWeight="Bold"
-                               HorizontalAlignment="Center">-</TextBlock>
-                    <Separator Grid.Row="0" HorizontalAlignment="Stretch" Height="6" Margin="0" VerticalAlignment="Bottom" Background="#FF9E9E9E" />
+                    <TextBlock Grid.Row="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="0 10">Buat Resep</TextBlock>
+                    <Separator Grid.Row="0" HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom"/>
 
-                    <StackPanel Grid.Row="1" Margin="20 10">
-                        <Label HorizontalAlignment="Right" Name="lblNamaDokter" FontSize="16" FontWeight="Bold">-</Label>
-                        <Separator Grid.Row="0" HorizontalAlignment="Stretch" Height="6" Margin="0 10" VerticalAlignment="Bottom" Background="#FF9E9E9E" />
 
-                        <TextBox x:Name="txtKeluhan"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                            VerticalAlignment="Top" Foreground="#000" Height="70"
-                            AcceptsReturn="True" TextWrapping="Wrap"
-                            materialDesign:HintAssist.Foreground="#EB3F3F"
+
+                    <Grid Margin="5" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="0 0 10 0">
+                            <TextBox x:Name="txtIdObat" materialDesign:HintAssist.Hint="ID Obat"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
                             materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalScrollBarVisibility="Auto"
-                            materialDesign:HintAssist.Hint="Keluhan" TextChanged="txtAlamat_TextChanged" Margin="0 5 0 30" />
-                        <Button x:Name="btnDaftar" Style="{StaticResource MaterialDesignRaisedButton}" 
-                            BorderBrush="#E2401C" Background="#E2401C"
-                            ToolTip="MaterialDesignOutlinedButton" Click="btnDaftar_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Register" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
-                                <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Daftar</TextBlock>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
+
+                            VerticalAlignment="Center" />
+                            <TextBox x:Name="txtNamaObat" materialDesign:HintAssist.Hint="Nama Obat"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" />
+
+                            <TextBox x:Name="txtJumlahObat" materialDesign:HintAssist.Hint="Jumlah Obat"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" />
+
+                            <TextBox x:Name="txtSatuan" materialDesign:HintAssist.Hint="Satuan"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                            VerticalAlignment="Center" />
+
+                            <TextBox x:Name="txtKeterangan" materialDesign:HintAssist.Hint="Keterangan Dosis" Margin="0"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
+                                materialDesign:HintAssist.Foreground="#EB3F3F"
+                                materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                                VerticalAlignment="Center" KeyDown="txtNumeric_Keydown" />
+
+                            <Button x:Name="btnTambahResep" Style="{StaticResource MaterialDesignRaisedButton}" 
+                            BorderBrush="#E2401C" Background="#E2401C" Margin="0 20 0 0" HorizontalAlignment="Left"
+                            ToolTip="MaterialDesignOutlinedButton" Click="btnTambahResep_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Tambah</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <DataGrid x:Name="dataResep" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="0"
+                            VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True" Grid.Column="1"
+                            CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                            materialDesign:DataGridAssist.CellPadding="4"
+                            materialDesign:DataGridAssist.ColumnHeaderPadding="4"
+                            CanUserAddRows="False"
+                            SelectionUnit="Cell" Margin="10 0 0 20"
+                            SelectionMode="Extended" Grid.ColumnSpan="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Keterangan" Binding="{Binding Path=keterangan}" IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="Aksi">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="btnHapusResep" Margin="0" Background="#E2401C" BorderThickness="0" Height="20" Click="btnHapusResep_Click" >
+                                                    <materialDesign:PackIcon Kind="Trash" VerticalAlignment="Center" Margin="0"/>
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Separator Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Height="6" Margin="0 20 0 0" VerticalAlignment="Bottom" Background="#FF9E9E9E" />
+
+
+                        <StackPanel Grid.Row="1" Margin="0 10" Grid.Column="2">
+                            <Button x:Name="btnBuatResep" Style="{StaticResource MaterialDesignRaisedButton}" 
+                            BorderBrush="#E2401C" Background="#E2401C" HorizontalAlignment="Right"
+                            ToolTip="MaterialDesignOutlinedButton" Click="btnBuatResep_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Register" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Buat Resep</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+
 
                 </Grid>
 
-            </Grid>
-        </materialDesign:Card>
+
+            </materialDesign:Card>
+
+        </Grid>
     </Grid>
 </UserControl>

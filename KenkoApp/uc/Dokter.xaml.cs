@@ -64,64 +64,9 @@ namespace KenkoApp.uc
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "ItemDashboard":
-                    usc = new Dashboard();
-                    PageTitle.Text = "Dashboard";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemUser":
-                    usc = new MasterUser();
-                    GridMain.Children.Add(usc);
-                    PageTitle.Text = "Master User";
-                    break;
-                case "ItemSupplier":
-                    usc = new MasterSupplier();
-                    PageTitle.Text = "Master Supplier";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemMember":
-                    usc = new MasterMember();
-                    PageTitle.Text = "Master Member";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemDokter":
-                    usc = new MasterDokter();
-                    PageTitle.Text = "Master Dokter";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemPasien":
-                    usc = new MasterPasien();
-                    PageTitle.Text = "Master Pasien";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemSatuan":
-                    usc = new MasterSatuan();
-                    PageTitle.Text = "Master Satuan";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemKategori":
-                    usc = new MasterKategori();
-                    PageTitle.Text = "Master Kategori";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemObat":
-                    usc = new MasterObat();
-                    PageTitle.Text = "Master Obat";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemPembelian":
-                    usc = new TransaksiPembelian();
-                    PageTitle.Text = "Transaksi Pembelian";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemPenjualan":
-                    usc = new TransaksiPenjualan();
-                    PageTitle.Text = "Transaksi Penjualan";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemAppointment":
-                    usc = new TransaksiReservasi();
-                    PageTitle.Text = "Transaksi Reservasi";
+                case "ItemResep":
+                    usc = new TransaksiResep();
+                    PageTitle.Text = "Transaksi Resep";
                     GridMain.Children.Add(usc);
                     break;
                 default:

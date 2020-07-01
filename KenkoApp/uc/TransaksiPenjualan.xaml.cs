@@ -175,17 +175,24 @@ namespace KenkoApp.uc
 
         private void btnCariMember_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = Kenko.getData("sp_Member_GetMember", txtIdMember.Text);
-
-            if(dt.Rows.Count > 0)
+            if(txtIdMember.Text == "")
             {
-                txtIdMember.IsReadOnly = true;
-                txtNamaMember.Text = dt.Rows[0]["nama"].ToString();
-                txtJumlahPoin.Text = dt.Rows[0]["poin"].ToString();
-                txtPoin.IsEnabled = true;
+                MessageBox.Show("Isi ID Member terlebih dahulu.", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
             } else
             {
-                MessageBox.Show("Data tidak ditemukan", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+                DataTable dt = Kenko.getData("sp_Member_GetMember", txtIdMember.Text);
+
+                if (dt.Rows.Count > 0)
+                {
+                    txtIdMember.IsReadOnly = true;
+                    txtNamaMember.Text = dt.Rows[0]["nama"].ToString();
+                    txtJumlahPoin.Text = dt.Rows[0]["poin"].ToString();
+                    txtPoin.IsEnabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Data tidak ditemukan", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             
             
@@ -265,9 +272,7 @@ namespace KenkoApp.uc
                     connection.Open();
                     cmd.ExecuteNonQuery();
                     connection.Close();
-
                 }
-
 
                 MessageBox.Show("Data berhasil disimpan!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 NewTransaksi();
@@ -298,6 +303,11 @@ namespace KenkoApp.uc
             txtBayar.Text = "";
             lblKembalian.Content = 0;
 
+        }
+
+        private void btnBaru_Click(object sender, RoutedEventArgs e)
+        {
+            Baru();
         }
     }
 }
