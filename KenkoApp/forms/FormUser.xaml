@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KenkoApp.forms"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Tambah User" Height="650" Width="500" WindowStartupLocation="CenterScreen" Loaded="FormUser_Loaded">
+        Title="Tambah User" Height="740" Width="500" WindowStartupLocation="CenterScreen" Loaded="FormUser_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -14,21 +14,22 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="544*"></RowDefinition>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Margin="0 32 0 0">
+        <Grid Grid.Row="1" Margin="0 32 0 0" Grid.RowSpan="2">
             <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
                 <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top"/>
             </materialDesign:TransitioningContent>
         </Grid>
-        <materialDesign:PackIcon x:Name="FormIcon" Kind="PlusBox" Grid.Row="0" Grid.Column="0" Width="35" Height="35" Foreground="#DD4B39" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <StackPanel Grid.Column="1" Margin="20 0 0 0" VerticalAlignment="Center">
+        <materialDesign:PackIcon x:Name="FormIcon" Kind="PlusBox" Grid.Row="0" Grid.Column="0" Width="35" Height="34" Foreground="#DD4B39" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,18"/>
+        <StackPanel Grid.Column="1" Margin="20,10,0,10" VerticalAlignment="Center">
             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000">Tambah Data User</TextBlock>
             <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Name="lblSubtitle" Foreground="Gray">Form ini untuk menambah data user</TextBlock>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="20 20 50 0">
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="20 20 50 0" Grid.RowSpan="2">
             <TextBox x:Name="txtNama" materialDesign:HintAssist.Hint="Nama"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
@@ -56,17 +57,23 @@
                     ToolTip="Username harus unik" GotFocus="txtEmail_Focus" TextChanged="txtEmail_TextChanged">
             </TextBox>
             <Label Name="lblEmail" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
+            <PasswordBox x:Name="txtOldPassword" Margin="0 4 0 0"
+                    materialDesign:HintAssist.Hint="Password Lama"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="txtOldPassword_Focus" PasswordChanged="txtOldPassword_TextChanged"  />
+            <Label Name="lblOldPassword" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
             <PasswordBox x:Name="txtPassword" Margin="0 4 0 0"
-                    materialDesign:HintAssist.Hint="Password"
+                    materialDesign:HintAssist.Hint="Password Baru"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="txtPassword_Focus" PasswordChanged="txtPassword_TextChanged"  />
             <Label Name="lblPassword" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
-            <PasswordBox x:Name="txtRetypePassword" Margin="0 4 0 0"
+            <PasswordBox x:Name="txtRetypePass" Margin="0 4 0 0"
                     materialDesign:HintAssist.Hint="Retype Password"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="txtPassword_Focus" PasswordChanged="txtPassword_TextChanged"  />
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="txtPasswordBaru_Focus" PasswordChanged="txtRetypePass_TextChanged"  />
             <Label Name="lblRetypePass" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
             <ComboBox x:Name="cmbRole" materialDesign:HintAssist.Hint="Role"
                 materialDesign:HintAssist.Foreground="#EB3F3F"
@@ -74,7 +81,7 @@
                 Style="{StaticResource MaterialDesignFloatingHintComboBox}" DisplayMemberPath="role" SelectedValuePath="id"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F" GotFocus="cmbRole_Focus" LostFocus="cmbRole_LostFocus" >
-                
+
             </ComboBox>
             <Label Name="lblRole" Foreground="#EB3F3F" Visibility="Hidden">Field is required.</Label>
             <Grid HorizontalAlignment="Stretch" Margin="0 10 0 0">

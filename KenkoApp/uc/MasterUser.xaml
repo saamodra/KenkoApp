@@ -56,7 +56,6 @@
                             <DataGridTextColumn Header="Username" Binding="{Binding Path=username}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding Path=email}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Role" Binding="{Binding Path=RoleName}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Foto" Binding="{Binding Path=foto}" IsReadOnly="True"/>
                             <DataGridTemplateColumn Header="Aksi">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

@@ -30,10 +30,16 @@ namespace KenkoApp.forms
     {
         private int idUser;
         private bool updateImage = false;
+        private string formtype = "Tambah";
 
         public FormUser()
         {
             InitializeComponent();
+            txtOldPassword.Visibility = Visibility.Collapsed;
+            lblOldPassword.Visibility = Visibility.Collapsed;
+            txtFileName.Visibility = Visibility.Collapsed;
+            btnChooseFile.Visibility = Visibility.Collapsed;
+
             btnSave.Click += btnSave_Click;
         }
 
@@ -44,6 +50,7 @@ namespace KenkoApp.forms
             if (type == "Edit")
             {
                 this.idUser = idUser;
+                formtype = type;
                 lblTitle.Text = "Edit Data User";
                 lblSubtitle.Text = "Form ini untuk mengedit data user";
                 FormIcon.Kind = PackIconKind.PencilBox;
@@ -75,7 +82,6 @@ namespace KenkoApp.forms
                 cmd.Parameters.AddWithValue("password", txtPassword.Password);
                 cmd.Parameters.AddWithValue("email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("role", cmbRole.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("foto", Kenko.uploadImage(txtFileName.Text));
 
                 try
                 {
@@ -108,7 +114,14 @@ namespace KenkoApp.forms
                 cmd.Parameters.AddWithValue("id_user", idUser);
                 cmd.Parameters.AddWithValue("nama", txtNama.Text);
                 cmd.Parameters.AddWithValue("username", txtUsername.Text);
-                cmd.Parameters.AddWithValue("password", txtPassword.Password);
+                if(txtOldPassword.Password == "")
+                {
+                    cmd.Parameters.AddWithValue("password", DBNull.Value);
+                } else
+                {
+                    cmd.Parameters.AddWithValue("password", txtPassword.Password);
+                }
+                
                 cmd.Parameters.AddWithValue("email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("role", cmbRole.SelectedValue.ToString());
                 if(updateImage)
@@ -148,6 +161,11 @@ namespace KenkoApp.forms
                 txtFileName.Text = openFileDialog.FileName;
                 updateImage = true;
             }
+
+            if(txtFileName.Text == "")
+            {
+                updateImage = false;
+            }
         }
 
         private void FormUser_Loaded(object sender, RoutedEventArgs e)
@@ -177,13 +195,44 @@ namespace KenkoApp.forms
             GridCursor.Margin = new Thickness(0, ((68 * 2)), 0, 0);
         }
 
-        private void txtPassword_Focus(object sender, RoutedEventArgs e)
+        private void txtOldPassword_Focus(object sender, RoutedEventArgs e)
         {
             GridCursor.Margin = new Thickness(0, ((68 * 3)), 0, 0);
         }
+
+        private void txtPassword_Focus(object sender, RoutedEventArgs e)
+        {
+            if(formtype == "Tambah")
+            {
+                GridCursor.Margin = new Thickness(0, ((68 * 3)), 0, 0);
+            } else
+            {
+                GridCursor.Margin = new Thickness(0, ((68 * 4)), 0, 0);
+            }
+        }
+
+        private void txtPasswordBaru_Focus(object sender, RoutedEventArgs e)
+        {
+            if (formtype == "Tambah")
+            {
+                GridCursor.Margin = new Thickness(0, ((68 * 4)), 0, 0);
+            }
+            else
+            {
+                GridCursor.Margin = new Thickness(0, ((68 * 5)), 0, 0);
+            }
+        }
+
         private void cmbRole_Focus(object sender, RoutedEventArgs e)
         {
-            GridCursor.Margin = new Thickness(0, ((68 * 4)), 0, 0);
+            if (formtype == "Tambah")
+            {
+                GridCursor.Margin = new Thickness(0, ((68 * 5)), 0, 0);
+            }
+            else
+            {
+                GridCursor.Margin = new Thickness(0, ((68 * 6)), 0, 0);
+            }
         }
 
         private void txtNama_TextChanged(object sender, TextChangedEventArgs e)
@@ -205,7 +254,12 @@ namespace KenkoApp.forms
         {
             Kenko.fieldRequired(txtEmail.Text, lblEmail);
         }
-        
+
+        private void txtOldPassword_TextChanged(object sender, RoutedEventArgs e)
+        {
+            Kenko.fieldRequired(txtOldPassword.Password, lblPassword);
+        }
+
         private void txtPassword_TextChanged(object sender, RoutedEventArgs e)
         {
             Kenko.fieldRequired(txtPassword.Password, lblPassword);
@@ -216,6 +270,11 @@ namespace KenkoApp.forms
             Kenko.alphabetOnlyInput(e);
         }
 
+        private void txtRetypePass_TextChanged(object sender, RoutedEventArgs e)
+        {
+            Kenko.fieldRetype(txtPassword.Password, txtRetypePass.Password, lblRetypePass);
+        }
+
         private bool validateAll()
         {
             bool Nama = Kenko.fieldRequired(txtNama.Text, lblNama);
@@ -223,20 +282,88 @@ namespace KenkoApp.forms
             bool Role = Kenko.comboRequired(cmbRole, lblRole);
             bool Email = Kenko.fieldRequired(txtEmail.Text, lblEmail);
             bool emailFormat = false;
-            if (Email)
+
+            if (formtype == "Tambah")
             {
-                emailFormat = Kenko.emailInput(txtEmail.Text, lblEmail);
-            }
-            bool Password = Kenko.fieldRequired(txtPassword.Password, lblPassword);
-            if (Nama && Username && Role && Email && emailFormat && Password)
+
+                bool Password = Kenko.fieldRequired(txtPassword.Password, lblPassword);
+                bool retype = Kenko.fieldRetype(txtPassword.Password, txtRetypePass.Password, lblRetypePass);
+                
+
+                if (Email)
+                {
+                    emailFormat = Kenko.emailInput(txtEmail.Text, lblEmail);
+                }
+                if (Nama && Username && Role && Email && emailFormat && Password && retype)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            } else
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                if (Email)
+                {
+                    emailFormat = Kenko.emailInput(txtEmail.Text, lblEmail);
+                }
+
+                if (txtOldPassword.Password == "")
+                {
+                    if (Nama && Username && Role && Email && emailFormat)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                } else
+                {
+                    bool Password = Kenko.fieldRequired(txtPassword.Password, lblPassword);
+                    bool retype = Kenko.fieldRetype(txtPassword.Password, txtRetypePass.Password, lblRetypePass);
+                    bool oldPass = Kenko.fieldRequired(txtOldPassword.Password, lblPassword);
+                    bool checkpass = checkPass(idUser.ToString(), txtOldPassword.Password);
+                    if (Nama && Username && Role && Email && emailFormat && Password && retype && oldPass && checkpass)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
 
+        private bool checkPass(string id_user, string password)
+        {
+
+            SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConString"]);
+           
+            SqlCommand cmd = new SqlCommand("sp_Check_UserPass", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("id_user", id_user);
+            cmd.Parameters.AddWithValue("password", password);
+
+            var returnParameter = cmd.Parameters.Add("@returnCheck", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+
+            if((int)returnParameter.Value > 0 )
+            {
+                return true;
+            } else
+            {
+                lblOldPassword.Visibility = Visibility.Visible;
+                lblOldPassword.Content = "Password lama tidak sesuai.";
+                return false;
+
+            }
+            
+        }
     }
 }
