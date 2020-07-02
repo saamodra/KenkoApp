@@ -57,6 +57,7 @@ namespace KenkoApp.uc
             UserControl usc = null;
             GridMain.Children.Clear();
             int index = ListViewMenu.SelectedIndex;
+            
             SelectedMenuChange(index);
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
@@ -121,6 +122,11 @@ namespace KenkoApp.uc
                     PageTitle.Text = "Transaksi Reservasi";
                     GridMain.Children.Add(usc);
                     break;
+                case "ItemResep":
+                    usc = new TransaksiReservasi();
+                    PageTitle.Text = "Transaksi Reservasi";
+                    GridMain.Children.Add(usc);
+                    break;
                 default:
                     break;
             }
@@ -130,7 +136,7 @@ namespace KenkoApp.uc
         {
             TrainsitionigContentSlide.OnApplyTemplate();
             int diff = 0;
-            if(index > 12)
+            if(index > 13)
             {
                 diff = 38;
             } else if(index > 8)

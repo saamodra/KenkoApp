@@ -10,7 +10,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
@@ -59,12 +59,12 @@
                         materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F" >
                     </ComboBox>
 
-                    <TextBox x:Name="txtNoTelp" Margin="0 5" materialDesign:HintAssist.Hint="No. Telepon"
+                    <!--<TextBox x:Name="txtNoTelp" Margin="0 5" materialDesign:HintAssist.Hint="No. Telepon"
                             Foreground="#000"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             materialDesign:HintAssist.Foreground="#EB3F3F"
                             materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalAlignment="Center" IsReadOnly="True"/>
+                            VerticalAlignment="Center" IsReadOnly="True"/>-->
 
                 </StackPanel>
 
@@ -119,8 +119,7 @@
                         <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Tgl. Expired" Binding="{Binding Path=tglExpired}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="HET" Binding="{Binding Path=hetFormatted}" IsReadOnly="True"/>
-                        
+
                         <DataGridTemplateColumn Header="Aksi">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -164,7 +163,8 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Jumlah"  Binding="{Binding Path=jumlah}" IsReadOnly="True"/>
-                        <DataGridTextColumn Binding="{Binding harga, ConverterCulture='id-ID' ,StringFormat=C}" Header="Harga" />
+                        <DataGridTextColumn Header="Tgl. Exp"  Binding="{Binding Path=tgl_exp}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Harga Total"  Binding="{Binding Path=harga_total}" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="Aksi">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -206,17 +206,6 @@
                         <Label Name="lblJumlahBarang" Grid.Column="2" HorizontalAlignment="Left">0</Label>
                     </Grid>
 
-                    <Grid Margin="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0">Poin Digunakan</Label>
-
-                        <TextBox x:Name="txtPoin" Grid.Column="2" PreviewTextInput="txtJumlah_PreviewTextInput" 
-                                 Foreground="#000" IsEnabled="False" Text="0" />
-                    </Grid>
 
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
@@ -232,35 +221,13 @@
                                    Foreground="#EB3F3F">0</TextBlock>
                     </Grid>
 
-                    <Grid Margin="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0">Tunai</Label>
-                        <Label Grid.Column="1" HorizontalAlignment="Center">Rp.</Label>
-                        <TextBox x:Name="txtBayar" Grid.Column="2" Foreground="#000" PreviewTextInput="txtJumlah_PreviewTextInput" KeyDown="txtBayar_KeyDown"></TextBox>
-                    </Grid>
-
-                    <Grid Margin="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0">Kembalian</Label>
-                        <Label Grid.Column="1" HorizontalAlignment="Center">Rp.</Label>
-                        <Label Name="lblKembalian" Grid.Column="2" HorizontalAlignment="Left">0</Label>
-                    </Grid>
-
+                    
                     <Grid Margin="10 20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button x:Name="btnCetak" IsEnabled="False"
+                        <!--<Button x:Name="btnCetak" IsEnabled="False"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Background="#EB3F3F"
                             FontSize="13" Margin="0 0 10 0"
@@ -269,15 +236,15 @@
                                 <materialDesign:PackIcon Kind="Printer" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
                                 <TextBlock VerticalAlignment="Center" FontSize="15">Cetak Struk</TextBlock>
                             </StackPanel>
-                        </Button>
-                        <Button x:Name="btnBayar" Grid.Column="1" IsEnabled="False"
+                        </Button>-->
+                        <Button x:Name="btnSave" Grid.Column="1" 
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Background="#EB3F3F"
                             FontSize="13" Margin="10 0 0 0"
-                            BorderThickness="0" Click="btnBayar_Click">
+                            BorderThickness="0" Click="btnSave_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Payment" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
-                                <TextBlock VerticalAlignment="Center" FontSize="15">Bayar</TextBlock>
+                                <TextBlock VerticalAlignment="Center" FontSize="15">Simpan</TextBlock>
                             </StackPanel>
                         </Button>
                     </Grid>

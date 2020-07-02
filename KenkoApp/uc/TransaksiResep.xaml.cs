@@ -240,6 +240,11 @@ namespace KenkoApp.uc
             txtGol.Text = "";
             txtKeluhan.Text = "";
             txtPekerjaan.Text = "";
+            txtNamaObat.Text = "";
+            txtJumlahObat.Text = "";
+            txtSatuan.Text = "";
+            txtKeterangan.Text = "";
+
             dtResep.Rows.Clear();
             dataResep.ItemsSource = dtResep.DefaultView;
 

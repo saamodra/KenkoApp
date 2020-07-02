@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="forms\FormBeliObat.xaml.cs">
+      <DependentUpon>FormBeliObat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="forms\FormDokter.xaml.cs">
       <DependentUpon>FormDokter.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,9 @@
     <Compile Include="uc\MasterUser.xaml.cs">
       <DependentUpon>MasterUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="uc\TransaksiBeliObat.xaml.cs">
+      <DependentUpon>TransaksiBeliObat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="uc\TransaksiPembelian.xaml.cs">
       <DependentUpon>TransaksiPembelian.xaml</DependentUpon>
     </Compile>
@@ -140,6 +146,10 @@
     <Compile Include="uc\TransaksiReservasi.xaml.cs">
       <DependentUpon>TransaksiReservasi.xaml</DependentUpon>
     </Compile>
+    <Page Include="forms\FormBeliObat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="forms\FormDokter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -239,6 +249,10 @@
     <Page Include="uc\MasterUser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="uc\TransaksiBeliObat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="uc\TransaksiPembelian.xaml">
       <SubType>Designer</SubType>
