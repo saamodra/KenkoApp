@@ -71,7 +71,7 @@
                 <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000" Margin="30 10">Kategori</TextBlock>
                 <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="30 0" VerticalAlignment="Bottom"/>
 
-                <ScrollViewer Grid.Row="3">
+                <ScrollViewer Grid.Row="3" MaxHeight="400">
                     <Grid>
                         <materialDesign:TransitioningContent Grid.Row="1" x:Name="TrainsitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
                             <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Visibility="Hidden"/>
@@ -105,20 +105,21 @@
                 </Grid.RowDefinitions>
                 <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="00 10" Grid.ColumnSpan="2">Data Obat</TextBlock>
                 <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
-
+                
+                
                 <DataGrid x:Name="dataMaster" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
-                        VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                        VerticalAlignment="Top" ScrollViewer.CanContentScroll="True"
                         CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                        materialDesign:DataGridAssist.CellPadding="4"
+                        materialDesign:DataGridAssist.CellPadding="4" MaxHeight="600"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="4"
                         CanUserAddRows="False"
                         SelectionUnit="Cell"
                         SelectionMode="Extended" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="No" Binding="{Binding Path=No}" CellStyle="{StaticResource RightCell}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Tgl. Expired" Binding="{Binding Path=tglExpired}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True" CellStyle="{StaticResource RightCell}" />
 
                         <DataGridTemplateColumn Header="Aksi">
                             <DataGridTemplateColumn.CellTemplate>

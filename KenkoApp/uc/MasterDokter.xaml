@@ -52,7 +52,7 @@
                         SelectionUnit="Cell"
                         SelectionMode="Extended">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                             <DataGridTextColumn Header="No. SIP" Binding="{Binding Path=no_sip}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Nama Dokter" Binding="{Binding Path=nama_dokter}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Jeni Kelamin" Binding="{Binding Path=jenis_kelamin}" IsReadOnly="True"/>

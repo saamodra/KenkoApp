@@ -177,13 +177,7 @@
                             <ListViewItem x:Name="ItemAppointment" Height="40">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="AccountSwitch" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
-                                    <TextBlock Text="Appointment" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem x:Name="ItemResep" Height="40">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Receipt" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
-                                    <TextBlock Text="Resep" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <TextBlock Text="Reservasi" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </StackPanel>
                             </ListViewItem>
                             <Separator/>

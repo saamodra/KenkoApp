@@ -260,10 +260,9 @@ namespace KenkoApp.uc
 
                 foreach (DataRow row in dtPenjualan.Rows)
                 {
-                    cmd = new SqlCommand("sp_Penjualan_Detail", connection);
+                    cmd = new SqlCommand("sp_Transaksi_Penjualan_Detail", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    MessageBox.Show(row["id_obat"].ToString());
                     cmd.Parameters.AddWithValue("no_penjualan", no_penjualan);
                     cmd.Parameters.AddWithValue("id_obat", row["id_obat"].ToString());
                     cmd.Parameters.AddWithValue("jumlah", row["jumlah"].ToString());
@@ -302,12 +301,25 @@ namespace KenkoApp.uc
             lblTotalPembayaran.Text = "0";
             txtBayar.Text = "";
             lblKembalian.Content = 0;
+            btnBayar.IsEnabled = false;
+            btnCetak.IsEnabled = false;
+            string idkategori = listKategori.SelectedValue.ToString();
+
+            dataMaster.ItemsSource = Kenko.getData("sp_Obat_GetKategori", idkategori).DefaultView;
 
         }
 
         private void btnBaru_Click(object sender, RoutedEventArgs e)
         {
             Baru();
+        }
+
+        private void txtPoin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(txtPoin.Text == "")
+            {
+                txtPoin.Text = "0";
+            }
         }
     }
 }

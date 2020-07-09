@@ -86,10 +86,10 @@
                 <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000" Margin="30 10">Kategori</TextBlock>
                 <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="30 0" VerticalAlignment="Bottom"/>
 
-                <ScrollViewer Grid.Row="3">
+                <ScrollViewer Grid.Row="3" MaxHeight="300">
                     <Grid>
-                        <materialDesign:TransitioningContent Grid.Row="1" x:Name="TrainsitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                            <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Visibility="Hidden"/>
+                        <materialDesign:TransitioningContent x:Name="TrainsitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                                <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Visibility="Hidden"/>
                         </materialDesign:TransitioningContent>
                         <ListView Name="listKategori" Margin="0" SelectionChanged="listKategori_SelectionChanged">
                             <ListView.ItemContainerStyle>
@@ -130,15 +130,15 @@
                         SelectionUnit="Cell"
                         SelectionMode="Extended" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="No" Binding="{Binding Path=No}" CellStyle="{StaticResource RightCell}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Tgl. Expired" Binding="{Binding Path=tglExpired}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Harga Jual" Binding="{Binding Path=hargaJual}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
+                        <DataGridTextColumn Header="Harga Jual" Binding="{Binding Path=hargaJual}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                         <DataGridTemplateColumn Header="Jumlah">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox x:Name="txtJumlah" Margin="0" BorderThickness="0" PreviewTextInput="txtJumlah_PreviewTextInput" TextChanged="txtJumlah_TextChanged">
+                                    <TextBox x:Name="txtJumlah" Margin="0" PreviewTextInput="txtJumlah_PreviewTextInput" TextChanged="txtJumlah_TextChanged" HorizontalContentAlignment="Right">
                                     </TextBox>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -237,7 +237,7 @@
                         <Label Grid.Column="0">Poin Digunakan</Label>
 
                         <TextBox x:Name="txtPoin" Grid.Column="2" PreviewTextInput="txtJumlah_PreviewTextInput" 
-                                 Foreground="#000" IsEnabled="False" KeyDown="txtPoin_KeyDown" Text="0" />
+                                 Foreground="#000" IsEnabled="False" KeyDown="txtPoin_KeyDown" Text="0" TextChanged="txtPoin_TextChanged" />
                     </Grid>
 
                     <Grid Margin="5">

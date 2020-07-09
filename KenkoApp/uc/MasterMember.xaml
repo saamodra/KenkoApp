@@ -52,13 +52,13 @@
                         SelectionUnit="Cell"
                         SelectionMode="Extended">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                             <DataGridTextColumn Header="ID Member" Binding="{Binding Path=id_member}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Nama Member" Binding="{Binding Path=nama}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Jenis Kelamin" Binding="{Binding Path=jenis_kelamin}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="No. Telp" Binding="{Binding Path=no_telepon}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Tgl. Bergabung" Binding="{Binding Path=tglFormatted}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Poin" Binding="{Binding Path=poin}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Poin" Binding="{Binding Path=poin}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                             <DataGridTemplateColumn Header="Aksi">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

@@ -35,7 +35,11 @@ namespace KenkoApp.uc
         private void TransaksiReservasi_Loaded(object sender, RoutedEventArgs e)
         {
             dataMaster.ItemsSource = Kenko.getData("sp_Pasien_Read", "").DefaultView;
+            
             cmbDokter.ItemsSource = Kenko.getData("sp_Dokter_Read", "").DefaultView;
+            cmbDokter.SelectedValuePath = "id_dokter";
+            cmbDokter.DisplayMemberPath = "nama_dokter";
+
             txtKasir.Text = "Samodra";
             txtTglTransaksi.Text = DateTime.Now.ToString("dd-MM-yyyy");
             lblAntrian.Text = Kenko.getAntrian();
@@ -45,7 +49,7 @@ namespace KenkoApp.uc
         private void btnPilih_Click(object sender, RoutedEventArgs e)
         {
             ClearForm();
-            formReadOnly();
+            formReadOnly(true);
             DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
             id_pasien.Text = dataRowView[1].ToString();
             txtNamaPasien.Text = dataRowView[2].ToString();
@@ -66,14 +70,12 @@ namespace KenkoApp.uc
 
         }
 
-        private void formReadOnly()
+        private void formReadOnly(bool state)
         {
-            txtNamaPasien.IsReadOnly = true;
-            txtAlamat.IsReadOnly = true;
-            txtKeluhan.IsReadOnly = true;
-            txtNamaPasien.IsReadOnly = true;
-            txtNamaPasien.IsReadOnly = true;
-            txtNamaPasien.IsReadOnly = true;
+            txtNamaPasien.IsReadOnly = state;
+            txtAlamat.IsReadOnly = state;
+            txtNoTelp.IsReadOnly = state;
+            txtPekerjaan.IsReadOnly = state;
         }
 
         private void checkGol(string golDar)
@@ -126,6 +128,15 @@ namespace KenkoApp.uc
             golB.IsChecked = false;
             golO.IsChecked = false;
             txtPekerjaan.Text = "";
+        }
+
+        private void ClearDokter()
+        {
+            //cmbDokter.SelectedIndex = 0;
+            txtSpesialisasi.Text = "";
+            lblAntrian.Text = Kenko.getAntrian();
+            lblNamaDokter.Content = "-";
+            txtKeluhan.Text = "";
 
         }
 
@@ -300,28 +311,47 @@ namespace KenkoApp.uc
 
         private void btnDaftar_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConString"]);
 
-            SqlCommand cmd = new SqlCommand("sp_Transaksi_Reservasi", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("no_reservasi", Kenko.generateId("RV", "sp_Transaksi_Reservasi_GetLast"));
-            cmd.Parameters.AddWithValue("id_dokter", cmbDokter.SelectedValue.ToString());
-            cmd.Parameters.AddWithValue("id_pasien", id_pasien.Text);
-            cmd.Parameters.AddWithValue("keterangan", txtKeluhan.Text);
-
-            try
+            if (id_pasien.Text == "ID Pasien" || id_pasien.Text == "")
             {
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Reservasi berhasil.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                connection.Close();
+                MessageBox.Show("Silahkan pilih pasien terlebih dahulu.", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
 
-            }
-            catch (Exception ex)
+            } else if(cmbDokter.SelectedIndex < 0) {
+                MessageBox.Show("Silahkan pilih dokter terlebih dahulu.", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+            } else
             {
-                MessageBox.Show("Data gagal disimpan : " + ex.Message, "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+                SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConString"]);
+
+                SqlCommand cmd = new SqlCommand("sp_Transaksi_Reservasi", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("no_reservasi", Kenko.generateId("RV", "sp_Transaksi_Reservasi_GetLast"));
+                cmd.Parameters.AddWithValue("id_dokter", cmbDokter.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("id_pasien", id_pasien.Text);
+                cmd.Parameters.AddWithValue("keterangan", txtKeluhan.Text);
+
+                try
+                {
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Reservasi berhasil.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    connection.Close();
+                    ClearForm();
+                    formReadOnly(false);
+                    ClearDokter();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Data gagal disimpan : " + ex.Message, "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
+            
+        }
+
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+            ClearForm();
+            formReadOnly(false);
         }
     }
 }

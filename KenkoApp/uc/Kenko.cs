@@ -275,7 +275,6 @@ namespace KenkoApp.uc
 
         public static string getNumber(string text)
         {
-            string alpha = string.Empty;
             string numer = string.Empty;
             foreach (char str in text)
             {

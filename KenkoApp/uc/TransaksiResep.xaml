@@ -46,7 +46,7 @@
                                 SelectionUnit="Cell"
                                 SelectionMode="Extended" Grid.ColumnSpan="2">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                                 <DataGridTextColumn Header="Nama Pasien" Binding="{Binding Path=nama_pasien}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Umur" Binding="{Binding Path=umur}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Tgl. Reservasi" Binding="{Binding Path=tglReservasi}" IsReadOnly="True"/>
@@ -100,11 +100,11 @@
                         SelectionUnit="Cell"
                         SelectionMode="Extended" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                             <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Tgl. Expired" Binding="{Binding Path=tglExpired}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Harga Jual" Binding="{Binding Path=hargaJual}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
+                            <DataGridTextColumn Header="Harga Jual" Binding="{Binding Path=hargaJual}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                             <DataGridTemplateColumn Header="Jumlah">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -135,8 +135,8 @@
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*"></RowDefinition>
-                <RowDefinition Height="7*"></RowDefinition>
+                <RowDefinition Height="280"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <materialDesign:Card Background="#fff"

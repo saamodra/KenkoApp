@@ -124,7 +124,12 @@ namespace KenkoApp.uc
                     break;
                 case "ItemResep":
                     usc = new TransaksiReservasi();
-                    PageTitle.Text = "Transaksi Reservasi";
+                    PageTitle.Text = "Transaksi Resep";
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemLaporanPenjualan":
+                    usc = new LaporanPenjualan();
+                    PageTitle.Text = "Laporan Penjualan";
                     GridMain.Children.Add(usc);
                     break;
                 default:
@@ -136,7 +141,7 @@ namespace KenkoApp.uc
         {
             TrainsitionigContentSlide.OnApplyTemplate();
             int diff = 0;
-            if(index > 13)
+            if(index > 12)
             {
                 diff = 38;
             } else if(index > 8)

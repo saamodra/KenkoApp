@@ -201,7 +201,7 @@
                     <StackPanel x:Name="formButton" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 40 0 0">
                         <Button x:Name="btnNew" Style="{StaticResource MaterialDesignRaisedButton}" Margin="20 0"
                         BorderBrush="#E2401C" Background="#E2401C"
-                        ToolTip="MaterialDesignOutlinedButton">
+                        ToolTip="MaterialDesignOutlinedButton" Click="btnNew_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>
                                 <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0 0 -3 0">Baru</TextBlock>

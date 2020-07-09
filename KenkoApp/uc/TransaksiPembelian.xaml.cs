@@ -63,10 +63,14 @@ namespace KenkoApp.uc
         private void listKategori_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = listKategori.SelectedIndex;
-            string idkategori = listKategori.SelectedValue.ToString();
-            SelectedMenuChange(index);
 
-            dataMaster.ItemsSource = Kenko.getData("sp_Obat_GetKategori", idkategori).DefaultView;
+            if(listKategori.SelectedValue != null)
+            {
+                string idkategori = listKategori.SelectedValue.ToString();
+                SelectedMenuChange(index);
+
+                dataMaster.ItemsSource = Kenko.getData("sp_Obat_GetKategori", idkategori).DefaultView;
+            }
         }
 
         private void SelectedMenuChange(int index)
@@ -185,8 +189,9 @@ namespace KenkoApp.uc
             lblTotalPembayaran.Text = "0";
             cmbSupplier.SelectedIndex = -1;
 
-            DataTable dtObat = Kenko.getData("sp_Obat_Read", "");
-            dataMaster.ItemsSource = dtObat.DefaultView;
+            string idkategori = listKategori.SelectedValue.ToString();
+
+            dataMaster.ItemsSource = Kenko.getData("sp_Obat_GetKategori", idkategori).DefaultView;
         }
 
 

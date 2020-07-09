@@ -26,4 +26,9 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="RightCell" TargetType="DataGridCell">
+        <Setter Property="TextBlock.TextAlignment" Value="Right" />
+    </Style>
+    
 </ResourceDictionary>

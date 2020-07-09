@@ -138,6 +138,7 @@ namespace KenkoApp.uc
 
             dataResep.ItemsSource = dtResep.DefaultView;
         }
+
         private void txtNumeric_Keydown(object sender, KeyEventArgs e)
         {
 
@@ -146,8 +147,9 @@ namespace KenkoApp.uc
         private void btnTambahReservasi_Click(object sender, RoutedEventArgs e)
         {
             DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
-            
-            id_pasien = dataRowView[3].ToString();
+
+            id_pasien = dataRowView[4].ToString();
+
             id_reservasi = dataRowView[1].ToString();
             txtNoSip.Text = dataRowView[13].ToString();
             txtNamaDokter.Text = dataRowView[14].ToString();
@@ -164,7 +166,7 @@ namespace KenkoApp.uc
 
         private void btnBuatResep_Click(object sender, RoutedEventArgs e)
         {
-            if(id_pasien == "")
+            if(id_pasien == "" || id_pasien == "ID_Pasien")
             {
                 MessageBox.Show("Pilih antrian terlebih dahulu.", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
             } else if(dtResep.Rows.Count < 1)
