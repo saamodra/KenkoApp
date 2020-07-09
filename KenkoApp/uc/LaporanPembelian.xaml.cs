@@ -16,15 +16,18 @@ using System.Windows.Shapes;
 namespace KenkoApp.uc
 {
     /// <summary>
-    /// Interaction logic for LaporanPenjualan.xaml
+    /// Interaction logic for LaporanPembelian.xaml
     /// </summary>
-    public partial class LaporanPenjualan : UserControl
+    public partial class LaporanPembelian : UserControl
     {
-        public LaporanPenjualan()
+        public LaporanPembelian()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            var lang = System.Windows.Markup.XmlLanguage.GetLanguage("id-ID");
+            txtTglAwal.Language = lang;
+            txtTglAkhir.Language = lang;
             _reportViewer.Load += ReportViewer_Load;
-            
+
         }
 
         private bool _isReportViewerLoaded;
@@ -34,25 +37,25 @@ namespace KenkoApp.uc
             if (!_isReportViewerLoaded)
             {
                 Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-                KenkoDataSet dataset = new KenkoDataSet();
+                KenkoDataSet1 dataset = new KenkoDataSet1();
 
                 dataset.BeginInit();
                 dataset.EnforceConstraints = false;
 
-                reportDataSource1.Name = "Kenko";
+                reportDataSource1.Name = "Kenko2";
                 //Name of the report dataset in our .RDLC file
 
-                reportDataSource1.Value = dataset.LaporanPenjualan;
+                reportDataSource1.Value = dataset.LaporanPembelian;
                 this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
 
-                this._reportViewer.LocalReport.ReportPath = "../../LaporanPenjualanDesigner.rdlc";
+                this._reportViewer.LocalReport.ReportPath = "../../LaporanPembelianDesigner.rdlc";
                 dataset.EndInit();
 
                 //fill data into WpfApplication4DataSet
-                KenkoDataSetTableAdapters.LaporanPenjualanTableAdapter a = new KenkoDataSetTableAdapters.LaporanPenjualanTableAdapter();
+                KenkoDataSet1TableAdapters.LaporanPembelianTableAdapter a = new KenkoDataSet1TableAdapters.LaporanPembelianTableAdapter();
 
                 a.ClearBeforeFill = true;
-                a.Fill(dataset.LaporanPenjualan);
+                a.Fill(dataset.LaporanPembelian);
                 _reportViewer.RefreshReport();
                 _isReportViewerLoaded = true;
             }
@@ -60,7 +63,7 @@ namespace KenkoApp.uc
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void RefreshDataGrid(string cari = "")
@@ -68,9 +71,12 @@ namespace KenkoApp.uc
             //dataMaster.ItemsSource = Kenko.getData("sp_Member_Read", cari).DefaultView;
         }
 
-        private void LaporanPenjalan_Loaded(object sender, RoutedEventArgs e)
+
+
+        private void LaporanPembelian_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshDataGrid();
+
         }
     }
 }

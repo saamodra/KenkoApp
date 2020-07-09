@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="KenkoApp.uc.LaporanPenjualan"
+﻿<UserControl x:Class="KenkoApp.uc.LaporanReservasi"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
              xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="1366" Loaded="LaporanPenjalan_Loaded">
+             d:DesignHeight="768" d:DesignWidth="1366" Loaded="LaporanReservasi_Loaded">
     <Grid>
         <materialDesign:Card Background="#fff"
                         Margin="10"
@@ -34,7 +34,7 @@
                         </StackPanel>
                     </Button>-->
                 </Grid>
-                
+
                 <WindowsFormsHost Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <rv:ReportViewer x:Name="_reportViewer"/>
                 </WindowsFormsHost>

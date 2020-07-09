@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="KenkoDataSet2" targetNamespace="http://tempuri.org/KenkoDataSet2.xsd" xmlns:mstns="http://tempuri.org/KenkoDataSet2.xsd" xmlns="http://tempuri.org/KenkoDataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="KenkoConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="KenkoConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.KenkoApp.Properties.Settings.GlobalReference.Default.KenkoConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="LaporanReservasiTableAdapter" GeneratorDataComponentClassName="LaporanReservasiTableAdapter" Name="LaporanReservasi" UserDataComponentName="LaporanReservasiTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="KenkoConnectionString (Settings)" DbObjectName="Kenko.dbo.LaporanReservasi" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT no_reservasi, id_dokter, id_pasien, tgl_reservasi, no_sip, nama_dokter, spesialisasi, nama_pasien, jenis_kelamin, tgl_lahir, alamat, no_telp, golongan_darah, pekerjaan, nama FROM dbo.LaporanReservasi</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="no_reservasi" DataSetColumn="no_reservasi" />
+              <Mapping SourceColumn="id_dokter" DataSetColumn="id_dokter" />
+              <Mapping SourceColumn="id_pasien" DataSetColumn="id_pasien" />
+              <Mapping SourceColumn="tgl_reservasi" DataSetColumn="tgl_reservasi" />
+              <Mapping SourceColumn="no_sip" DataSetColumn="no_sip" />
+              <Mapping SourceColumn="nama_dokter" DataSetColumn="nama_dokter" />
+              <Mapping SourceColumn="spesialisasi" DataSetColumn="spesialisasi" />
+              <Mapping SourceColumn="nama_pasien" DataSetColumn="nama_pasien" />
+              <Mapping SourceColumn="jenis_kelamin" DataSetColumn="jenis_kelamin" />
+              <Mapping SourceColumn="tgl_lahir" DataSetColumn="tgl_lahir" />
+              <Mapping SourceColumn="alamat" DataSetColumn="alamat" />
+              <Mapping SourceColumn="no_telp" DataSetColumn="no_telp" />
+              <Mapping SourceColumn="golongan_darah" DataSetColumn="golongan_darah" />
+              <Mapping SourceColumn="pekerjaan" DataSetColumn="pekerjaan" />
+              <Mapping SourceColumn="nama" DataSetColumn="nama" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="KenkoDataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="KenkoDataSet2" msprop:Generator_UserDSName="KenkoDataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LaporanReservasi" msprop:Generator_TableClassName="LaporanReservasiDataTable" msprop:Generator_TableVarName="tableLaporanReservasi" msprop:Generator_TablePropName="LaporanReservasi" msprop:Generator_RowDeletingName="LaporanReservasiRowDeleting" msprop:Generator_RowChangingName="LaporanReservasiRowChanging" msprop:Generator_RowEvHandlerName="LaporanReservasiRowChangeEventHandler" msprop:Generator_RowDeletedName="LaporanReservasiRowDeleted" msprop:Generator_UserTableName="LaporanReservasi" msprop:Generator_RowChangedName="LaporanReservasiRowChanged" msprop:Generator_RowEvArgName="LaporanReservasiRowChangeEvent" msprop:Generator_RowClassName="LaporanReservasiRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_reservasi" msprop:Generator_ColumnVarNameInTable="columnno_reservasi" msprop:Generator_ColumnPropNameInRow="no_reservasi" msprop:Generator_ColumnPropNameInTable="no_reservasiColumn" msprop:Generator_UserColumnName="no_reservasi">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="id_dokter" msprop:Generator_ColumnVarNameInTable="columnid_dokter" msprop:Generator_ColumnPropNameInRow="id_dokter" msprop:Generator_ColumnPropNameInTable="id_dokterColumn" msprop:Generator_UserColumnName="id_dokter" type="xs:int" />
+              <xs:element name="id_pasien" msprop:Generator_ColumnVarNameInTable="columnid_pasien" msprop:Generator_ColumnPropNameInRow="id_pasien" msprop:Generator_ColumnPropNameInTable="id_pasienColumn" msprop:Generator_UserColumnName="id_pasien" type="xs:int" />
+              <xs:element name="tgl_reservasi" msprop:Generator_ColumnVarNameInTable="columntgl_reservasi" msprop:Generator_ColumnPropNameInRow="tgl_reservasi" msprop:Generator_ColumnPropNameInTable="tgl_reservasiColumn" msprop:Generator_UserColumnName="tgl_reservasi" type="xs:dateTime" />
+              <xs:element name="no_sip" msprop:Generator_ColumnVarNameInTable="columnno_sip" msprop:Generator_ColumnPropNameInRow="no_sip" msprop:Generator_ColumnPropNameInTable="no_sipColumn" msprop:Generator_UserColumnName="no_sip">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nama_dokter" msprop:Generator_ColumnVarNameInTable="columnnama_dokter" msprop:Generator_ColumnPropNameInRow="nama_dokter" msprop:Generator_ColumnPropNameInTable="nama_dokterColumn" msprop:Generator_UserColumnName="nama_dokter">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="spesialisasi" msprop:Generator_ColumnVarNameInTable="columnspesialisasi" msprop:Generator_ColumnPropNameInRow="spesialisasi" msprop:Generator_ColumnPropNameInTable="spesialisasiColumn" msprop:Generator_UserColumnName="spesialisasi">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nama_pasien" msprop:Generator_ColumnVarNameInTable="columnnama_pasien" msprop:Generator_ColumnPropNameInRow="nama_pasien" msprop:Generator_ColumnPropNameInTable="nama_pasienColumn" msprop:Generator_UserColumnName="nama_pasien">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jenis_kelamin" msprop:Generator_ColumnVarNameInTable="columnjenis_kelamin" msprop:Generator_ColumnPropNameInRow="jenis_kelamin" msprop:Generator_ColumnPropNameInTable="jenis_kelaminColumn" msprop:Generator_UserColumnName="jenis_kelamin">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tgl_lahir" msprop:Generator_ColumnVarNameInTable="columntgl_lahir" msprop:Generator_ColumnPropNameInRow="tgl_lahir" msprop:Generator_ColumnPropNameInTable="tgl_lahirColumn" msprop:Generator_UserColumnName="tgl_lahir" type="xs:dateTime" />
+              <xs:element name="alamat" msprop:Generator_ColumnVarNameInTable="columnalamat" msprop:Generator_ColumnPropNameInRow="alamat" msprop:Generator_ColumnPropNameInTable="alamatColumn" msprop:Generator_UserColumnName="alamat">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_telp" msprop:Generator_ColumnVarNameInTable="columnno_telp" msprop:Generator_ColumnPropNameInRow="no_telp" msprop:Generator_ColumnPropNameInTable="no_telpColumn" msprop:Generator_UserColumnName="no_telp">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="golongan_darah" msprop:Generator_ColumnVarNameInTable="columngolongan_darah" msprop:Generator_ColumnPropNameInRow="golongan_darah" msprop:Generator_ColumnPropNameInTable="golongan_darahColumn" msprop:Generator_UserColumnName="golongan_darah">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pekerjaan" msprop:Generator_ColumnVarNameInTable="columnpekerjaan" msprop:Generator_ColumnPropNameInRow="pekerjaan" msprop:Generator_ColumnPropNameInTable="pekerjaanColumn" msprop:Generator_UserColumnName="pekerjaan" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nama" msprop:Generator_ColumnVarNameInTable="columnnama" msprop:Generator_ColumnPropNameInRow="nama" msprop:Generator_ColumnPropNameInTable="namaColumn" msprop:Generator_UserColumnName="nama">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LaporanReservasi" />
+      <xs:field xpath="mstns:no_reservasi" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

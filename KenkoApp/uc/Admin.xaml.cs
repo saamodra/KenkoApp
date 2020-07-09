@@ -132,6 +132,21 @@ namespace KenkoApp.uc
                     PageTitle.Text = "Laporan Penjualan";
                     GridMain.Children.Add(usc);
                     break;
+                case "ItemLaporanPembelian":
+                    usc = new LaporanPembelian();
+                    PageTitle.Text = "Laporan Pembelian";
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemLaporanObat":
+                    usc = new LaporanObat();
+                    PageTitle.Text = "Laporan Obat";
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemLaporanReservasi":
+                    usc = new LaporanReservasi();
+                    PageTitle.Text = "Laporan Reservasi";
+                    GridMain.Children.Add(usc);
+                    break;
                 default:
                     break;
             }

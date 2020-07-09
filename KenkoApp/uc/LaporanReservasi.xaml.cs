@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace KenkoApp.uc
 {
     /// <summary>
-    /// Interaction logic for LaporanPenjualan.xaml
+    /// Interaction logic for LaporanReservasi.xaml
     /// </summary>
-    public partial class LaporanPenjualan : UserControl
+    public partial class LaporanReservasi : UserControl
     {
-        public LaporanPenjualan()
+        public LaporanReservasi()
         {
-            InitializeComponent(); 
-            _reportViewer.Load += ReportViewer_Load;
-            
+            InitializeComponent(); _reportViewer.Load += ReportViewer_Load;
+
         }
 
         private bool _isReportViewerLoaded;
@@ -34,25 +33,25 @@ namespace KenkoApp.uc
             if (!_isReportViewerLoaded)
             {
                 Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-                KenkoDataSet dataset = new KenkoDataSet();
+                KenkoDataSet2 dataset = new KenkoDataSet2();
 
                 dataset.BeginInit();
                 dataset.EnforceConstraints = false;
 
-                reportDataSource1.Name = "Kenko";
+                reportDataSource1.Name = "Kenko4";
                 //Name of the report dataset in our .RDLC file
 
-                reportDataSource1.Value = dataset.LaporanPenjualan;
+                reportDataSource1.Value = dataset.LaporanReservasi;
                 this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
 
-                this._reportViewer.LocalReport.ReportPath = "../../LaporanPenjualanDesigner.rdlc";
+                this._reportViewer.LocalReport.ReportPath = "../../LaporanReservasi.rdlc";
                 dataset.EndInit();
 
                 //fill data into WpfApplication4DataSet
-                KenkoDataSetTableAdapters.LaporanPenjualanTableAdapter a = new KenkoDataSetTableAdapters.LaporanPenjualanTableAdapter();
+                KenkoDataSet2TableAdapters.LaporanReservasiTableAdapter a = new KenkoDataSet2TableAdapters.LaporanReservasiTableAdapter();
 
                 a.ClearBeforeFill = true;
-                a.Fill(dataset.LaporanPenjualan);
+                a.Fill(dataset.LaporanReservasi);
                 _reportViewer.RefreshReport();
                 _isReportViewerLoaded = true;
             }
@@ -60,7 +59,7 @@ namespace KenkoApp.uc
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void RefreshDataGrid(string cari = "")
@@ -68,9 +67,9 @@ namespace KenkoApp.uc
             //dataMaster.ItemsSource = Kenko.getData("sp_Member_Read", cari).DefaultView;
         }
 
-        private void LaporanPenjalan_Loaded(object sender, RoutedEventArgs e)
+        private void LaporanReservasi_Loaded(object sender, RoutedEventArgs e)
         {
-            RefreshDataGrid();
+
         }
     }
 }

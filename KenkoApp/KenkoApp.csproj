@@ -43,6 +43,21 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=3.1.3.1513, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.3.1.3\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
@@ -164,6 +179,26 @@
     <Compile Include="forms\FormUser.xaml.cs">
       <DependentUpon>FormUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KenkoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KenkoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="KenkoDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KenkoDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="KenkoDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KenkoDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LaporanObatPembelian.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaporanObatPembelian.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="uc\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
@@ -178,8 +213,17 @@
       <DependentUpon>Homepage.xaml</DependentUpon>
     </Compile>
     <Compile Include="uc\Kenko.cs" />
+    <Compile Include="uc\LaporanObat.xaml.cs">
+      <DependentUpon>LaporanObat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\LaporanPembelian.xaml.cs">
+      <DependentUpon>LaporanPembelian.xaml</DependentUpon>
+    </Compile>
     <Compile Include="uc\LaporanPenjualan.xaml.cs">
       <DependentUpon>LaporanPenjualan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\LaporanReservasi.xaml.cs">
+      <DependentUpon>LaporanReservasi.xaml</DependentUpon>
     </Compile>
     <Compile Include="uc\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -288,7 +332,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="uc\LaporanObat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\LaporanPembelian.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="uc\LaporanPenjualan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uc\LaporanReservasi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -359,6 +415,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="LaporanObatDesigner.rdlc" />
+    <EmbeddedResource Include="LaporanPembelianDesigner.rdlc" />
+    <EmbeddedResource Include="LaporanPenjualanDesigner.rdlc" />
+    <EmbeddedResource Include="LaporanReservasi.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -366,6 +426,50 @@
     <Resource Include="fonts\Product_Sans_Regular.ttf" />
     <Resource Include="fonts\SourceSansPro-Bold.ttf" />
     <Resource Include="fonts\SourceSansPro-Regular.ttf" />
+    <None Include="KenkoDataSet.xsc">
+      <DependentUpon>KenkoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="KenkoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KenkoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KenkoDataSet.xss">
+      <DependentUpon>KenkoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="KenkoDataSet1.xsc">
+      <DependentUpon>KenkoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="KenkoDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KenkoDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KenkoDataSet1.xss">
+      <DependentUpon>KenkoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="KenkoDataSet2.xsc">
+      <DependentUpon>KenkoDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="KenkoDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KenkoDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KenkoDataSet2.xss">
+      <DependentUpon>KenkoDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="LaporanObatPembelian.xsc">
+      <DependentUpon>LaporanObatPembelian.xsd</DependentUpon>
+    </None>
+    <None Include="LaporanObatPembelian.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LaporanObatPembelian.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LaporanObatPembelian.xss">
+      <DependentUpon>LaporanObatPembelian.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

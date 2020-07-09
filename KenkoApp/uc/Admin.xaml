@@ -193,13 +193,13 @@
                                     <TextBlock Text="Laporan Penjualan" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem x:Name="ItemLaporanAppointment" Height="40">
+                            <ListViewItem x:Name="ItemLaporanReservasi" Height="40">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="AccountSwitch" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
-                                    <TextBlock Text="Laporan Appointment" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <TextBlock Text="Laporan Reservasi" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem x:Name="ItemLaporanResep" Height="40">
+                            <ListViewItem x:Name="ItemLaporanObat" Height="40">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Receipt" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
                                     <TextBlock Text="Laporan Resep" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
