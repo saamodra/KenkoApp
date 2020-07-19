@@ -199,6 +199,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LaporanObatPembelian.xsd</DependentUpon>
     </Compile>
+    <Compile Include="rdlc\StrukDataset.cs">
+      <DependentUpon>StrukDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="rdlc\StrukDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StrukDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="rdlc\TesDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TesDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="rdlc\TesStruk.xaml.cs">
+      <DependentUpon>TesStruk.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="uc\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
@@ -251,6 +267,9 @@
     </Compile>
     <Compile Include="uc\MasterUser.xaml.cs">
       <DependentUpon>MasterUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="uc\StrukPreview.xaml.cs">
+      <DependentUpon>StrukPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="uc\TransaksiPembelian.xaml.cs">
       <DependentUpon>TransaksiPembelian.xaml</DependentUpon>
@@ -312,6 +331,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="rdlc\TesStruk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="styles\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -384,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="uc\StrukPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="uc\TransaksiPembelian.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -423,6 +450,30 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rdlc\StrukDesign.rdlc" />
+    <EmbeddedResource Include="rdlc\TesReport.rdlc" />
+    <None Include="rdlc\StrukDataset.xsc">
+      <DependentUpon>StrukDataset.xsd</DependentUpon>
+    </None>
+    <None Include="rdlc\StrukDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StrukDataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="rdlc\StrukDataset.xss">
+      <DependentUpon>StrukDataset.xsd</DependentUpon>
+    </None>
+    <None Include="rdlc\TesDataset.xsc">
+      <DependentUpon>TesDataset.xsd</DependentUpon>
+    </None>
+    <None Include="rdlc\TesDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TesDataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="rdlc\TesDataset.xss">
+      <DependentUpon>TesDataset.xsd</DependentUpon>
+    </None>
     <Resource Include="fonts\Product_Sans_Regular.ttf" />
     <Resource Include="fonts\SourceSansPro-Bold.ttf" />
     <Resource Include="fonts\SourceSansPro-Regular.ttf" />

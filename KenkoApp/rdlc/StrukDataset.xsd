@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StrukDataset" targetNamespace="http://tempuri.org/StrukDataset.xsd" xmlns:mstns="http://tempuri.org/StrukDataset.xsd" xmlns="http://tempuri.org/StrukDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StrukDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StrukDataset" msprop:Generator_UserDSName="StrukDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Penjualan" msprop:Generator_TableClassName="PenjualanDataTable" msprop:Generator_TableVarName="tablePenjualan" msprop:Generator_RowChangedName="PenjualanRowChanged" msprop:Generator_TablePropName="Penjualan" msprop:Generator_RowDeletingName="PenjualanRowDeleting" msprop:Generator_RowChangingName="PenjualanRowChanging" msprop:Generator_RowEvHandlerName="PenjualanRowChangeEventHandler" msprop:Generator_RowDeletedName="PenjualanRowDeleted" msprop:Generator_RowClassName="PenjualanRow" msprop:Generator_UserTableName="Penjualan" msprop:Generator_RowEvArgName="PenjualanRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_penjualan" msprop:Generator_ColumnVarNameInTable="columnno_penjualan" msprop:Generator_ColumnPropNameInRow="no_penjualan" msprop:Generator_ColumnPropNameInTable="no_penjualanColumn" msprop:Generator_UserColumnName="no_penjualan" type="xs:string" />
+              <xs:element name="tgl_beli" msprop:Generator_ColumnVarNameInTable="columntgl_beli" msprop:Generator_ColumnPropNameInRow="tgl_beli" msprop:Generator_ColumnPropNameInTable="tgl_beliColumn" msprop:Generator_UserColumnName="tgl_beli" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="total_harga" msprop:Generator_ColumnVarNameInTable="columntotal_harga" msprop:Generator_ColumnPropNameInRow="total_harga" msprop:Generator_ColumnPropNameInTable="total_hargaColumn" msprop:Generator_UserColumnName="total_harga" type="xs:string" minOccurs="0" />
+              <xs:element name="nama_member" msprop:Generator_ColumnVarNameInTable="columnnama_member" msprop:Generator_ColumnPropNameInRow="nama_member" msprop:Generator_ColumnPropNameInTable="nama_memberColumn" msprop:Generator_UserColumnName="nama_member" type="xs:string" minOccurs="0" />
+              <xs:element name="poin_terpakai" msprop:Generator_ColumnVarNameInTable="columnpoin_terpakai" msprop:Generator_ColumnPropNameInRow="poin_terpakai" msprop:Generator_ColumnPropNameInTable="poin_terpakaiColumn" msprop:Generator_UserColumnName="poin_terpakai" type="xs:int" minOccurs="0" />
+              <xs:element name="nama_kasir" msprop:Generator_ColumnVarNameInTable="columnnama_kasir" msprop:Generator_ColumnPropNameInRow="nama_kasir" msprop:Generator_ColumnPropNameInTable="nama_kasirColumn" msprop:Generator_UserColumnName="nama_kasir" type="xs:string" minOccurs="0" />
+              <xs:element name="tunai" msprop:Generator_ColumnVarNameInTable="columntunai" msprop:Generator_ColumnPropNameInRow="tunai" msprop:Generator_ColumnPropNameInTable="tunaiColumn" msprop:Generator_UserColumnName="tunai" type="xs:string" minOccurs="0" />
+              <xs:element name="kembalian" msprop:Generator_ColumnVarNameInTable="columnkembalian" msprop:Generator_ColumnPropNameInRow="kembalian" msprop:Generator_ColumnPropNameInTable="kembalianColumn" msprop:Generator_UserColumnName="kembalian" type="xs:string" minOccurs="0" />
+              <xs:element name="total" msprop:Generator_ColumnVarNameInTable="columntotal" msprop:Generator_ColumnPropNameInRow="total" msprop:Generator_ColumnPropNameInTable="totalColumn" msprop:Generator_UserColumnName="total" type="xs:string" minOccurs="0" />
+              <xs:element name="total_item" msprop:Generator_ColumnVarNameInTable="columntotal_item" msprop:Generator_ColumnPropNameInRow="total_item" msprop:Generator_ColumnPropNameInTable="total_itemColumn" msprop:Generator_UserColumnName="total_item" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Detail_Penjualan" msprop:Generator_TableClassName="Detail_PenjualanDataTable" msprop:Generator_TableVarName="tableDetail_Penjualan" msprop:Generator_RowChangedName="Detail_PenjualanRowChanged" msprop:Generator_TablePropName="Detail_Penjualan" msprop:Generator_RowDeletingName="Detail_PenjualanRowDeleting" msprop:Generator_RowChangingName="Detail_PenjualanRowChanging" msprop:Generator_RowEvHandlerName="Detail_PenjualanRowChangeEventHandler" msprop:Generator_RowDeletedName="Detail_PenjualanRowDeleted" msprop:Generator_RowClassName="Detail_PenjualanRow" msprop:Generator_UserTableName="Detail_Penjualan" msprop:Generator_RowEvArgName="Detail_PenjualanRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nama_obat" msprop:Generator_ColumnVarNameInTable="columnnama_obat" msprop:Generator_ColumnPropNameInRow="nama_obat" msprop:Generator_ColumnPropNameInTable="nama_obatColumn" msprop:Generator_UserColumnName="nama_obat" type="xs:string" />
+              <xs:element name="jumlah" msprop:Generator_ColumnVarNameInTable="columnjumlah" msprop:Generator_ColumnPropNameInRow="jumlah" msprop:Generator_ColumnPropNameInTable="jumlahColumn" msprop:Generator_UserColumnName="jumlah" type="xs:string" minOccurs="0" />
+              <xs:element name="harga" msprop:Generator_ColumnVarNameInTable="columnharga" msprop:Generator_ColumnPropNameInRow="harga" msprop:Generator_ColumnPropNameInTable="hargaColumn" msprop:Generator_UserColumnName="harga" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Penjualan" />
+      <xs:field xpath="mstns:no_penjualan" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

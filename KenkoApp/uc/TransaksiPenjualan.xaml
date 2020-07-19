@@ -286,7 +286,7 @@
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Background="#EB3F3F"
                             FontSize="13" Margin="0 0 10 0"
-                            BorderThickness="0">
+                            BorderThickness="0" Click="btnCetak_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Printer" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
                                 <TextBlock VerticalAlignment="Center" FontSize="15">Cetak Struk</TextBlock>

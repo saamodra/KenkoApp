@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KenkoApp.rdlc;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -27,6 +28,8 @@ namespace KenkoApp.uc
     public partial class TransaksiPenjualan : UserControl
     {
         private DataTable dtPenjualan;
+        StrukDataset.PenjualanDataTable penjualans = new StrukDataset.PenjualanDataTable();
+        StrukDataset.Detail_PenjualanDataTable detail_Penjualans = new StrukDataset.Detail_PenjualanDataTable();
 
         public TransaksiPenjualan()
         {
@@ -128,6 +131,8 @@ namespace KenkoApp.uc
                     {
                         jumlahBarang = jumlahBarang + Convert.ToInt32(jumlah.Text);
                         subtotal = subtotal + total;
+
+                        //Menambahkan baris ke dtPenjualan
                         dtPenjualan.Rows.Add(dataRowView[1].ToString(), dataRowView[2].ToString(), jumlah.Text, total);
                         lblJumlahBarang.Content = jumlahBarang;
                         lblSubtotal.Content = Kenko.formatCurrency(subtotal);
@@ -235,6 +240,36 @@ namespace KenkoApp.uc
             }
         }
 
+        private void AddPrintData(string no_penjualan)
+        {
+
+            StrukDataset.PenjualanRow penjualanRow = penjualans.NewPenjualanRow();
+            penjualanRow.no_penjualan = no_penjualan;
+            penjualanRow.nama_kasir = txtKasir.Text;
+            penjualanRow.tgl_beli = DateTime.Now;
+            penjualanRow.nama_member = txtNamaMember.Text;
+            penjualanRow.total_harga = lblSubtotal.Content.ToString();
+            penjualanRow.total_item = lblJumlahBarang.Content.ToString();
+            penjualanRow.total = lblTotalPembayaran.Text;
+            penjualanRow.poin_terpakai = Convert.ToInt32(txtPoin.Text);
+            penjualanRow.tunai = Kenko.formatCurrency(double.Parse(txtBayar.Text));
+            penjualanRow.kembalian = lblKembalian.Content.ToString();
+
+            penjualans.AddPenjualanRow(penjualanRow);
+
+            foreach (DataRow row in dtPenjualan.Rows)
+            {
+                StrukDataset.Detail_PenjualanRow detail_PenjualanRow = detail_Penjualans.NewDetail_PenjualanRow();
+                detail_PenjualanRow.nama_obat = row["nama_obat"].ToString();
+                detail_PenjualanRow.jumlah = row["jumlah"].ToString();
+                detail_PenjualanRow.harga = Kenko.formatCurrency(double.Parse(row["harga"].ToString()));
+
+                detail_Penjualans.AddDetail_PenjualanRow(detail_PenjualanRow); 
+            }
+            
+
+        }
+
         private void btnBayar_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConString"]);
@@ -274,6 +309,9 @@ namespace KenkoApp.uc
                 }
 
                 MessageBox.Show("Data berhasil disimpan!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                AddPrintData(no_penjualan);
+                StrukPreview strukPreview = new StrukPreview(penjualans, detail_Penjualans);
+                strukPreview.Close();
                 NewTransaksi();
 
             }
@@ -320,6 +358,11 @@ namespace KenkoApp.uc
             {
                 txtPoin.Text = "0";
             }
+        }
+
+        private void btnCetak_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

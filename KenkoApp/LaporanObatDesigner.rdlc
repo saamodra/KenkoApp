@@ -836,8 +836,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Kenko3</DataSetName>
-        <Top>0.85417in</Top>
-        <Left>0.3125in</Left>
+        <Top>1.97917in</Top>
+        <Left>0.33854in</Left>
         <Height>0.5in</Height>
         <Width>13.73958in</Width>
         <Style>
@@ -867,8 +867,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
-        <Top>0.15625in</Top>
-        <Left>5.24479in</Left>
+        <Top>1.28125in</Top>
+        <Left>5.27083in</Left>
         <Height>0.51042in</Height>
         <Width>3.72917in</Width>
         <ZIndex>1</ZIndex>
@@ -883,7 +883,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>2.23958in</Height>
+    <Height>3.32291in</Height>
     <Style />
   </Body>
   <Width>14.5625in</Width>

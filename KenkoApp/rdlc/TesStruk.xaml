@@ -1,0 +1,17 @@
+﻿<Window x:Class="KenkoApp.rdlc.TesStruk"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KenkoApp.rdlc"
+        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        mc:Ignorable="d"
+        Title="TesStruk" Height="450" Width="800">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button HorizontalAlignment="Center" Click="btnPrint_Click" Margin="20">Print</Button>
+            <Button HorizontalAlignment="Center" Margin="20" Click="btnClose_Click">Close</Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -39,6 +39,9 @@ namespace KenkoApp.uc
                 dataset.BeginInit();
                 dataset.EnforceConstraints = false;
 
+                
+                
+
                 reportDataSource1.Name = "Kenko";
                 //Name of the report dataset in our .RDLC file
 
