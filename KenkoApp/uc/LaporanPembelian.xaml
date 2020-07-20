@@ -35,16 +35,16 @@
                         materialDesign:HintAssist.Foreground="#000"
                         materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                    <Button x:Name="btnPrint" 
+                    <Button x:Name="btnFilter" 
                         Margin="10, 0, 5, 0" 
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Background="#00A65A"
                         FontSize="13"
                         HorizontalAlignment="Left"
-                        BorderThickness="0" Click="btnPrint_Click">
+                        BorderThickness="0" Click="btnFilter_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Filter" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
-                            <TextBlock VerticalAlignment="Center" FontSize="15">Filter</TextBlock>
+                            <TextBlock VerticalAlignment="Center" FontSize="15">Cari</TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>

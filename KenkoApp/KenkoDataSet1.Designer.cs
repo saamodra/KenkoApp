@@ -1065,13 +1065,22 @@ namespace KenkoApp.KenkoDataSet1TableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT No_Pembelian, ID_Obat, Jumlah, Nama_Obat, Tgl_Expired, Tgl_Pembelian, Tota" +
                 "l_HargaPembelian, Total_Harga, Nama_Supplier, Nama_Kasir, Harga_JualObat, Harga_" +
                 "BeliObat, ET FROM dbo.LaporanPembelian";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT No_Pembelian, ID_Obat, Jumlah, Nama_Obat, Tgl_Expired, Tgl_Pembelian, Tota" +
+                "l_HargaPembelian, Total_Harga, Nama_Supplier, Nama_Kasir, Harga_JualObat, Harga_" +
+                "BeliObat, ET FROM dbo.LaporanPembelian WHERE Tgl_Pembelian BETWEEN @tglawal AND " +
+                "@tglakhir";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tglawal", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Tgl_Pembelian", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tglakhir", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Tgl_Pembelian", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1093,6 +1102,54 @@ namespace KenkoApp.KenkoDataSet1TableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual KenkoDataSet1.LaporanPembelianDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            KenkoDataSet1.LaporanPembelianDataTable dataTable = new KenkoDataSet1.LaporanPembelianDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(KenkoDataSet1.LaporanPembelianDataTable dataTable, string tglawal, string tglakhir) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((tglawal == null)) {
+                throw new global::System.ArgumentNullException("tglawal");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(tglawal));
+            }
+            if ((tglakhir == null)) {
+                throw new global::System.ArgumentNullException("tglakhir");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(tglakhir));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual KenkoDataSet1.LaporanPembelianDataTable GetDataBy(string tglawal, string tglakhir) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((tglawal == null)) {
+                throw new global::System.ArgumentNullException("tglawal");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(tglawal));
+            }
+            if ((tglakhir == null)) {
+                throw new global::System.ArgumentNullException("tglakhir");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(tglakhir));
+            }
             KenkoDataSet1.LaporanPembelianDataTable dataTable = new KenkoDataSet1.LaporanPembelianDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

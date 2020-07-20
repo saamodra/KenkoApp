@@ -152,6 +152,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DSKenko.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSKenko.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="KenkoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KenkoDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="forms\FormBeliObat.xaml.cs">
       <DependentUpon>FormBeliObat.xaml</DependentUpon>
     </Compile>
@@ -206,14 +216,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StrukDataset.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="rdlc\TesDataset.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TesDataset.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="rdlc\TesStruk.xaml.cs">
-      <DependentUpon>TesStruk.xaml</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="uc\Admin.xaml.cs">
@@ -331,10 +333,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="rdlc\TesStruk.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="styles\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -451,7 +449,28 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rdlc\StrukDesign.rdlc" />
-    <EmbeddedResource Include="rdlc\TesReport.rdlc" />
+    <None Include="DSKenko.xsc">
+      <DependentUpon>DSKenko.xsd</DependentUpon>
+    </None>
+    <None Include="DSKenko.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSKenko.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DSKenko.xss">
+      <DependentUpon>DSKenko.xsd</DependentUpon>
+    </None>
+    <None Include="KenkoDS.xsc">
+      <DependentUpon>KenkoDS.xsd</DependentUpon>
+    </None>
+    <None Include="KenkoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KenkoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="KenkoDS.xss">
+      <DependentUpon>KenkoDS.xsd</DependentUpon>
+    </None>
     <None Include="rdlc\StrukDataset.xsc">
       <DependentUpon>StrukDataset.xsd</DependentUpon>
     </None>
@@ -462,17 +481,6 @@
     </None>
     <None Include="rdlc\StrukDataset.xss">
       <DependentUpon>StrukDataset.xsd</DependentUpon>
-    </None>
-    <None Include="rdlc\TesDataset.xsc">
-      <DependentUpon>TesDataset.xsd</DependentUpon>
-    </None>
-    <None Include="rdlc\TesDataset.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TesDataset.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="rdlc\TesDataset.xss">
-      <DependentUpon>TesDataset.xsd</DependentUpon>
     </None>
     <Resource Include="fonts\Product_Sans_Regular.ttf" />
     <Resource Include="fonts\SourceSansPro-Bold.ttf" />

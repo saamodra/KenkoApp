@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,56 +27,63 @@ namespace KenkoApp.uc
             var lang = System.Windows.Markup.XmlLanguage.GetLanguage("id-ID");
             txtTglAwal.Language = lang;
             txtTglAkhir.Language = lang;
+            txtTglAwal.SelectedDate = DateTime.Now;
+            txtTglAkhir.SelectedDate = DateTime.Now;
             _reportViewer.Load += ReportViewer_Load;
 
         }
 
-        private bool _isReportViewerLoaded;
 
         private void ReportViewer_Load(object sender, EventArgs e)
         {
-            if (!_isReportViewerLoaded)
-            {
-                Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-                KenkoDataSet1 dataset = new KenkoDataSet1();
 
-                dataset.BeginInit();
-                dataset.EnforceConstraints = false;
-
-                reportDataSource1.Name = "Kenko2";
-                //Name of the report dataset in our .RDLC file
-
-                reportDataSource1.Value = dataset.LaporanPembelian;
-                this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-
-                this._reportViewer.LocalReport.ReportPath = "../../LaporanPembelianDesigner.rdlc";
-                dataset.EndInit();
-
-                //fill data into WpfApplication4DataSet
-                KenkoDataSet1TableAdapters.LaporanPembelianTableAdapter a = new KenkoDataSet1TableAdapters.LaporanPembelianTableAdapter();
-
-                a.ClearBeforeFill = true;
-                a.Fill(dataset.LaporanPembelian);
-                _reportViewer.RefreshReport();
-                _isReportViewerLoaded = true;
-            }
+            RefreshDataGrid(txtTglAwal.SelectedDate, txtTglAkhir.SelectedDate);
         }
 
-        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
-
+            RefreshDataGrid(txtTglAwal.SelectedDate, txtTglAkhir.SelectedDate);
         }
 
-        private void RefreshDataGrid(string cari = "")
+        private void RefreshDataGrid(DateTime? tglawal, DateTime? tglakhir)
         {
-            //dataMaster.ItemsSource = Kenko.getData("sp_Member_Read", cari).DefaultView;
+            
+            ReportDataSource reportDataSource1 = new ReportDataSource();
+
+            DataSet1 dataSet1 = new DataSet1();
+            dataSet1.BeginInit();
+
+            reportDataSource1.Name = "DataSet1";
+            //Name of the report dataset in our .RDLC file
+
+            reportDataSource1.Value = dataSet1.sp_LaporanPembelian;
+
+            _reportViewer.Reset();
+
+            ReportParameter[] param = new ReportParameter[2];
+            param[0] = new ReportParameter("tglAwal", tglawal.HasValue ? tglawal.Value.ToString("dd/MM/yyyy") : "");
+            param[1] = new ReportParameter("tglAkhir", tglakhir.HasValue ? tglakhir.Value.ToString("dd/MM/yyyy") : "");
+           
+
+
+            _reportViewer.LocalReport.DataSources.Add(reportDataSource1);
+            _reportViewer.ZoomMode = ZoomMode.PageWidth;
+            _reportViewer.LocalReport.ReportPath = "../../LaporanPembelianDesigner.rdlc";
+            _reportViewer.LocalReport.SetParameters(param);
+            dataSet1.EndInit();
+
+            //fill data into WpfApplication4DataSet
+            DataSet1TableAdapters.sp_LaporanPembelianTableAdapter t = new DataSet1TableAdapters.sp_LaporanPembelianTableAdapter();
+            t.ClearBeforeFill = true;
+            t.Fill(dataSet1.sp_LaporanPembelian, tglawal, tglakhir);
+            _reportViewer.RefreshReport();
+            
         }
 
 
 
         private void LaporanPembelian_Loaded(object sender, RoutedEventArgs e)
         {
-            RefreshDataGrid();
 
         }
     }
