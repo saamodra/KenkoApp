@@ -56,6 +56,7 @@
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Penjualan</TextBlock>
                         </StackPanel>
                         <TextBlock
+                                x:Name="lblPenjualan"
                                 Grid.Row="1"
                                 Margin="16 0 0 0"
                                 FontWeight="Bold"
@@ -82,6 +83,7 @@
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Pembelian</TextBlock>
                         </StackPanel>
                         <TextBlock
+                                x:Name="lblPembelian"
                                 Grid.Row="1"
                                 Margin="16 0 0 0"
                                 FontWeight="Bold"
@@ -105,9 +107,10 @@
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" Margin="16 0 0 0" VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="UserSwitch" VerticalAlignment="Center" Width="24" Height="24" HorizontalAlignment="Center" Margin="0 0 10 0"/>
-                            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Appointment</TextBlock>
+                            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Reservasi</TextBlock>
                         </StackPanel>
                         <TextBlock
+                                x:Name="lblReservasi"
                                 Grid.Row="1"
                                 Margin="16 0 0 0"
                                 FontWeight="Bold"
@@ -134,6 +137,7 @@
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Resep</TextBlock>
                         </StackPanel>
                         <TextBlock
+                                x:Name="lblResep"
                                 Grid.Row="1"
                                 Margin="16 0 0 0"
                                 FontWeight="Bold"
@@ -238,7 +242,7 @@
                                     <materialDesign:PackIcon Kind="ChartBar" VerticalAlignment="Center" Width="24" Height="24" Foreground="#000" HorizontalAlignment="Center" Margin="0 0 10 0"/>
                                     <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold" Foreground="#000">Grafik Penjualan</TextBlock>
                                 </StackPanel>
-                                <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 20 0 0"/>
+                                
                             </StackPanel>
                         </Grid>
                     </materialDesign:Card>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,49 +28,52 @@ namespace KenkoApp.uc
 
         }
 
-        private bool _isReportViewerLoaded;
-
         private void ReportViewer_Load(object sender, EventArgs e)
         {
-            if (!_isReportViewerLoaded)
-            {
-                Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-                LaporanObatPembelian dataset = new LaporanObatPembelian();
-
-                dataset.BeginInit();
-                dataset.EnforceConstraints = false;
-
-                reportDataSource1.Name = "Kenko3";
-                //Name of the report dataset in our .RDLC file
-
-                reportDataSource1.Value = dataset.LaporanObat;
-                this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-
-                this._reportViewer.LocalReport.ReportPath = "../../LaporanObatDesigner.rdlc";
-                dataset.EndInit();
-
-                //fill data into WpfApplication4DataSet
-                LaporanObatPembelianTableAdapters.LaporanObatTableAdapter a = new LaporanObatPembelianTableAdapters.LaporanObatTableAdapter();
-
-                a.ClearBeforeFill = true;
-                a.Fill(dataset.LaporanObat);
-                _reportViewer.RefreshReport();
-                _isReportViewerLoaded = true;
-            }
+            RefreshDataGrid(cmbStatusObat.Text);
         }
 
-        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        private void RefreshDataGrid(string statusObat)
         {
 
+            ReportDataSource reportDataSource1 = new ReportDataSource();
+
+            DSKenko dataSet1 = new DSKenko();
+            dataSet1.BeginInit();
+
+            reportDataSource1.Name = "DSKenko";
+            //Name of the report dataset in our .RDLC file
+
+            reportDataSource1.Value = dataSet1.sp_LaporanObat;
+
+            _reportViewer.Reset();
+
+            ReportParameter[] param = new ReportParameter[1];
+            param[0] = new ReportParameter("statusObat", statusObat == "Semua" ? "" : statusObat);
+
+
+            _reportViewer.LocalReport.DataSources.Add(reportDataSource1);
+            _reportViewer.ZoomMode = ZoomMode.PageWidth;
+            _reportViewer.LocalReport.ReportPath = "../../rdlc/LaporanObatDesigner.rdlc";
+            _reportViewer.LocalReport.SetParameters(param);
+            dataSet1.EndInit();
+
+            //fill data into WpfApplication4DataSet
+            DSKenkoTableAdapters.sp_LaporanObatTableAdapter t = new DSKenkoTableAdapters.sp_LaporanObatTableAdapter();
+            t.ClearBeforeFill = true;
+            t.Fill(dataSet1.sp_LaporanObat, statusObat);
+            _reportViewer.RefreshReport();
+
         }
 
-        private void RefreshDataGrid(string cari = "")
-        {
-            //dataMaster.ItemsSource = Kenko.getData("sp_Member_Read", cari).DefaultView;
-        }
         private void LaporanObat_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnFilter_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshDataGrid(cmbStatusObat.Text);
         }
     }
 }

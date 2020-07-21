@@ -27,10 +27,7 @@ namespace KenkoApp.uc
             var lang = System.Windows.Markup.XmlLanguage.GetLanguage("id-ID");
             txtTglAwal.Language = lang;
             txtTglAkhir.Language = lang;
-            txtTglAwal.SelectedDate = DateTime.Now;
-            txtTglAkhir.SelectedDate = DateTime.Now;
             _reportViewer.Load += ReportViewer_Load;
-
         }
 
 
@@ -50,10 +47,10 @@ namespace KenkoApp.uc
             
             ReportDataSource reportDataSource1 = new ReportDataSource();
 
-            DataSet1 dataSet1 = new DataSet1();
+            DSKenko dataSet1 = new DSKenko();
             dataSet1.BeginInit();
 
-            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Name = "DSKenko";
             //Name of the report dataset in our .RDLC file
 
             reportDataSource1.Value = dataSet1.sp_LaporanPembelian;
@@ -65,15 +62,14 @@ namespace KenkoApp.uc
             param[1] = new ReportParameter("tglAkhir", tglakhir.HasValue ? tglakhir.Value.ToString("dd/MM/yyyy") : "");
            
 
-
             _reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             _reportViewer.ZoomMode = ZoomMode.PageWidth;
-            _reportViewer.LocalReport.ReportPath = "../../LaporanPembelianDesigner.rdlc";
+            _reportViewer.LocalReport.ReportPath = "../../rdlc/LaporanPembelianDesigner.rdlc";
             _reportViewer.LocalReport.SetParameters(param);
             dataSet1.EndInit();
 
             //fill data into WpfApplication4DataSet
-            DataSet1TableAdapters.sp_LaporanPembelianTableAdapter t = new DataSet1TableAdapters.sp_LaporanPembelianTableAdapter();
+            DSKenkoTableAdapters.sp_LaporanPembelianTableAdapter t = new DSKenkoTableAdapters.sp_LaporanPembelianTableAdapter();
             t.ClearBeforeFill = true;
             t.Fill(dataSet1.sp_LaporanPembelian, tglawal, tglakhir);
             _reportViewer.RefreshReport();

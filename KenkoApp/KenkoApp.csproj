@@ -157,11 +157,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSKenko.xsd</DependentUpon>
     </Compile>
-    <Compile Include="KenkoDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KenkoDS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="forms\FormBeliObat.xaml.cs">
       <DependentUpon>FormBeliObat.xaml</DependentUpon>
     </Compile>
@@ -188,26 +183,6 @@
     </Compile>
     <Compile Include="forms\FormUser.xaml.cs">
       <DependentUpon>FormUser.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="KenkoDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KenkoDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="KenkoDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KenkoDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="KenkoDataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KenkoDataSet2.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="LaporanObatPembelian.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LaporanObatPembelian.xsd</DependentUpon>
     </Compile>
     <Compile Include="rdlc\StrukDataset.cs">
       <DependentUpon>StrukDataset.xsd</DependentUpon>
@@ -440,10 +415,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="LaporanObatDesigner.rdlc" />
-    <EmbeddedResource Include="LaporanPembelianDesigner.rdlc" />
-    <EmbeddedResource Include="LaporanPenjualanDesigner.rdlc" />
-    <EmbeddedResource Include="LaporanReservasi.rdlc" />
+    <EmbeddedResource Include="rdlc\LaporanObatDesigner.rdlc" />
+    <EmbeddedResource Include="rdlc\LaporanPembelianDesigner.rdlc" />
+    <EmbeddedResource Include="rdlc\LaporanPenjualanDesigner.rdlc" />
+    <EmbeddedResource Include="rdlc\LaporanReservasiDesigner.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -460,17 +435,6 @@
     <None Include="DSKenko.xss">
       <DependentUpon>DSKenko.xsd</DependentUpon>
     </None>
-    <None Include="KenkoDS.xsc">
-      <DependentUpon>KenkoDS.xsd</DependentUpon>
-    </None>
-    <None Include="KenkoDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>KenkoDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="KenkoDS.xss">
-      <DependentUpon>KenkoDS.xsd</DependentUpon>
-    </None>
     <None Include="rdlc\StrukDataset.xsc">
       <DependentUpon>StrukDataset.xsd</DependentUpon>
     </None>
@@ -485,50 +449,6 @@
     <Resource Include="fonts\Product_Sans_Regular.ttf" />
     <Resource Include="fonts\SourceSansPro-Bold.ttf" />
     <Resource Include="fonts\SourceSansPro-Regular.ttf" />
-    <None Include="KenkoDataSet.xsc">
-      <DependentUpon>KenkoDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="KenkoDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>KenkoDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="KenkoDataSet.xss">
-      <DependentUpon>KenkoDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="KenkoDataSet1.xsc">
-      <DependentUpon>KenkoDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="KenkoDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>KenkoDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="KenkoDataSet1.xss">
-      <DependentUpon>KenkoDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="KenkoDataSet2.xsc">
-      <DependentUpon>KenkoDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="KenkoDataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>KenkoDataSet2.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="KenkoDataSet2.xss">
-      <DependentUpon>KenkoDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="LaporanObatPembelian.xsc">
-      <DependentUpon>LaporanObatPembelian.xsd</DependentUpon>
-    </None>
-    <None Include="LaporanObatPembelian.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LaporanObatPembelian.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="LaporanObatPembelian.xss">
-      <DependentUpon>LaporanObatPembelian.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

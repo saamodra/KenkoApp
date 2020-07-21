@@ -7,7 +7,7 @@
              xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="1366" Loaded="LaporanPenjalan_Loaded">
+             d:DesignHeight="768" d:DesignWidth="1366">
     <Grid>
         <materialDesign:Card Background="#fff"
                         Margin="10"
@@ -20,21 +20,38 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
-                    <!--<Button x:Name="btnPrint" 
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" 
+                               FontWeight="Bold"
+                               Foreground="#000" Margin="10 0 20 10" VerticalAlignment="Bottom">Tgl. Penjualan</TextBlock>
+                    <DatePicker Name="txtTglAwal" Margin="0 4 20 0"
+                                Foreground="#000"
+                        materialDesign:HintAssist.Hint="Tgl. Awal"
+                                Width="200"
+                        materialDesign:HintAssist.Foreground="#000"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    <DatePicker Name="txtTglAkhir" Margin="0 4 10 0"
+                                Foreground="#000"
+                        materialDesign:HintAssist.Hint="Tgl. Akhir"
+                                Width="200"
+                        materialDesign:HintAssist.Foreground="#000"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    <Button x:Name="btnFilter" 
                         Margin="10, 0, 5, 0" 
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Background="#00A65A"
                         FontSize="13"
                         HorizontalAlignment="Left"
-                        BorderThickness="0" Click="btnPrint_Click">
+                        BorderThickness="0" Click="btnFilter_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
-                            <TextBlock VerticalAlignment="Center" FontSize="15">Tambah</TextBlock>
+                            <materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
+                            <TextBlock VerticalAlignment="Center" FontSize="15">Cari</TextBlock>
                         </StackPanel>
-                    </Button>-->
-                </Grid>
-                
+                    </Button>
+                </StackPanel>
+
                 <WindowsFormsHost Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <rv:ReportViewer x:Name="_reportViewer"/>
                 </WindowsFormsHost>

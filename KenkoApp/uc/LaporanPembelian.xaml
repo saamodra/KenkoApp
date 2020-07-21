@@ -21,6 +21,9 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" 
+                               FontWeight="Bold"
+                               Foreground="#000" Margin="10 0 20 10" VerticalAlignment="Bottom">Tgl. Pembelian</TextBlock>
                     <DatePicker Name="txtTglAwal" Margin="0 4 20 0"
                                 Foreground="#000"
                         materialDesign:HintAssist.Hint="Tgl. Awal"
@@ -43,7 +46,7 @@
                         HorizontalAlignment="Left"
                         BorderThickness="0" Click="btnFilter_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Filter" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
+                            <materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
                             <TextBlock VerticalAlignment="Center" FontSize="15">Cari</TextBlock>
                         </StackPanel>
                     </Button>
