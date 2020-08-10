@@ -23,8 +23,8 @@
                 <Grid Grid.Row="0">
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                         <ComboBox x:Name="cmbStatusObat" materialDesign:HintAssist.Hint="Status Obat"
-                            materialDesign:HintAssist.Foreground="#000"
-                            Margin="0 5 0 0" Width="200"
+                            materialDesign:HintAssist.Foreground="#EB3F3F"
+                            Margin="0 5 0 0" Width="200" Foreground="#000"
                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                             materialDesign:TextFieldAssist.HasClearButton="True"
                             materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F">

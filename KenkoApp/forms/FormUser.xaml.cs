@@ -51,10 +51,10 @@ namespace KenkoApp.forms
             {
                 this.idUser = idUser;
                 formtype = type;
-                lblTitle.Text = "Edit Data User";
-                lblSubtitle.Text = "Form ini untuk mengedit data user";
+                lblTitle.Text = "Ubah Data User";
+                lblSubtitle.Text = "Form ini untuk mengubah data user";
                 FormIcon.Kind = PackIconKind.PencilBox;
-                Title = "Edit Data";
+                Title = "Ubah Data";
 
                 btnSave.Click += btnEdit_Click;
             } else
@@ -174,7 +174,7 @@ namespace KenkoApp.forms
             dt.Clear();
             dt.Columns.AddRange(new DataColumn[] { new DataColumn("id"), new DataColumn("role") });
             dt.Rows.Add(new object[] { 1, "Admin" });
-            dt.Rows.Add(new object[] { 2, "Apoteker" });
+            dt.Rows.Add(new object[] { 2, "Kasir" });
             dt.Rows.Add(new object[] { 3, "Manager" });
 
             cmbRole.ItemsSource = dt.DefaultView;

@@ -57,9 +57,10 @@ namespace KenkoApp.uc
 
             _reportViewer.Reset();
 
-            ReportParameter[] param = new ReportParameter[2];
+            ReportParameter[] param = new ReportParameter[3];
             param[0] = new ReportParameter("tglAwal", tglawal.HasValue ? tglawal.Value.ToString("dd/MM/yyyy") : "");
             param[1] = new ReportParameter("tglAkhir", tglakhir.HasValue ? tglakhir.Value.ToString("dd/MM/yyyy") : "");
+            param[2] = new ReportParameter("namaManager", Application.Current.Properties["nama"].ToString());
 
 
             _reportViewer.LocalReport.DataSources.Add(reportDataSource1);

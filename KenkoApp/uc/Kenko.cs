@@ -130,6 +130,36 @@ namespace KenkoApp.uc
             return newFilename;
         }
 
+        public static string generateIdTable(string table, string kode)
+        {
+            string id, idtable;
+
+            id = kode;
+            idtable = "0001";
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConString"]))
+            {
+                conn.Open();
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM " + table;
+
+
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read())
+                {
+                    idtable = data.GetValue(0).ToString();
+                    int lastNumber = Convert.ToInt32(idtable.Remove(0, 2));
+                    lastNumber++;
+
+                    idtable = String.Format("{0:0000}", lastNumber);
+                }
+
+                conn.Close();
+            }
+
+            return id + idtable;
+        }
+
         public static string generateMemberId()
         {
             string id, idMember;
@@ -142,7 +172,7 @@ namespace KenkoApp.uc
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Member_GetLast", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("id_member", id);
+                cmd.Parameters.AddWithValue("cari", id);
 
                
                 SqlDataReader data = cmd.ExecuteReader();
@@ -270,7 +300,14 @@ namespace KenkoApp.uc
 
         public static string formatCurrency(double text)
         {
+            
             return text.ToString("C2", CultureInfo.CreateSpecificCulture("id-ID"));
+        }
+
+        public static string getNumber1(string currency)
+        {
+            string resultString = Regex.Match(currency, @"\d+").Value;
+            return resultString;
         }
 
         public static string getNumber(string text)
@@ -285,7 +322,35 @@ namespace KenkoApp.uc
 
             }
 
-            return numer.Remove(numer.Length - 2, 2);
+            return numer.Remove(numer.Length - 3, 2);
+        }
+
+        public static string getNumber2(string text)
+        {
+            string numer = string.Empty;
+            foreach (char str in text)
+            {
+                if (char.IsDigit(str))
+                {
+                    numer += str.ToString();
+                }
+
+            }
+
+            return numer;
+        }
+
+        public static void textFieldCurrencyFormat(TextBox txtBox, string symbol)
+        {
+            string numberOnly = getNumber2(txtBox.Text == symbol || txtBox.Text == "" ? symbol + "0" : txtBox.Text);
+
+            double text = Double.Parse(numberOnly);
+
+            String formattedNumber = String.Format(symbol+"{0:n0}", text);
+
+            txtBox.Text = formattedNumber.Replace(",", ".");
+            txtBox.SelectionStart = txtBox.Text.Length;
+            txtBox.SelectionLength = 0;
         }
 
         //Validation

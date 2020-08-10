@@ -718,11 +718,22 @@
               <TextAlign>Center</TextAlign>
             </Style>
           </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Semoga lekas sembuh</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
         <Top>5.155in</Top>
         <Left>0.34181in</Left>
-        <Height>0.25in</Height>
+        <Height>0.44792in</Height>
         <Width>4.18563in</Width>
         <ZIndex>16</ZIndex>
         <Style>

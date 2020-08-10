@@ -56,8 +56,8 @@ namespace KenkoApp.forms
             {
                 result = true;
                 jumlah_beli = Convert.ToInt32(txtJumlahBeli.Text);
-                harga_beli = Convert.ToDouble(txtHargaBeli.Text);
-                harga_jual = Convert.ToDouble(txtHargaJual.Text);
+                harga_beli = Convert.ToDouble(Kenko.getNumber2(txtHargaBeli.Text));
+                harga_jual = Convert.ToDouble(Kenko.getNumber2(txtHargaJual.Text));
                 string newFormat = DateTime.ParseExact(txtTglExpired.Text, "M/d/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
                 tgl_exp = newFormat;
                 Close();
@@ -103,17 +103,25 @@ namespace KenkoApp.forms
         private void txtHargaBeli_TextChanged(object sender, TextChangedEventArgs e)
         {
             Kenko.fieldRequired(txtHargaBeli.Text, lblHargaBeli);
+            Kenko.textFieldCurrencyFormat(txtHargaBeli, "Rp");
         }
 
         private void txtHargaJual_TextChanged(object sender, TextChangedEventArgs e)
         {
             Kenko.fieldRequired(txtHargaJual.Text, lblHargaJual);
+            Kenko.textFieldCurrencyFormat(txtHargaJual, "Rp");
         }
 
 
         private void txtTglExpired_LostFocus(object sender, RoutedEventArgs e)
         {
             Kenko.dateRequired(txtTglExpired, lblTgl);
+        }
+
+        
+        private void textHargaBeli_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Kenko.textFieldCurrencyFormat(txtHargaBeli, "Rp");
         }
 
 

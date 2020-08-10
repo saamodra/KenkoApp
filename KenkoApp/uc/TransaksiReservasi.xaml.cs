@@ -40,10 +40,15 @@ namespace KenkoApp.uc
             cmbDokter.SelectedValuePath = "id_dokter";
             cmbDokter.DisplayMemberPath = "nama_dokter";
 
-            txtKasir.Text = "Samodra";
+            txtKasir.Text = Application.Current.Properties["nama"].ToString();
             txtTglTransaksi.Text = DateTime.Now.ToString("dd-MM-yyyy");
             lblAntrian.Text = Kenko.getAntrian();
             
+        }
+
+        private void RefreshDataGrid(string cari = "")
+        {
+            dataMaster.ItemsSource = Kenko.getData("sp_Pasien_Read", cari).DefaultView;
         }
 
         private void btnPilih_Click(object sender, RoutedEventArgs e)
@@ -352,6 +357,11 @@ namespace KenkoApp.uc
         {
             ClearForm();
             formReadOnly(false);
+        }
+
+        private void txtCariPasien_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshDataGrid(txtCariPasien.Text);
         }
     }
 }

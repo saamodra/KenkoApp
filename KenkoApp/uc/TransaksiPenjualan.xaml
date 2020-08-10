@@ -32,11 +32,14 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="0 10">Penjualan</TextBlock>
-                    <Button Grid.Column="1" x:Name="btnBaru" HorizontalAlignment="Right" Padding="10 0" Click="btnBaru_Click" >
-                        <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Margin="0"/>
+                    <Button Grid.Column="1" x:Name="btnBaru" Background="#FFC107" BorderThickness="0" HorizontalAlignment="Right" Height="25" Padding="10 0" Click="btnBaru_Click" >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Refresh" VerticalAlignment="Center" Margin="0"/>
+                            <TextBlock>Bersihkan</TextBlock>
+                        </StackPanel>
                     </Button>
                 </Grid>
-                
+
                 <Separator HorizontalAlignment="Stretch" Height="2" Margin="30 0" VerticalAlignment="Bottom"/>
 
                 <StackPanel Grid.Row="1" Margin="30 0 30 20">
@@ -45,7 +48,7 @@
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                             VerticalAlignment="Center" IsReadOnly="True"/>
-                    
+
                     <TextBox x:Name="txtTglTransaksi" materialDesign:HintAssist.Hint="Tgl. Transaksi"
                             Margin="0 5" Foreground="#000"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -82,14 +85,14 @@
                             VerticalAlignment="Center" IsReadOnly="True"/>
 
                 </StackPanel>
-                
-                <TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000" Margin="30 10">Kategori</TextBlock>
-                <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="30 0" VerticalAlignment="Bottom"/>
+
+                <!--<TextBlock Grid.Row="2" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Name="lblTitle" Foreground="#000" Margin="30 10">Kategori</TextBlock>
+                <Separator Grid.Row="2" HorizontalAlignment="Stretch" Height="2" Margin="30 0" VerticalAlignment="Bottom"/>-->
 
                 <ScrollViewer Grid.Row="3" MaxHeight="300">
                     <Grid>
                         <materialDesign:TransitioningContent x:Name="TrainsitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                                <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Visibility="Hidden"/>
+                            <Grid x:Name="GridCursor" Margin="0 0 0 0" Background="#EB3F3F" Width="6" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Visibility="Hidden"/>
                         </materialDesign:TransitioningContent>
                         <ListView Name="listKategori" Margin="0" SelectionChanged="listKategori_SelectionChanged">
                             <ListView.ItemContainerStyle>
@@ -119,6 +122,18 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="00 10" Grid.ColumnSpan="2">Data Obat</TextBlock>
+
+                <ComboBox x:Name="cmbKategori" materialDesign:HintAssist.Hint="Kategori"
+                          Foreground="#000"
+                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                          Width="250"
+                          HorizontalAlignment="Right"
+                          VerticalAlignment="Center"
+                    Margin="0 5 0 5" Grid.Column="1"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" DisplayMemberPath="nama_kategori" SelectedValuePath="id_kategori"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F" SelectionChanged="cmbKategori_SelectionChanged" >
+                </ComboBox>
                 <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
 
                 <DataGrid x:Name="dataMaster" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
@@ -127,6 +142,7 @@
                         materialDesign:DataGridAssist.CellPadding="4"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="4"
                         CanUserAddRows="False"
+                          Margin="0 10 0 0"
                         SelectionUnit="Cell"
                         SelectionMode="Extended" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
@@ -213,7 +229,6 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0">Subtotal</Label>
-                        <Label Grid.Column="1" HorizontalAlignment="Center">Rp.</Label>
                         <Label Name="lblSubtotal" Grid.Column="2" HorizontalAlignment="Left">0</Label>
                     </Grid>
 
@@ -248,8 +263,6 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" FontWeight="Bold" Margin="5 0" 
                                    Foreground="#EB3F3F">Pembayaran</TextBlock>
-                        <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" FontWeight="Bold" Margin="5 0" 
-                                   Foreground="#EB3F3F" HorizontalAlignment="Center">Rp.</TextBlock>
                         <TextBlock x:Name="lblTotalPembayaran" Grid.Column="2" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" FontWeight="Bold" Margin="5 0" 
                                    Foreground="#EB3F3F">0</TextBlock>
                     </Grid>
@@ -262,7 +275,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0">Tunai</Label>
                         <Label Grid.Column="1" HorizontalAlignment="Center">Rp.</Label>
-                        <TextBox x:Name="txtBayar" Grid.Column="2" Foreground="#000" PreviewTextInput="txtJumlah_PreviewTextInput" KeyDown="txtBayar_KeyDown"></TextBox>
+                        <TextBox x:Name="txtBayar" Grid.Column="2" Foreground="#000" PreviewTextInput="txtJumlah_PreviewTextInput" KeyDown="txtBayar_KeyDown" TextChanged="txtBayar_TextChanged"></TextBox>
                     </Grid>
 
                     <Grid Margin="5">
@@ -277,25 +290,10 @@
                     </Grid>
 
                     <Grid Margin="10 20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-
-                        <Button x:Name="btnCetak" IsEnabled="False"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            Background="#EB3F3F"
-                            FontSize="13" Margin="0 0 10 0"
-                            BorderThickness="0" Click="btnCetak_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Printer" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
-                                <TextBlock VerticalAlignment="Center" FontSize="15">Cetak Struk</TextBlock>
-                            </StackPanel>
-                        </Button>
                         <Button x:Name="btnBayar" Grid.Column="1" IsEnabled="False"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Background="#EB3F3F"
-                            FontSize="13" Margin="10 0 0 0"
+                            FontSize="13" Margin="0"
                             BorderThickness="0" Click="btnBayar_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Payment" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>

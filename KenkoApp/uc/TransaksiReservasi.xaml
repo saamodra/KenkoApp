@@ -77,7 +77,7 @@
                             Margin="0 5" Foreground="#000"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalAlignment="Center" IsReadOnly="True"/>
+                            VerticalAlignment="Center" TextChanged="txtCariPasien_TextChanged"/>
                     <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
 
                     <DataGrid x:Name="dataMaster" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
@@ -93,7 +93,7 @@
                             <DataGridTextColumn Header="Nama Pasien" Binding="{Binding Path=nama_pasien}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Jenis Kelamin" Binding="{Binding Path=jenis_kelamin}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Umur" Binding="{Binding Path=umur}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Alamat" Binding="{Binding Path=alamat}" IsReadOnly="True"/>
+                            <!--<DataGridTextColumn Header="Alamat" Binding="{Binding Path=alamat}" IsReadOnly="True"/>-->
 
                             <DataGridTemplateColumn Header="Aksi">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -208,7 +208,7 @@
                             </StackPanel>
                         </Button>
                         <Button x:Name="btnSave" Style="{StaticResource MaterialDesignRaisedButton}" 
-                        BorderBrush="#E2401C" Background="#E2401C"
+                        BorderBrush="#E2401C" Background="#E2401C" Click="btnSave_Click"
                         ToolTip="MaterialDesignOutlinedButton">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center" Margin="-6, 0, 10, 0"/>

@@ -52,14 +52,14 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtHargaBeli_Focus" PreviewTextInput="txtNumeric_PreviewTextInput" />
+                    VerticalAlignment="Center" GotFocus="txtHargaBeli_Focus" PreviewTextInput="txtNumeric_PreviewTextInput" TextChanged="textHargaBeli_TextChanged" />
             <Label Name="lblHargaBeli" Foreground="#EB3F3F" Visibility="Hidden">Wajib diisi.</Label>
             
             <TextBox x:Name="txtHargaJual" materialDesign:HintAssist.Hint="Harga Jual"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     materialDesign:HintAssist.Foreground="#EB3F3F"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                    VerticalAlignment="Center" GotFocus="txtHargaJual_Focus" PreviewTextInput="txtNumeric_PreviewTextInput" />
+                    VerticalAlignment="Center" GotFocus="txtHargaJual_Focus" PreviewTextInput="txtNumeric_PreviewTextInput" TextChanged="txtHargaJual_TextChanged" />
             <Label Name="lblHargaJual" Foreground="#EB3F3F" Visibility="Hidden">Wajib diisi.</Label>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 50 0 0">

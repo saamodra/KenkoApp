@@ -51,7 +51,9 @@
                         SelectionUnit="Cell"
                         SelectionMode="Extended">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
+                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" 
+                                                IsReadOnly="True" CellStyle="{StaticResource RightCell}"
+                                                />
                             <DataGridTextColumn Header="Nama" Binding="{Binding Path=nama}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Username" Binding="{Binding Path=username}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding Path=email}" IsReadOnly="True"/>
@@ -60,13 +62,13 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button x:Name="btnEditGrid" Click="btnEdit_Click" Margin="0 0 10 0" Background="#F39C12" BorderThickness="0">
+                                            <Button x:Name="btnEditGrid" Click="btnEdit_Click" Height="25" Margin="0 0 10 0" Background="#F39C12" BorderThickness="0">
                                                 <StackPanel Orientation="Horizontal">
                                                     <materialDesign:PackIcon Kind="EditOutline" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
                                                     <TextBlock VerticalAlignment="Center" FontSize="15">Edit</TextBlock>
                                                 </StackPanel>
                                             </Button>
-                                            <Button x:Name="btnHapusGrid" Click="btnHapus_Click" Background="#E2401C" BorderThickness="0">
+                                            <Button x:Name="btnHapusGrid" Click="btnHapus_Click" Height="25" Background="#E2401C" BorderThickness="0">
                                                 <StackPanel Orientation="Horizontal">
                                                     <materialDesign:PackIcon Kind="Trash" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
                                                     <TextBlock VerticalAlignment="Center" FontSize="15">Hapus</TextBlock>

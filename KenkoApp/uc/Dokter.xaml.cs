@@ -66,7 +66,7 @@ namespace KenkoApp.uc
             {
                 case "ItemResep":
                     usc = new TransaksiResep();
-                    PageTitle.Text = "Transaksi Resep";
+                    PageTitle.Text = "Konsultasi Dokter";
                     GridMain.Children.Add(usc);
                     break;
                 default:

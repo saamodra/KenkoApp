@@ -46,10 +46,10 @@ namespace KenkoApp.forms
             if (type == "Edit")
             {
                 this.idObat = idObat;
-                lblTitle.Text = "Edit Data Obat";
-                lblSubtitle.Text = "Form ini untuk mengedit data supplier";
+                lblTitle.Text = "Ubah Data Obat";
+                lblSubtitle.Text = "Form ini untuk mengubah data obat";
                 FormIcon.Kind = PackIconKind.PencilBox;
-                Title = "Edit Data";
+                Title = "Ubah Data";
 
                 btnSave.Click += btnEdit_Click;
             }
@@ -93,9 +93,9 @@ namespace KenkoApp.forms
                 cmd.Parameters.AddWithValue("tgl_masuk", DateTime.Now.ToString("yyyyMMdd"));
                 cmd.Parameters.AddWithValue("tgl_expired", Kenko.FormatLocalDate(txtTglExpired.Text));
                 cmd.Parameters.AddWithValue("stok", txtStok.Text);
-                cmd.Parameters.AddWithValue("harga_beli", txtHargaBeli.Text);
-                cmd.Parameters.AddWithValue("harga_jual", txtHargaJual.Text);
-                cmd.Parameters.AddWithValue("het", txtHet.Text);
+                cmd.Parameters.AddWithValue("harga_beli", Kenko.getNumber2(txtHargaBeli.Text));
+                cmd.Parameters.AddWithValue("harga_jual", Kenko.getNumber2(txtHargaJual.Text));
+                cmd.Parameters.AddWithValue("het", Kenko.getNumber2(txtHet.Text));
                 cmd.Parameters.AddWithValue("produsen", txtProdusen.Text);
                 cmd.Parameters.AddWithValue("deskripsi", txtDeskripsi.Text);
                 cmd.Parameters.AddWithValue("updated_at", DateTime.Now);
@@ -135,9 +135,9 @@ namespace KenkoApp.forms
                 cmd.Parameters.AddWithValue("id_satuan", cmbSatuan.SelectedValue);
                 cmd.Parameters.AddWithValue("tgl_expired", Kenko.FormatLocalDate(txtTglExpired.Text));
                 cmd.Parameters.AddWithValue("stok", txtStok.Text);
-                cmd.Parameters.AddWithValue("harga_beli", txtHargaBeli.Text);
-                cmd.Parameters.AddWithValue("harga_jual", txtHargaJual.Text);
-                cmd.Parameters.AddWithValue("het", txtHet.Text);
+                cmd.Parameters.AddWithValue("harga_beli", Kenko.getNumber2(txtHargaBeli.Text));
+                cmd.Parameters.AddWithValue("harga_jual", Kenko.getNumber2(txtHargaJual.Text));
+                cmd.Parameters.AddWithValue("het", Kenko.getNumber2(txtHet.Text));
                 cmd.Parameters.AddWithValue("produsen", txtProdusen.Text);
                 cmd.Parameters.AddWithValue("deskripsi", txtDeskripsi.Text);
                 cmd.Parameters.AddWithValue("updated_at", DateTime.Now);
@@ -246,23 +246,19 @@ namespace KenkoApp.forms
         private void txtHargaBeli_TextChanged(object sender, TextChangedEventArgs e)
         {
             Kenko.fieldRequired(txtHargaBeli.Text, lblHargaBeli);
+            Kenko.textFieldCurrencyFormat(txtHargaBeli, "Rp");
         }
+
         private void txtHargaJual_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (!string.IsNullOrEmpty(txtHargaJual.Text))
-            //{
-            //    Kenko.fieldRequired(txtHargaJual.Text, lblHargaJual);
-            //    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-            //    int valueBefore = Int32.Parse(txtHargaJual.Text, System.Globalization.NumberStyles.AllowThousands);
-            //    txtHargaJual.Text = String.Format(culture, "{0:N0}", valueBefore);
-            //    txtHargaJual.Select(txtHargaJual.Text.Length, 0);
-            //}
-            
+            Kenko.fieldRequired(txtHargaJual.Text, lblHargaJual);
+            Kenko.textFieldCurrencyFormat(txtHargaJual, "Rp");
         }
 
         private void txtHet_TextChanged(object sender, TextChangedEventArgs e)
         {
             Kenko.fieldRequired(txtHet.Text, lblHet);
+            Kenko.textFieldCurrencyFormat(txtHet, "Rp");
         }
 
         private void txtProdusen_TextChanged(object sender, TextChangedEventArgs e)
@@ -328,7 +324,6 @@ namespace KenkoApp.forms
 
         private void txtHargaBeli_Keyup(object sender, KeyEventArgs e)
         {
-            //txtHargaBeli.Text = string.Format(System.Globalization.CultureInfo.GetCultureInfo("id-ID"), "{0:#,##0.00}", double.Parse(txtHargaBeli.Text));
         }
 
         private void GridLocation(int i, int plus, int section)

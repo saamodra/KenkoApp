@@ -155,7 +155,7 @@ namespace KenkoApp.uc
 
             subtotal = subtotal - double.Parse(Kenko.getNumber(dataRowView[4].ToString()));
             jumlahBarang = jumlahBarang - int.Parse(dataRowView[3].ToString());
-            lblSubtotal.Content = Kenko.formatCurrency(subtotal);
+            lblSubtotal.Content = "0";
             lblJumlahBarang.Content = jumlahBarang;
             dtKeranjang.Rows.Remove(dataRowView.Row);
             dataKeranjang.ItemsSource = dtKeranjang.DefaultView;
@@ -190,15 +190,14 @@ namespace KenkoApp.uc
             cmbSupplier.SelectedIndex = -1;
 
             string idkategori = listKategori.SelectedValue.ToString();
+            subtotal = 0;
+            jumlahBarang = 0;
 
             dataMaster.ItemsSource = Kenko.getData("sp_Obat_GetKategori", idkategori).DefaultView;
         }
 
 
-        private void btnBaru_Click(object sender, RoutedEventArgs e)
-        {
-            NewTransaksi();
-        }
+
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {

@@ -1,12 +1,12 @@
-﻿<UserControl x:Class="KenkoApp.uc.Dokter"
+﻿<UserControl x:Class="KenkoApp.uc.Manager"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KenkoApp.uc"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-            mc:Ignorable="d"
-             d:DesignHeight="768" d:DesignWidth="1366">
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1366" Loaded="Manager_Loaded">
     <UserControl.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimation Storyboard.TargetName="GridMenu" Storyboard.TargetProperty="(FrameworkElement.Width)" 
@@ -93,7 +93,7 @@
                             </Ellipse.Fill>
                         </Ellipse>
                         <StackPanel x:Name="Username" Visibility="Collapsed" VerticalAlignment="Center" Orientation="Vertical" Margin="20,0,0,0" HorizontalAlignment="Left">
-                            <TextBlock Foreground="#fff" FontSize="17" Margin="0,0,0,5" Name="lblUser"></TextBlock>
+                            <TextBlock x:Name="lblUsername" Foreground="#fff" FontSize="17" Margin="0,0,0,5">Kenko User 1</TextBlock>
                             <StackPanel Orientation="Horizontal" >
                                 <Ellipse Height="8" Width="8" Fill="Green" />
                                 <TextBlock Foreground="#fff" Margin="10,0,0,0" Name="lblRole">Admin</TextBlock>
@@ -113,13 +113,30 @@
                                     <TextBlock Text="Home" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </StackPanel>
                             </ListViewItem>
-                            <ListViewItem x:Name="ItemResep" Height="40">
+                            <ListViewItem x:Name="ItemLaporanPembelian" Height="40">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Receipt" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
-                                    <TextBlock Text="Resep" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <materialDesign:PackIcon Kind="ChartLineVariant" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
+                                    <TextBlock Text="Laporan Pembelian" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </StackPanel>
                             </ListViewItem>
-                            
+                            <ListViewItem x:Name="ItemLaporanPenjualan" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ChartTimelineVariant" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
+                                    <TextBlock Text="Laporan Penjualan" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="ItemLaporanReservasi" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountSwitch" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
+                                    <TextBlock Text="Laporan Reservasi" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="ItemLaporanObat" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Receipt" Height="20" Width="20" VerticalAlignment="Center" Margin="17,0,17,0"/>
+                                    <TextBlock Text="Laporan Resep" FontSize="15" Foreground="#fff" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </ListViewItem>
                         </ListView>
                     </Grid>
                 </StackPanel>

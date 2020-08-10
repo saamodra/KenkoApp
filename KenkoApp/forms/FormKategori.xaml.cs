@@ -39,10 +39,10 @@ namespace KenkoApp.forms
             if (type == "Edit")
             {
                 this.idKategori = idKategori;
-                lblTitle.Text = "Edit Data Kategori";
+                lblTitle.Text = "Ubah Data Kategori";
                 lblSubtitle.Text = "Form ini untuk mengedit data kategori";
                 FormIcon.Kind = PackIconKind.PencilBox;
-                Title = "Edit Data";
+                Title = "Ubah Data";
 
                 btnSave.Click += btnEdit_Click;
             }

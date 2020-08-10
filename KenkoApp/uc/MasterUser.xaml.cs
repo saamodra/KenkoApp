@@ -61,7 +61,6 @@ namespace KenkoApp.uc
                 formUser.txtNama.Text = dataRowView[2].ToString();
                 formUser.txtUsername.Text = dataRowView[3].ToString();
                 formUser.txtEmail.Text = dataRowView[5].ToString();
-                formUser.txtPassword.Password = dataRowView[4].ToString();
                 formUser.cmbRole.SelectedValue = dataRowView[6].ToString();
                 formUser.txtFileName.Text = dataRowView[7].ToString();
 

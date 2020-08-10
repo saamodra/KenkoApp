@@ -51,6 +51,12 @@ namespace KenkoApp.uc
 
         }
 
+        private void RefreshDataGrid(string cari = "")
+        {
+            DataTable dtObat = Kenko.getData("sp_Obat_Read", cari);
+            dataObat.ItemsSource = dtObat.DefaultView;
+        }
+
 
         private void txtJumlah_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -74,11 +80,20 @@ namespace KenkoApp.uc
                 }
                 else
                 {
-                    txtIdObat.Text = dataRowView[1].ToString();
-                    txtNamaObat.Text = dataRowView[2].ToString();
-                    txtJumlahObat.Text = jumlah.Text;
-                    txtSatuan.Text = dataRowView[21].ToString();
-                    jumlah.Text = "0";
+                    // Jika stok kurang dari text jumlah
+                    if (Convert.ToInt32(dataRowView[7].ToString()) < Convert.ToInt32(jumlah.Text))
+                    {
+                        MessageBox.Show("Stok tidak mencukupi.", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+
+                        txtIdObat.Text = dataRowView[1].ToString();
+                        txtNamaObat.Text = dataRowView[2].ToString();
+                        txtJumlahObat.Text = jumlah.Text;
+                        txtSatuan.Text = dataRowView[21].ToString();
+                        jumlah.Text = "0";
+                    }
                 }
             }
             else
@@ -127,6 +142,11 @@ namespace KenkoApp.uc
                 {
                     dtResep.Rows.Add(txtIdObat.Text, txtNamaObat.Text, txtJumlahObat.Text, txtKeterangan.Text);
                     dataResep.ItemsSource = dtResep.DefaultView;
+                    txtIdObat.Text = "";
+                    txtNamaObat.Text = "";
+                    txtJumlahObat.Text = "";
+                    txtSatuan.Text = "";
+                    txtKeterangan.Text = "";
                 }
             }
         }
@@ -151,9 +171,6 @@ namespace KenkoApp.uc
             id_pasien = dataRowView[4].ToString();
 
             id_reservasi = dataRowView[1].ToString();
-            txtNoSip.Text = dataRowView[13].ToString();
-            txtNamaDokter.Text = dataRowView[14].ToString();
-            txtSpesialisasi.Text = dataRowView[15].ToString();
 
             txtNamaPasien.Text = dataRowView[9].ToString();
             txtJenkel.Text = dataRowView[10].ToString();
@@ -162,6 +179,9 @@ namespace KenkoApp.uc
             txtGol.Text = dataRowView[11].ToString();
 
             txtKeluhan.Text = dataRowView[6].ToString();
+
+            DataTable pasien = Kenko.getData("sp_Transaksi_Reservasi_GetPasien", id_pasien);
+            dataRiwayat.ItemsSource = pasien.DefaultView;
         }
 
         private void btnBuatResep_Click(object sender, RoutedEventArgs e)
@@ -233,9 +253,6 @@ namespace KenkoApp.uc
             txtIdObat.Text = "";
             id_pasien = "";
             id_reservasi = "";
-            txtNamaDokter.Text = "";
-            txtSpesialisasi.Text = "";
-            txtNoSip.Text = "";
             txtNamaPasien.Text = "";
             txtUmur.Text = "";
             txtJenkel.Text = "";
@@ -253,8 +270,15 @@ namespace KenkoApp.uc
             DataTable dtReservasi = Kenko.getData("sp_Transaksi_Reservasi_GetData", id_dokter);
             dataReservasi.ItemsSource = dtReservasi.DefaultView;
 
+            dataRiwayat.ItemsSource = new DataTable().DefaultView;
+
             DataTable dtObat = Kenko.getData("sp_Obat_Read", "");
             dataObat.ItemsSource = dtObat.DefaultView;
+        }
+
+        private void txtCariPasien_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshDataGrid(txtCariPasien.Text);
         }
     }
 }

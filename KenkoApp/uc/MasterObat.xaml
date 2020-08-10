@@ -56,7 +56,6 @@
                             <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Kategori" Binding="{Binding Path=nama_kategori}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Satuan" Binding="{Binding Path=satuan}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Tgl. Masuk" Binding="{Binding Path=tglMasuk}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Tgl. Expired" Binding="{Binding Path=tglExpired}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                             <DataGridTextColumn Header="Harga Beli" Binding="{Binding Path=hargaBeli}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>

@@ -48,8 +48,9 @@ namespace KenkoApp.uc
 
             _reportViewer.Reset();
 
-            ReportParameter[] param = new ReportParameter[1];
+            ReportParameter[] param = new ReportParameter[2];
             param[0] = new ReportParameter("statusObat", statusObat == "Semua" ? "" : statusObat);
+            param[1] = new ReportParameter("namaManager", Application.Current.Properties["nama"].ToString());
 
 
             _reportViewer.LocalReport.DataSources.Add(reportDataSource1);

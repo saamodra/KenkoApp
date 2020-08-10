@@ -65,9 +65,9 @@ namespace KenkoApp.uc
                 formObat.cmbSatuan.SelectedValue = dataRowView[4].ToString();
                 formObat.txtTglExpired.SelectedDate = DateTime.Parse(dataRowView[6].ToString());
                 formObat.txtStok.Text = dataRowView[7].ToString();
-                formObat.txtHargaBeli.Text = Kenko.getNumber(dataRowView[8].ToString());
-                formObat.txtHargaJual.Text = Kenko.getNumber(dataRowView[9].ToString());
-                formObat.txtHet.Text = Kenko.getNumber(dataRowView[10].ToString());
+                formObat.txtHargaBeli.Text = Kenko.getNumber1(dataRowView[8].ToString());
+                formObat.txtHargaJual.Text = Kenko.getNumber1(dataRowView[9].ToString());
+                formObat.txtHet.Text = Kenko.getNumber1(dataRowView[10].ToString());
                 formObat.txtProdusen.Text = dataRowView[11].ToString();
                 formObat.txtDeskripsi.Text = dataRowView[12].ToString();
 

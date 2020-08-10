@@ -40,7 +40,7 @@
                         Width="300"
                         materialDesign:HintAssist.Foreground="#EB3F3F"
                         materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                        VerticalAlignment="Center" KeyDown="txtCari_Keydown"
+                        VerticalAlignment="Center" KeyDown="txtCari_Keydown"  TextChanged="txtCari_TextChanged"
                         ToolTip="Tekan enter untuk memulai pencarian"/>
                 </Grid>
 
@@ -49,29 +49,25 @@
                         VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True"
                         CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
                         CanUserAddRows="False"
-                        SelectionUnit="Cell"
-                        SelectionMode="Extended">
+                        SelectionUnit="Cell" RowHeight="45"
+                        SelectionMode="Extended" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                             <DataGridTextColumn Header="Nama Supplier" Binding="{Binding Path=nama_supplier}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Nama Kontak" Binding="{Binding Path=nama_kontak}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Alamat" Binding="{Binding Path=alamat}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="No. Telepon" Binding="{Binding Path=no_telp}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding Path=emailFormatted}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Bank" Binding="{Binding Path=bank}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="No. Rekening" Binding="{Binding Path=no_rekening}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Keterangan" Binding="{Binding Path=keteranganFormatted}" IsReadOnly="True"/>
                             <DataGridTemplateColumn Header="Aksi">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button x:Name="btnEditGrid" Click="btnEdit_Click" Margin="0 0 10 0" Background="#F39C12" BorderThickness="0">
+                                            <Button x:Name="btnEditGrid" Click="btnEdit_Click" Height="25" Margin="0 0 10 0" Background="#F39C12" BorderThickness="0">
                                                 <StackPanel Orientation="Horizontal">
                                                     <materialDesign:PackIcon Kind="EditOutline" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
                                                     <TextBlock VerticalAlignment="Center" FontSize="15">Edit</TextBlock>
                                                 </StackPanel>
                                             </Button>
-                                            <Button x:Name="btnHapusGrid" Click="btnHapus_Click" Background="#E2401C" BorderThickness="0">
+                                            <Button x:Name="btnHapusGrid" Click="btnHapus_Click" Height="25" Background="#E2401C" BorderThickness="0">
                                                 <StackPanel Orientation="Horizontal">
                                                     <materialDesign:PackIcon Kind="Trash" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
                                                     <TextBlock VerticalAlignment="Center" FontSize="15">Hapus</TextBlock>

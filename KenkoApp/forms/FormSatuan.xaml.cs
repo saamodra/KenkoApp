@@ -39,10 +39,10 @@ namespace KenkoApp.forms
             if (type == "Edit")
             {
                 this.idSatuan = idSatuan;
-                lblTitle.Text = "Edit Data Satuan";
-                lblSubtitle.Text = "Form ini untuk mengedit data satuan";
+                lblTitle.Text = "Ubah Data Satuan";
+                lblSubtitle.Text = "Form ini untuk mengubah data satuan";
                 FormIcon.Kind = PackIconKind.PencilBox;
-                Title = "Edit Data";
+                Title = "Ubah Data";
 
                 btnSave.Click += btnEdit_Click;
             }

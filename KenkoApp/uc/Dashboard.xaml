@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KenkoApp.uc"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="1366">
+             d:DesignHeight="768" d:DesignWidth="1366" Loaded="Dashboard_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,14 +21,16 @@
 
         <Grid Grid.Row="0" Background="Transparent">
             <StackPanel VerticalAlignment="Center" Margin="0 20 0 0">
-                <TextBlock FontWeight="Bold" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="20,0,0,0">Selamat datang kembali, Admin</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="20,0,0,0">Selamat datang kembali, </TextBlock>
+                    <TextBlock FontWeight="Bold" Name="lblUsername2" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="10,0,0,0">Admin</TextBlock>
+                </StackPanel>
                 <TextBlock FontSize="15" Margin="20,5,0,0">Dashboard</TextBlock>
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1" Margin="15,20,15,20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"></RowDefinition>
                 <RowDefinition Height="150"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -61,6 +64,7 @@
                                 Margin="16 0 0 0"
                                 FontWeight="Bold"
                                 Style="{StaticResource MaterialDesignHeadline4TextBlock}">144</TextBlock>
+                        
 
                     </Grid>
                 </materialDesign:Card>
@@ -133,8 +137,8 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" Margin="16 0 0 0" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="Receipt" VerticalAlignment="Center" Width="24" Height="24" HorizontalAlignment="Center" Margin="0 0 10 0"/>
-                            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Resep</TextBlock>
+                            <materialDesign:PackIcon Kind="Pill" VerticalAlignment="Center" Width="24" Height="24" HorizontalAlignment="Center" Margin="0 0 10 0"/>
+                            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Obat</TextBlock>
                         </StackPanel>
                         <TextBlock
                                 x:Name="lblResep"
@@ -147,84 +151,33 @@
                 </materialDesign:Card>
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">
-                <materialDesign:Card
-                        Background="#F39C12"
-                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                        Padding="10"
-                        UniformCornerRadius="10">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Margin="16 0 0 0" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="ArrowDown" VerticalAlignment="Center" Width="24" Height="24" HorizontalAlignment="Center" Margin="0 0 10 0"/>
-                            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Antrian Sekarang</TextBlock>
-                        </StackPanel>
-                        <TextBlock
-                                Grid.Row="1"
-                                Margin="16 0 0 0"
-                                FontWeight="Bold"
-                                Style="{StaticResource MaterialDesignHeadline4TextBlock}">10812</TextBlock>
-
-                    </Grid>
-                </materialDesign:Card>
-            </Grid>
-
-            <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="10">
-                <materialDesign:Card
-                        Background="#FFE2401C"
-                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                        Padding="10"
-                        UniformCornerRadius="10">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Margin="16 0 0 0" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="ArrowRight" VerticalAlignment="Center" Width="24" Height="24" HorizontalAlignment="Center" Margin="0 0 10 0"/>
-                            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Antrian Selanjutnya</TextBlock>
-                        </StackPanel>
-                        <TextBlock
-                                Grid.Row="1"
-                                Margin="16 0 0 0"
-                                FontWeight="Bold"
-                                Style="{StaticResource MaterialDesignHeadline4TextBlock}">10813</TextBlock>
-
-                    </Grid>
-                </materialDesign:Card>
-            </Grid>
 
             <Grid Grid.Row="2" Grid.ColumnSpan="4" Height="500">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="0" Grid.RowSpan="2" Margin="10">
+                <Grid Grid.Row="0" Grid.Column="0" Margin="10">
                     <materialDesign:Card
                         Background="#fff"
                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                        Padding="10"
+                        Padding="20 10"
                         UniformCornerRadius="5">
 
                         <Grid>
-                            <StackPanel Margin="16">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Deal" VerticalAlignment="Center" Width="24" Height="24" Foreground="#000" HorizontalAlignment="Center" Margin="0 0 10 0"/>
-                                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold" Foreground="#000">Transaksi Terakhir</TextBlock>
-                                </StackPanel>
-                                <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 20 0 0"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 0" Grid.Row="0">
+                                <materialDesign:PackIcon Kind="ChartBar" VerticalAlignment="Center" Width="24" Height="24" Foreground="#000" HorizontalAlignment="Center" Margin="0 0 10 0"/>
+                                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" VerticalAlignment="Center" FontWeight="Bold" Foreground="#000">Grafik Transaksi (Keuangan)</TextBlock>
                             </StackPanel>
+                            <Grid x:Name="keuanganChart" Grid.Row="1">
+
+                            </Grid>
                         </Grid>
                     </materialDesign:Card>
                 </Grid>
@@ -233,39 +186,25 @@
                     <materialDesign:Card
                         Background="#fff"
                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                        Padding="10"
+                        Padding="20 10"
                         UniformCornerRadius="5">
 
                         <Grid>
-                            <StackPanel Margin="16">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ChartBar" VerticalAlignment="Center" Width="24" Height="24" Foreground="#000" HorizontalAlignment="Center" Margin="0 0 10 0"/>
-                                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold" Foreground="#000">Grafik Penjualan</TextBlock>
-                                </StackPanel>
-                                
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 0" Grid.Row="0">
+                                <materialDesign:PackIcon Kind="ChartBar" VerticalAlignment="Center" Width="24" Height="24" Foreground="#000" HorizontalAlignment="Center" Margin="0 0 10 0"/>
+                                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" VerticalAlignment="Center" FontWeight="Bold" Foreground="#000">Grafik Transaksi (Jumlah Obat)</TextBlock>
                             </StackPanel>
+                            <Grid x:Name="jumlahObatChart" Grid.Row="1">
+
+                            </Grid>
                         </Grid>
                     </materialDesign:Card>
                 </Grid>
 
-                <Grid Grid.Row="1" Grid.Column="1" Margin="10">
-                    <materialDesign:Card
-                        Background="#fff"
-                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                        Padding="10"
-                        UniformCornerRadius="5">
-
-                        <Grid>
-                            <StackPanel Margin="16">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ChartBar" VerticalAlignment="Center" Width="24" Height="24" Foreground="#000" HorizontalAlignment="Center" Margin="0 0 10 0"/>
-                                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold" Foreground="#000">Grafik Pembelian</TextBlock>
-                                </StackPanel>
-                                <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 20 0 0"/>
-                            </StackPanel>
-                        </Grid>
-                    </materialDesign:Card>
-                </Grid>
             </Grid>
         </Grid>
 

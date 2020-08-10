@@ -68,20 +68,35 @@ namespace KenkoApp.uc
                 SqlDataReader data = cmd.ExecuteReader();
                 if (data.Read())
                 {
-                    Application.Current.Properties["role"] = role;
-                    Application.Current.Properties["id"] = data.GetValue(0).ToString();
-                    Application.Current.Properties["nama"] = data.GetValue(iNama).ToString();
-
                     MessageBox.Show("Login berhasil!", "Berhasil", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    if (role == "Dokter")
+                    Application.Current.Properties["id"] = data.GetValue(0).ToString();
+                    Application.Current.Properties["nama"] = data.GetValue(iNama).ToString();
+                    if (role == "User")
                     {
+                        switch(data.GetValue(5).ToString())
+                        {
+                            case "1":
+                                Application.Current.Properties["role"] = "Admin";
+                                Content = new Admin();
+                                break;
+                            case "2":
+                                Application.Current.Properties["role"] = "Kasir";
+                                Content = new Kasir();
+                                break;
+                            case "3":
+                                Application.Current.Properties["role"] = "Manager";
+                                Content = new Manager();
+                                break;
+                        }
+                    } else
+                    {
+                        Application.Current.Properties["role"] = role;
                         Content = new Dokter();
+
                     }
-                    else
-                    {
-                        Content = new Admin();
-                    }
+
+
                 }
                 else
                 {

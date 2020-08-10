@@ -9,7 +9,7 @@
             d:DesignHeight="768" d:DesignWidth="1366" Loaded="TransaksiResep_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
             <ColumnDefinition Width="6*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
@@ -88,20 +88,20 @@
                             Margin="0 5" Foreground="#000"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                             materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalAlignment="Center" IsReadOnly="True"/>
+                            VerticalAlignment="Center" TextChanged="txtCariPasien_TextChanged"/>
                     <Separator HorizontalAlignment="Stretch" Height="2" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
 
                     <DataGrid x:Name="dataObat" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
-                        VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                        VerticalAlignment="Top" ScrollViewer.CanContentScroll="True"
                         CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
                         materialDesign:DataGridAssist.CellPadding="4"
                         materialDesign:DataGridAssist.ColumnHeaderPadding="4"
-                        CanUserAddRows="False"
+                        CanUserAddRows="False" MaxHeight="500"
                         SelectionUnit="Cell"
                         SelectionMode="Extended" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
-                            <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Nama Obat" Binding="{Binding Path=nama_obat}" ElementStyle="{StaticResource WrapText}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Tgl. Expired" Binding="{Binding Path=tglExpired}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Stok" Binding="{Binding Path=stok}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
                             <DataGridTextColumn Header="Harga Jual" Binding="{Binding Path=hargaJual}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
@@ -155,29 +155,25 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Pasien</TextBlock>
-                    <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Dokter</TextBlock>
+                    <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="#000" Margin="20 10">Riwayat Penyakit</TextBlock>
                     <Separator Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Height="2" Margin="20 0" VerticalAlignment="Bottom"/>
 
-                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="20 0 20 0">
-                        <TextBox x:Name="txtNoSip" materialDesign:HintAssist.Hint="No. SIP"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
-                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalAlignment="Center" />
+                    <DataGrid x:Name="dataRiwayat" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Grid.Row="1"
+                              Grid.Column="1" Margin="10"
+                                VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                                CanUserSortColumns="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                materialDesign:DataGridAssist.CellPadding="4"
+                                materialDesign:DataGridAssist.ColumnHeaderPadding="4"
+                                CanUserAddRows="False"
+                                SelectionUnit="Cell"
+                                SelectionMode="Extended" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="No" Binding="{Binding Path=No}" IsReadOnly="True" CellStyle="{StaticResource RightCell}"/>
+                            <DataGridTextColumn Header="Tgl. Reservasi" Binding="{Binding Path=TglReservasi}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Keluhan" Binding="{Binding Path=keterangan}" IsReadOnly="True"/>
 
-                        <TextBox x:Name="txtNamaDokter" materialDesign:HintAssist.Hint="Nama Dokter"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
-                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalAlignment="Center" />
-
-                        <TextBox x:Name="txtSpesialisasi" materialDesign:HintAssist.Hint="Spesialisasi"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="#000"
-                            materialDesign:HintAssist.Foreground="#EB3F3F" IsReadOnly="True"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
-                            VerticalAlignment="Center" />
-                    </StackPanel>
-
+                        </DataGrid.Columns>
+                    </DataGrid>
 
                     <StackPanel Grid.Row="1" Margin="20 0 20 0">
 

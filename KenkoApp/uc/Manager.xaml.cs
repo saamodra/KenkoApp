@@ -17,14 +17,13 @@ using System.Windows.Shapes;
 namespace KenkoApp.uc
 {
     /// <summary>
-    /// Interaction logic for Dashboard.xaml
+    /// Interaction logic for Manager.xaml
     /// </summary>
-    public partial class Admin : UserControl
+    public partial class Manager : UserControl
     {
-        public Admin()
+        public Manager()
         {
-            InitializeComponent();
-            UserControl usc = null;
+            InitializeComponent(); UserControl usc = null;
             usc = new Dashboard();
             GridMain.Children.Add(usc);
 
@@ -57,7 +56,7 @@ namespace KenkoApp.uc
             UserControl usc = null;
             GridMain.Children.Clear();
             int index = ListViewMenu.SelectedIndex;
-            
+
             SelectedMenuChange(index);
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
@@ -67,44 +66,24 @@ namespace KenkoApp.uc
                     PageTitle.Text = "Dashboard";
                     GridMain.Children.Add(usc);
                     break;
-                case "ItemUser":
-                    usc = new MasterUser();
-                    GridMain.Children.Add(usc);
-                    PageTitle.Text = "Master User";
-                    break;
-                case "ItemSupplier":
-                    usc = new MasterSupplier();
-                    PageTitle.Text = "Master Supplier";
+                case "ItemLaporanPenjualan":
+                    usc = new LaporanPenjualan();
+                    PageTitle.Text = "Laporan Penjualan";
                     GridMain.Children.Add(usc);
                     break;
-                case "ItemMember":
-                    usc = new MasterMember();
-                    PageTitle.Text = "Master Member";
+                case "ItemLaporanPembelian":
+                    usc = new LaporanPembelian();
+                    PageTitle.Text = "Laporan Pembelian";
                     GridMain.Children.Add(usc);
                     break;
-                case "ItemDokter":
-                    usc = new MasterDokter();
-                    PageTitle.Text = "Master Dokter";
+                case "ItemLaporanObat":
+                    usc = new LaporanObat();
+                    PageTitle.Text = "Laporan Obat";
                     GridMain.Children.Add(usc);
                     break;
-                case "ItemPasien":
-                    usc = new MasterPasien();
-                    PageTitle.Text = "Master Pasien";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemSatuan":
-                    usc = new MasterSatuan();
-                    PageTitle.Text = "Master Satuan Obat";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemKategori":
-                    usc = new MasterKategori();
-                    PageTitle.Text = "Master Kategori";
-                    GridMain.Children.Add(usc);
-                    break;
-                case "ItemObat":
-                    usc = new MasterObat();
-                    PageTitle.Text = "Master Obat";
+                case "ItemLaporanReservasi":
+                    usc = new LaporanReservasi();
+                    PageTitle.Text = "Laporan Reservasi";
                     GridMain.Children.Add(usc);
                     break;
                 default:
@@ -116,22 +95,23 @@ namespace KenkoApp.uc
         {
             TrainsitionigContentSlide.OnApplyTemplate();
             int diff = 0;
-            if(index > 12)
+            if (index > 12)
             {
                 diff = 38;
-            } else if(index > 8)
+            }
+            else if (index > 8)
             {
                 diff = 19;
-            } 
+            }
             GridCursor.Margin = new Thickness(0, ((40 * index) - diff), 0, 0);
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new Login();
+            Content = new Login();
         }
 
-        private void Admin_Loaded(object sender, RoutedEventArgs e)
+        private void Manager_Loaded(object sender, RoutedEventArgs e)
         {
             lblUsername.Text = Application.Current.Properties["nama"].ToString();
             lblRole.Text = Application.Current.Properties["role"].ToString();

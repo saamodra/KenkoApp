@@ -62,7 +62,7 @@
             <Label Name="lblAlamat" Foreground="#EB3F3F" Visibility="Hidden">Wajib diisi.</Label>
             <TextBox x:Name="txtNoTelp" materialDesign:HintAssist.Hint="No. Telepon"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    materialDesign:HintAssist.Foreground="#EB3F3F"
+                    materialDesign:HintAssist.Foreground="#EB3F3F" MaxLength="13"
                     materialDesign:TextFieldAssist.UnderlineBrush="#EB3F3F"
                     VerticalAlignment="Center" GotFocus="txtNoTelp_Focus" TextChanged="txtNoTelp_TextChanged" PreviewTextInput="txtNoTelp_PreviewTextInput"  />
             <Label Name="lblNoTelp" Foreground="#EB3F3F" Visibility="Hidden">Wajib diisi.</Label>

@@ -24,7 +24,7 @@
             <Image Grid.Column="0"
                 HorizontalAlignment="Left" Height="40" 
                    VerticalAlignment="Center" Width="auto" 
-                   Margin="20, 0, 10, 0" Source="/images/Kenko-2.png" 
+                   Margin="20, 0, 10, 0" Source="/images/Kenko-New2.png" 
                    Stretch="Uniform" StretchDirection="DownOnly"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >

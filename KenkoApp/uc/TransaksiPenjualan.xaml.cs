@@ -40,9 +40,9 @@ namespace KenkoApp.uc
         {
             DataTable dt = Kenko.getData("sp_Kategori_Read", "");
 
-            listKategori.ItemsSource = dt.DefaultView;
-            listKategori.DisplayMemberPath = "nama_kategori";
-            listKategori.SelectedValuePath = "id_kategori";
+            cmbKategori.ItemsSource = dt.DefaultView;
+            cmbKategori.DisplayMemberPath = "nama_kategori";
+            cmbKategori.SelectedValuePath = "id_kategori";
 
             dtPenjualan = new DataTable();
             dtPenjualan.Columns.Add("id_obat");
@@ -50,7 +50,7 @@ namespace KenkoApp.uc
             dtPenjualan.Columns.Add("jumlah");
             dtPenjualan.Columns.Add("harga");
 
-            txtKasir.Text = "Samodra";
+            txtKasir.Text = Application.Current.Properties["nama"].ToString();
             txtTglTransaksi.Text = DateTime.Now.ToString("dd-MM-yyyy");
 
         }
@@ -84,67 +84,94 @@ namespace KenkoApp.uc
         {
             DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
 
+            //Mengambil content dari dataMaster kolom 5 (jumlah)
             ContentPresenter jml = dataMaster.Columns[5].GetCellContent(dataRowView) as ContentPresenter;
+            
             var myTemplate = jml.ContentTemplate;
+
+            //Cek apakah myTemplate null atau tidak
             if(myTemplate != null)
             {
                 TextBox jumlah = myTemplate.FindName("txtJumlah", jml) as TextBox;
 
+                // Jika jumlah kosong
                 if(jumlah.Text == "")
                 {
-                    MessageBox.Show("Silahkan isi jumlah beli terlebih dahulu");
+                    MessageBox.Show("Silahkan isi jumlah beli terlebih dahulu.", "Informasi", MessageBoxButton.OK, MessageBoxImage.Information);
                 } else
                 {
-                    double total = Double.Parse(jumlah.Text) * Double.Parse(dataRowView[9].ToString());
-
-                    if(dtPenjualan.Rows.Count > 0)
+                    // Jika stok kurang dari text jumlah
+                    if (Convert.ToInt32(dataRowView[7].ToString()) < Convert.ToInt32(jumlah.Text))
                     {
-                        bool found = false;
-                        for(int i = 0; i < dtPenjualan.Rows.Count; i++)
+                        MessageBox.Show("Stok tidak mencukupi.", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+                    } else
+                    {
+                        // Menghitung total, text  jumlah * dengan harga jual
+                        double total = Double.Parse(jumlah.Text) * Double.Parse(dataRowView[9].ToString());
+                        
+                        // Jika keranjang ada barangnya
+                        if (dtPenjualan.Rows.Count > 0)
                         {
-                            DataRow row = dtPenjualan.Rows[i];
-                            if (row["id_obat"].ToString() == dataRowView[1].ToString())
+                            bool found = false;
+                            for(int i = 0; i < dtPenjualan.Rows.Count; i++)
                             {
-                                row["jumlah"] = Convert.ToInt32(row["jumlah"].ToString()) + Convert.ToInt32(jumlah.Text);
-                                row["harga"] = Convert.ToDouble(row["harga"]) + total;
+                                DataRow row = dtPenjualan.Rows[i];
+                                //jika obat dari keranjang == obat dari datagrid obat
+                                if (row["id_obat"].ToString() == dataRowView[1].ToString())
+                                {
+                                    int jumlahPembelianKeranjang = Convert.ToInt32(row["jumlah"].ToString()) + Convert.ToInt32(jumlah.Text);
 
+                                    // Jika jumlah pembelian di keranjang melebihi yang ada di database
+                                    if (jumlahPembelianKeranjang > Convert.ToInt32(dataRowView[7].ToString()))
+                                    {
+                                        MessageBox.Show("Stok tidak mencukupi.", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    } else
+                                    {
+                                        row["jumlah"] = jumlahPembelianKeranjang;
+                                        row["harga"] = Convert.ToDouble(Kenko.getNumber(row["harga"].ToString())) + total;
+
+                                        jumlahBarang = jumlahBarang + Convert.ToInt32(jumlah.Text);
+                                        subtotal = subtotal + total;
+                                        lblJumlahBarang.Content = jumlahBarang;
+                                        lblSubtotal.Content = Kenko.formatCurrency(subtotal);
+                                        lblTotalPembayaran.Text = Kenko.formatCurrency(subtotal);
+                                        
+                                    }
+                                    found = true;
+                                }
+                            
+                            }
+
+                            //Jika tidak ada di keranjang, maka data langsung ditambahkan ke row baru, 
+                            //tidak mengakumulasikan jumlah barang dari keranjang 
+                            if(!found)
+                            {
                                 jumlahBarang = jumlahBarang + Convert.ToInt32(jumlah.Text);
                                 subtotal = subtotal + total;
+                                dtPenjualan.Rows.Add(dataRowView[1].ToString(), dataRowView[2].ToString(), jumlah.Text, Kenko.formatCurrency(total));
                                 lblJumlahBarang.Content = jumlahBarang;
                                 lblSubtotal.Content = Kenko.formatCurrency(subtotal);
                                 lblTotalPembayaran.Text = Kenko.formatCurrency(subtotal);
-                                found = true;
                             }
-                            
-                        }
-
-                        if(!found)
+                        } else
                         {
                             jumlahBarang = jumlahBarang + Convert.ToInt32(jumlah.Text);
                             subtotal = subtotal + total;
-                            dtPenjualan.Rows.Add(dataRowView[1].ToString(), dataRowView[2].ToString(), jumlah.Text, total);
+
+                            //Menambahkan baris ke dtPenjualan
+                            dtPenjualan.Rows.Add(dataRowView[1].ToString(), dataRowView[2].ToString(), jumlah.Text, Kenko.formatCurrency(total));
                             lblJumlahBarang.Content = jumlahBarang;
                             lblSubtotal.Content = Kenko.formatCurrency(subtotal);
                             lblTotalPembayaran.Text = Kenko.formatCurrency(subtotal);
                         }
-                    } else
-                    {
-                        jumlahBarang = jumlahBarang + Convert.ToInt32(jumlah.Text);
-                        subtotal = subtotal + total;
 
-                        //Menambahkan baris ke dtPenjualan
-                        dtPenjualan.Rows.Add(dataRowView[1].ToString(), dataRowView[2].ToString(), jumlah.Text, total);
-                        lblJumlahBarang.Content = jumlahBarang;
-                        lblSubtotal.Content = Kenko.formatCurrency(subtotal);
-                        lblTotalPembayaran.Text = Kenko.formatCurrency(subtotal);
+                        dataPenjualan.ItemsSource = dtPenjualan.DefaultView;
+                        jumlah.Text = "0";
                     }
-
-                    dataPenjualan.ItemsSource = dtPenjualan.DefaultView;
-                    jumlah.Text = "0";
                 }
             } else
             {
-                MessageBox.Show("Silahkan isi jumlah beli terlebih dahulu");
+                MessageBox.Show("Silahkan isi jumlah beli terlebih dahulu.", "Informasi", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }
@@ -158,6 +185,7 @@ namespace KenkoApp.uc
             lblJumlahBarang.Content = jumlahBarang;
             dtPenjualan.Rows.Remove(dataRowView.Row);
             dataPenjualan.ItemsSource = dtPenjualan.DefaultView;
+            lblTotalPembayaran.Text = "0";
         }
 
         private void txtJumlah_TextChanged(object sender, TextChangedEventArgs e)
@@ -225,17 +253,16 @@ namespace KenkoApp.uc
             {
 
                 double totalPembayaran = Convert.ToDouble(Kenko.getNumber(lblTotalPembayaran.Text));
-                double bayar = double.Parse(txtBayar.Text);
+                double bayar = double.Parse(Kenko.getNumber2(txtBayar.Text));
                 if(bayar < totalPembayaran)
                 {
                     MessageBox.Show("Uang pembayaran tidak mencukupi", "Gagal", MessageBoxButton.OK, MessageBoxImage.Error);
                 } else
                 {
-                    double kembalian = double.Parse(txtBayar.Text) - totalPembayaran;
+                    double kembalian = double.Parse(Kenko.getNumber2(txtBayar.Text)) - totalPembayaran;
                     lblKembalian.Content = Kenko.formatCurrency(kembalian);
 
                     btnBayar.IsEnabled = true;
-                    btnCetak.IsEnabled = true;
                 }
             }
         }
@@ -252,18 +279,18 @@ namespace KenkoApp.uc
             penjualanRow.total_item = lblJumlahBarang.Content.ToString();
             penjualanRow.total = lblTotalPembayaran.Text;
             penjualanRow.poin_terpakai = Convert.ToInt32(txtPoin.Text);
-            penjualanRow.tunai = Kenko.formatCurrency(double.Parse(txtBayar.Text));
+            penjualanRow.tunai = Kenko.formatCurrency(double.Parse(Kenko.getNumber2(txtBayar.Text)));
             penjualanRow.kembalian = lblKembalian.Content.ToString();
 
             penjualans.AddPenjualanRow(penjualanRow);
 
             foreach (DataRow row in dtPenjualan.Rows)
             {
+                double harga = double.Parse(Kenko.getNumber(row["harga"].ToString()));
                 StrukDataset.Detail_PenjualanRow detail_PenjualanRow = detail_Penjualans.NewDetail_PenjualanRow();
                 detail_PenjualanRow.nama_obat = row["nama_obat"].ToString();
                 detail_PenjualanRow.jumlah = row["jumlah"].ToString();
-                detail_PenjualanRow.harga = Kenko.formatCurrency(double.Parse(row["harga"].ToString()));
-
+                detail_PenjualanRow.harga = Kenko.formatCurrency(harga);
                 detail_Penjualans.AddDetail_PenjualanRow(detail_PenjualanRow); 
             }
             
@@ -277,13 +304,14 @@ namespace KenkoApp.uc
             SqlCommand cmd = new SqlCommand("sp_Transaksi_Penjualan", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
+            string id_user = Application.Current.Properties["id"].ToString();
             string no_penjualan = Kenko.generateId("PJ", "sp_Transaksi_Penjualan_GetLast");
             cmd.Parameters.AddWithValue("no_penjualan", no_penjualan);
             cmd.Parameters.AddWithValue("tgl_beli", DateTime.Now);
             cmd.Parameters.AddWithValue("total_harga", Convert.ToDouble(Kenko.getNumber(lblTotalPembayaran.Text)));
             cmd.Parameters.AddWithValue("id_member", (txtPoin.IsEnabled == true) ? (object)txtIdMember.Text : DBNull.Value);
             cmd.Parameters.AddWithValue("poin_terpakai", txtPoin.Text);
-            cmd.Parameters.AddWithValue("id_user", 2);
+            cmd.Parameters.AddWithValue("id_user", id_user);
 
 
             try
@@ -301,7 +329,7 @@ namespace KenkoApp.uc
                     cmd.Parameters.AddWithValue("no_penjualan", no_penjualan);
                     cmd.Parameters.AddWithValue("id_obat", row["id_obat"].ToString());
                     cmd.Parameters.AddWithValue("jumlah", row["jumlah"].ToString());
-                    cmd.Parameters.AddWithValue("total_harga", row["harga"].ToString());
+                    cmd.Parameters.AddWithValue("total_harga", Kenko.getNumber(row["harga"].ToString()));
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
@@ -340,11 +368,11 @@ namespace KenkoApp.uc
             txtBayar.Text = "";
             lblKembalian.Content = 0;
             btnBayar.IsEnabled = false;
-            btnCetak.IsEnabled = false;
-            string idkategori = listKategori.SelectedValue.ToString();
+            string idkategori = "";
+            subtotal = 0;
+            jumlahBarang = 0;
 
             dataMaster.ItemsSource = Kenko.getData("sp_Obat_GetKategori", idkategori).DefaultView;
-
         }
 
         private void btnBaru_Click(object sender, RoutedEventArgs e)
@@ -363,6 +391,18 @@ namespace KenkoApp.uc
         private void btnCetak_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void cmbKategori_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string idkategori = cmbKategori.SelectedValue.ToString();
+
+            dataMaster.ItemsSource = Kenko.getData("sp_Obat_GetKategori", idkategori).DefaultView;
+        }
+
+        private void txtBayar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Kenko.textFieldCurrencyFormat(txtBayar, "");
         }
     }
 }

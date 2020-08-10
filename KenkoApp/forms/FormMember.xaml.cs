@@ -42,11 +42,11 @@ namespace KenkoApp.forms
             if (type == "Edit")
             {
                 this.idMember = idMember;
-                lblTitle.Text = "Edit Data Member";
+                lblTitle.Text = "Ubah Data Member";
                 formType = "Edit";
                 lblSubtitle.Text = "Form ini untuk mengedit data member";
                 FormIcon.Kind = PackIconKind.PencilBox;
-                Title = "Edit Data";
+                Title = "Ubah Data";
 
                 txtIdMember.Visibility = Visibility.Visible;
                 lblIdMember.Visibility = Visibility.Hidden;

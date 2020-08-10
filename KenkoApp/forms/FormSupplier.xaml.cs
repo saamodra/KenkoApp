@@ -39,10 +39,10 @@ namespace KenkoApp.forms
             if (type == "Edit")
             {
                 this.idSupplier = idSupplier;
-                lblTitle.Text = "Edit Data Supplier";
-                lblSubtitle.Text = "Form ini untuk mengedit data supplier";
+                lblTitle.Text = "Ubah Data Supplier";
+                lblSubtitle.Text = "Form ini untuk mengubah data supplier";
                 FormIcon.Kind = PackIconKind.PencilBox;
-                Title = "Edit Data";
+                Title = "Ubah Data";
 
                 btnSave.Click += btnEdit_Click;
             }
@@ -207,8 +207,9 @@ namespace KenkoApp.forms
 
         private void txtNoTelp_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+            Kenko.fieldMin(txtNoTelp.Text, lblNoTelp, 11);
         }
+
 
         private void txtBank_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -230,11 +231,18 @@ namespace KenkoApp.forms
             bool namaSupplier = Kenko.fieldRequired(txtNamaSupplier.Text, lblNamaSupplier);
             bool namaKontak = Kenko.fieldRequired(txtNamaKontak.Text, lblNamaKontak);
             bool alamat = Kenko.fieldRequired(txtAlamat.Text, lblAlamat);
-            bool noTelp = Kenko.fieldRequired(txtNoTelp.Text, lblNoTelp);
+            bool noTelp = Kenko.fieldMin(txtNoTelp.Text, lblNoTelp, 11);
             bool bank = Kenko.fieldRequired(txtBank.Text, lblBank);
             bool noRek = Kenko.fieldRequired(txtNoRekening.Text, lblNoRekening);
+            bool email = Kenko.fieldRequired(txtEmail.Text, lblEmail);
+            bool emailFormat = false;
 
-            if (namaSupplier && namaKontak && alamat && noTelp && bank && noRek)
+            if (email)
+            {
+                emailFormat = Kenko.emailInput(txtEmail.Text, lblEmail);
+            }
+
+            if (namaSupplier && namaKontak && alamat && noTelp && bank && email && emailFormat && noRek)
             {
                 return true;
             } else
