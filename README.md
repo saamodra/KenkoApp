@@ -18,6 +18,9 @@ Kenko is a point of sales application that serves to support the drug sales proc
 5. Run `Update-Package -Reinstall`
 6. Start
 
+## Demo Video
+[Watch Here](https://drive.google.com/file/d/1gysDazP-KD3JbLNPG7MQMXx4AVK1QQZv/view?usp=sharing)
+
 ## Preview ##
 ### Landing Page ###
 ![Landing Page](https://i.imgur.com/lQELhPF.png)
